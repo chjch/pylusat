@@ -1,6 +1,6 @@
 import os
 import geopandas as gpd
-from distance import to_point, to_line, to_cell
+from pylusat.distance import to_point, to_line, to_cell
 import unittest
 
 
