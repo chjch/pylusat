@@ -20,6 +20,7 @@ setuptools.setup(
     description='Land-use suitability analysis toolkit',
     version='v0.1.0',
     long_description=README,
+    long_description_content_type='text/markdown',
     url='https://github.com/ChangjieChen/pylusat',
     packages=setuptools.find_packages(exclude=("tests",)),
     python_requires=">=3.6",
