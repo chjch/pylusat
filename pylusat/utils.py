@@ -127,7 +127,7 @@ def read_raster(raster, nodata=None):
     nodata : int or float
         The no data value used during the conversion.
     """
-    import gdal
+    from osgeo import gdal
     try:
         raster_data = gdal.Open(raster)
         raster_band = raster_data.GetRasterBand(1)
