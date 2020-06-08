@@ -19,7 +19,7 @@ class GeoDataFrameManager:
         return validation_map[validate_type]
 
     @property
-    def geom_unit_id(self):
+    def geom_unit_id(self) -> str:
         proj_str = Proj(self.gdf.crs).definition_string()
         return [_[_.find("=") + 1:] for _ in proj_str.split()
                 if _.startswith("units=")][0]
@@ -35,16 +35,6 @@ class GeoDataFrameManager:
             return cls(GeoDataFrame.from_file(shp_path))
         except Exception as err:
             print(err)
-
-
-def _pluralize(name):
-    # convert unit name to its corresponding plural form
-    if name.endswith("Inch"):
-        return name.replace("Inch", "Inches")
-    elif name.endswith("Foot"):
-        return name.replace("Foot", "Feet")
-    else:
-        return name + "s"
 
 
 class UnitHandler:
@@ -73,46 +63,82 @@ class UnitHandler:
 
     # alternative unit names
     OTHER_NAMES = {"Metre": "m",
-                   "Mile": "mi",
-                   "Foot": "ft",
-                   "Yard": "yd",
-                   "Inch": "in"}
+                   "Mile": "us-mi",
+                   "Foot": "us-ft",
+                   "Yard": "us-yd",
+                   "Inch": "us-in"}
 
     # normal unit names
     VALID_NAMES = {v[0]: k for k, v in UNIT_MAP.items()}
 
+    # additional area names supported
+    AREA_NAMES = {'Acre': 'ac',
+                  'Hectare': 'ha'}
+
     def __init__(self, unit):
-        unit_validation = UnitHandler.validate(unit)
-        if unit_validation is None:
-            raise ValueError("The unit provided is invalid or not supported.")
+        validate_1d = self._validate_1d(unit)
+        if validate_1d:
+            self.unit_id = validate_1d
+            self.dimension = 1
+            return
+        validate_2d = self._validate_2d(unit)
+        if validate_2d:
+            self.unit_id = validate_2d
+            self.dimension = 2
+            return
         else:
-            self.unit_id = unit_validation
+            raise ValueError(f'{unit} is not a valid unit.')
 
     @property
     def fullname(self):
-        return self.UNIT_MAP[self.unit_id][0]
+        if self.dimension == 1:
+            return self.UNIT_MAP[self.unit_id][0]
+        else:  # dimension=2
+            if self.unit_id == 'ac':
+                return 'Acre'
+            elif self.unit_id == 'ha':
+                return 'Hectare'
+            else:
+                return f'Square {self.UNIT_MAP[self.unit_id][0]}'
 
-    @property
-    def factor(self):
-        return self.UNIT_MAP[self.unit_id][1]
+    @staticmethod
+    def _pluralize(name):
+        # convert unit name to its corresponding plural form
+        if name.endswith("Inch"):
+            return name.replace("Inch", "Inches")
+        elif name.endswith("Foot"):
+            return name.replace("Foot", "Feet")
+        else:
+            return name + "s"
 
     @property
     def plural(self):
-        return _pluralize(self.fullname)
+        return self._pluralize(self.fullname)
 
-    @classmethod
-    def _unit_name_map(cls):
-        return {**cls.VALID_NAMES, **cls.OTHER_NAMES,
-                **{_pluralize(k): v for k, v in cls.VALID_NAMES.items()},
-                **{_pluralize(k): v for k, v in cls.OTHER_NAMES.items()}}
+    @property
+    def base_factor(self):
+        """conversion factor compare to meter or square meter."""
+        if self.dimension == 1:
+            return self.UNIT_MAP[self.unit_id][1]
+        else:  # dimension=2
+            if self.unit_id == 'ac':
+                return self.UNIT_MAP['us-ft'][1]**2 * 43560
+            elif self.unit_id == 'ha':
+                return 10000
+            else:
+                return self.UNIT_MAP[self.unit_id][1]**2
 
-    @classmethod
-    def validate(cls, unit):
+    def _unit_name_map(self):
+        return {**self.VALID_NAMES, **self.OTHER_NAMES,
+                **{self._pluralize(k): v for k, v in self.VALID_NAMES.items()},
+                **{self._pluralize(k): v for k, v in self.OTHER_NAMES.items()}}
+
+    def _validate_1d(self, unit):
         try:
             unit_lower = unit.lower()
             unit_title = unit.title()
-            unit_name_map = cls._unit_name_map()
-            if unit_lower in cls.UNIT_MAP.keys():
+            unit_name_map = self._unit_name_map()
+            if unit_lower in self.UNIT_MAP.keys():
                 return unit_lower
             elif unit_title in unit_name_map.keys():
                 return unit_name_map[unit_title]
@@ -121,9 +147,25 @@ class UnitHandler:
         except Exception as err:
             print(err)
 
-    def convert(self, to_unit):
-        to_unit = UnitHandler(to_unit)
-        if to_unit.unit_id == "m":
-            return self.factor
+    def _validate_2d(self, unit):
+        try:
+            sq, unit_name = unit.split()
+            if sq in ['square', 'sq'] and self._validate_1d(unit_name):
+                return self._validate_1d(unit_name)
+            else:
+                raise ValueError('Not a valid areal unit.')
+        except ValueError:
+            if unit.title() in self.AREA_NAMES.keys():
+                return self.AREA_NAMES[unit.title()]
+            elif unit[:-1].title() in self.AREA_NAMES.keys():
+                return self.AREA_NAMES[unit[:-1].title()]
+            else:
+                raise ValueError('Not a valid areal unit.')
+
+    def convert(self, other_unit):
+        other_unit_handler = UnitHandler(other_unit)
+        if self.dimension != other_unit_handler.dimension:
+            raise TypeError(f'Incompatible units, from {self.fullname} to '
+                            f'{other_unit_handler.fullname}.')
         else:
-            return self.factor / to_unit.factor
+            return self.base_factor / other_unit_handler.base_factor

@@ -11,7 +11,7 @@ def _to_affine(cellsize, max_y, min_x):
     return Affine(cellsize, 0, min_x, 0, -cellsize, max_y)
 
 
-def zonal_stats_raster(zone_gdf, raster, stats, nodata=0):
+def zonal_stats_raster(zone_gdf, raster, stats=None, nodata=None):
     """
     Return specified stats for each geometry in the zone GeoDataFrame.
 

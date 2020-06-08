@@ -9,6 +9,12 @@ def idw(input_gdf, value_gdf, value_clm, power=2, n_neighbor=12,
     """
     Interpolation using inverse distance weighting (IDW).
 
+    This function implements an `IDW interpolation
+    <https://en.wikipedia.org/wiki/Inverse_distance_weighting>`. The power
+    parameter dictates how fast the influence to a given location by its
+    nearby objects decays. `idw_cv`, a k-fold cross validation method is
+    offered to determine the most appropriate value of the `power` parameter.
+
     Parameters
     ----------
     input_gdf : GeoDataFrame
@@ -51,7 +57,7 @@ def idw(input_gdf, value_gdf, value_clm, power=2, n_neighbor=12,
     value_coords = cntrd_array(value_gdf)
     kdtree = cKDTree(value_coords, leafsize=leafsize)
 
-    if search_radius is None:
+    if not search_radius:
         search_radius = np.inf
     dd: np.ndarray
     ii: np.ndarray
@@ -81,7 +87,7 @@ def idw(input_gdf, value_gdf, value_clm, power=2, n_neighbor=12,
     return output_sr
 
 
-def _cross_validation(data, yname, func, k=10, seed=None, **kwargs):
+def idw_cv(data, yname, func, k=10, seed=None, **kwargs):
     n = len(data.index)  # total number of observations
     f = int(np.ceil(n/k))  # sample size in each fold
     np.random.seed(seed)
