@@ -18,7 +18,7 @@ setuptools.setup(
     author_email="chj.chen@hotmail.com",
     license="BSD",
     description='Land-use suitability analysis toolkit',
-    version='v0.1.0',
+    version='v0.2.1',
     long_description=README,
     long_description_content_type='text/markdown',
     url='https://github.com/ChangjieChen/pylusat',
