@@ -150,17 +150,17 @@ class UnitHandler:
     def _validate_2d(self, unit):
         try:
             sq, unit_name = unit.split()
-            if sq in ['square', 'sq'] and self._validate_1d(unit_name):
+            if sq.lower() in ['square', 'sq'] and self._validate_1d(unit_name):
                 return self._validate_1d(unit_name)
             else:
-                raise ValueError('Not a valid areal unit.')
+                raise ValueError('Not a valid area unit.')
         except ValueError:
             if unit.title() in self.AREA_NAMES.keys():
                 return self.AREA_NAMES[unit.title()]
             elif unit[:-1].title() in self.AREA_NAMES.keys():
                 return self.AREA_NAMES[unit[:-1].title()]
             else:
-                raise ValueError('Not a valid areal unit.')
+                raise ValueError('Not a valid area unit.')
 
     def convert(self, other_unit):
         other_unit_handler = UnitHandler(other_unit)

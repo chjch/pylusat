@@ -78,7 +78,7 @@ def of_point(input_gdf, point_gdf, pop_clm=None,
 
 
 def of_line(input_gdf, line_gdf, cellsize=30, search_radius=None,
-            area_scale="square meters", geomtoarray=None):
+            area_unit="square meters", geomtoarray=None):
     """
     Calculate density of line length in each input geometry.
 
@@ -93,7 +93,7 @@ def of_line(input_gdf, line_gdf, cellsize=30, search_radius=None,
     search_radius : str, optional
         A string of buffering distance and unit, separated by space.
         e.g., "1 mile".
-    area_scale : str, optional
+    area_unit : str, optional
         A string of the area unit used for density calculation.
         e.g., "square meters".
     geomtoarray : {tuple of (np.ndarray, Affine, np.ndarray, float), None}
@@ -139,7 +139,7 @@ def of_line(input_gdf, line_gdf, cellsize=30, search_radius=None,
         search_unit = search_radius.split()[1]
         search_area = input_buff.area
         # convert search area to specified areal unit
-        search_area *= UnitHandler(f'square {search_unit}').convert(area_scale)
+        search_area *= UnitHandler(f'square {search_unit}').convert(area_unit)
 
     output_arr = np.array([v if v is not None else np.nan
                            for d in zstats
