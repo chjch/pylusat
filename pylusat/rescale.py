@@ -35,7 +35,15 @@ def reclassify(input_df, input_col, reclassify_def, output_col, nodata=1):
 
     """
     key_type = set(map(type, [*reclassify_def]))
+    value_type = set(map(type, reclassify_def.values()))
+    if len(value_type) > 1:
+        raise ValueError("Values of the reclassify dictionary must be "
+                         "exclusively of integer, string, or float.")
+    value_type = list(value_type)[0].__name__
+
     if key_type == {tuple}:
+        # get the lowest interval and its corresponding remapped value
+        lowest_interval, lowest_new = next(iter(reclassify_def.items()))
         intervals = pd.IntervalIndex.from_tuples([*reclassify_def])
         output_sr = (
             pd.cut(input_df[input_col], intervals).cat.rename_categories(
@@ -43,27 +51,26 @@ def reclassify(input_df, input_col, reclassify_def, output_col, nodata=1):
                  for k in reclassify_def.keys()}
             )
         )
+        output_sr.loc[input_df[input_col] == lowest_interval[0]] = lowest_new
+        output_sr = output_sr.astype(value_type)
         if output_sr.isna().values.any():
             output_sr.fillna(nodata, inplace=True)
-        else:
-            pass
-        input_df[output_col] = output_sr.astype(int)
     elif key_type == {int} or key_type == {str} or key_type == {float}:
         output_sr = input_df[input_col].map(reclassify_def)
         if output_sr.isna().values.any():
             output_sr.fillna(nodata, inplace=True)
-        else:
-            pass
-        input_df[output_col] = output_sr
     else:
         raise ValueError("Keys of the reclassify dictionary must be "
                          "exclusively of string, number, or tuple of two "
                          "numbers.")
+
+    input_df[output_col] = output_sr
     return input_df
 
 
 def linear(input_df, input_col, output_col,
-           start=None, end=None, output_min=1, output_max=9):
+           start=None, end=None,
+           output_min=1, output_max=9):
     """
     Rescale a column in a DataFrame linearly.
 
