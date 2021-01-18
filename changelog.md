@@ -6,4 +6,4 @@
 
 ### Fixed
 
-- select by location tool: the tool now only output features met the specified spatial relationship.
+- `select by location` - the tool now only output features met the specified spatial relationship.
