@@ -125,11 +125,11 @@ def within_dist(input_gdf, input_id, distance,
     return input_gdf
 
 
-def select_by_location(input_gdf, select_gdf, how='inner',
-                       op='intersects', buffer=0):
+def select_by_location(input_gdf, select_gdf,
+                       op='intersects', within_dist=0):
     """
     Select part of the input GeoDataFrame based on its relationship with the
-    selection GeoDataFrame.
+    selecting GeoDataFrame.
 
     Parameters
     ----------
@@ -137,26 +137,30 @@ def select_by_location(input_gdf, select_gdf, how='inner',
         The input GeoDataFrame.
     select_gdf : GeoDataFrame
         The selecting GeoDataFrame.
-    how : string, default 'inner'
-        The type of join:
-
-        * 'left': use keys from left_df; retain only left_df geometry column
-        * 'right': use keys from right_df; retain only right_df geometry column
-        * 'inner': use intersection of keys from both dfs; retain only
-          left_df geometry column
     op : string, default 'intersection'
-        Binary predicate, one of {'intersects', 'contains', 'within'}.
-        See http://shapely.readthedocs.io/en/latest/manual.html#binary-predicates.
-    buffer : int, default 0
-        Distance used to buffer the selection GeoDataFrame.
+        Binary predicate, one of {'intersects', 'contains', 'within',
+        'within a distance'}. See
+        http://shapely.readthedocs.io/en/latest/manual.html#binary-predicates.
+    within_dist : int, default 0
+        Search distance around the select_gdf. This parameter is only
+        useful when op is set to be "within a distance".
     Returns
     -------
     output : GeoDataFrame
         The selected features from the input GeoDataFrame.
     """
-    if buffer != 0:
-        select_gdf[select_gdf.geometry.name] = select_gdf.buffer(buffer)
-    output_gdf = input_gdf.loc[input_gdf.index.to_series().isin(
-        gpd.sjoin(input_gdf, select_gdf, how=how, op=op).index.values), :]
-    del output_gdf.index.name
+    ops = ['intersects', 'contains', 'within', 'within a distance']
+    assert op in ops, 'invalid op parameter,'
+    if op == 'within a distance' and within_dist:
+        select_gdf[select_gdf.geometry.name] = select_gdf.buffer(within_dist)
+        op = 'within'
+    output_gdf = input_gdf.loc[
+                 input_gdf.index.to_series().isin(
+                     gpd.sjoin(
+                         input_gdf, select_gdf,
+                         how='inner', op=op
+                     ).index.values
+                 ), :
+                 ]
+    output_gdf = output_gdf.rename_axis(None, axis=1)
     return output_gdf.copy()
