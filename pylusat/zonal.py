@@ -11,7 +11,8 @@ def _to_affine(cellsize, max_y, min_x):
     return Affine(cellsize, 0, min_x, 0, -cellsize, max_y)
 
 
-def zonal_stats_raster(zone_gdf, raster, stats=None, nodata=None):
+def zonal_stats_raster(zone_gdf, raster, stats=None,
+                       stats_prefix='zone', nodata=None):
     """
     Return specified stats for each geometry in the zone GeoDataFrame.
 
@@ -24,11 +25,15 @@ def zonal_stats_raster(zone_gdf, raster, stats=None, nodata=None):
         The raster dataset whose values are summarized.
     stats : list of str, or space-delimited str, optional
         Which statistics to calculate for each zone.
-        Defaults to rasterstats.utils.DEFAULT_STATS which is
+        Defaults to rasterstats.utils.DEFAULT_STATS, i.e.,
         ['count', 'min', 'max', 'mean'].
         Other valid stats are ['sum', 'std', 'median', 'majority', 'minority',
         'unique', 'range', 'nodata', 'nan'].
         See rasterstats for more details.
+    stats_prefix : str, default 'zone'
+        The prefix used to name the output columns of the calculated stats.
+        The output column name will be concatenated by a underscore.
+        e.g., 'zone_mean'
     nodata : int or float
         Value for no data cells.
 
@@ -46,6 +51,12 @@ def zonal_stats_raster(zone_gdf, raster, stats=None, nodata=None):
     zonal_output = zonal_stats(vectors=zone_gdf.geometry, raster=raster_arr,
                                nodata=nodata, affine=affine, stats=stats,
                                all_touched=True)
+    if not stats:
+        from rasterstats.utils import DEFAULT_STATS
+        stats = DEFAULT_STATS
+    else:
+        stats = stats.split()
+    col_names = [f'{stats_prefix}_{stat}' for stat in stats]
     if zone_gdf.index.name is None:
         zone_index = 'index'
     else:
@@ -53,5 +64,6 @@ def zonal_stats_raster(zone_gdf, raster, stats=None, nodata=None):
 
     zone_gdf.reset_index(inplace=True)
     output_gdf = zone_gdf.join(pd.DataFrame(zonal_output))
+    output_gdf.rename(columns=dict(zip(stats, col_names)), inplace=True)
     output_gdf.set_index(zone_index, inplace=True)
     return output_gdf
