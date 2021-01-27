@@ -1,5 +1,15 @@
 # pylusat changelog
 
+## 0.2.6
+
+2021-01-26
+
+### Improved
+
+- `zonal_stats_raster` - Added `drop=True` to `reset_index`, so no pre-defined index 
+  name was used for the joined output of zone_gdf and zonal_stats output. 
+  This will solve the problem caused by iterating zonal_stats multiple times. 
+
 ## 0.2.5
 
 2021-01-25

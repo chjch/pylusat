@@ -51,19 +51,13 @@ def zonal_stats_raster(zone_gdf, raster, stats=None,
     zonal_output = zonal_stats(vectors=zone_gdf.geometry, raster=raster_arr,
                                nodata=nodata, affine=affine, stats=stats,
                                all_touched=True)
+    zone_gdf.reset_index(drop=True, inplace=True)
     if not stats:
         from rasterstats.utils import DEFAULT_STATS
         stats = DEFAULT_STATS
     else:
         stats = stats.split()
     col_names = [f'{stats_prefix}_{stat}' for stat in stats]
-    if zone_gdf.index.name is None:
-        zone_index = 'index'
-    else:
-        zone_index = zone_gdf.index.name
-
-    zone_gdf.reset_index(inplace=True)
     output_gdf = zone_gdf.join(pd.DataFrame(zonal_output))
     output_gdf.rename(columns=dict(zip(stats, col_names)), inplace=True)
-    output_gdf.set_index(zone_index, inplace=True)
     return output_gdf
