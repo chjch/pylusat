@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+	<idinfo>
+		<citation>
+			<citeinfo>
+				<origin>E-911, Alachua County</origin>
+				<pubdate>9/22/2005</pubdate>
+				<title>Alachua County Street Centerlines</title>
+				<geoform Sync="TRUE">vector digital data</geoform>
+				<onlink>****Version=SDE.DEFAULT</onlink>
+				<ftname Sync="TRUE">Alachua_E911_Streets</ftname></citeinfo>
+		</citation>
+		<descript>
+			<abstract>This geographic dataclass of the Alachua County roadway system represents all named roadways of Alachua County, Florida and their address ranges. The area of extent for this dataset is countywide.  All features are uniquely symbolized based on the CLASS_Code attribute.</abstract>
+			<supplinf>All road centerlines were compiled as single lines, except I-75, where the centerline defines each side of the interstate compiled to represent the direction of travel.
+All other roads were compiled in a simplified manner to best describe the road network to its fullest extent.
+Double lane roads, single lane roads, highways, and city streets have one centerline down the approximate geographic center. The centerlines were pulled across medians and road partitions where they existed.
+Centerlines were compiled to the end of cul-de-sacs and terminate at the road edge. Road centerlines are broken where they intersect each other.
+All features are uniquely symbolized based on the CLASS_CODE attribute. The CLASS_CODE based on Road Type:
+1- city streets with name designation
+2 - interstate with limited access.
+3-  U.S. Highways.
+4- State Roads.
+5- County Roads.
+6 and 0- Private and unnamed roads.
+All, but 2,6 and 0 road classes are populated with address ranges.
+All roads were compiled the extent of the orthophoto coverage.  No attempt was made to clip roads at the county boundary.</supplinf>
+			<langdata Sync="TRUE">en</langdata><purpose>To serve as base information for use in GIS systems for a variety of planning and analytical purposes; To show  location  and address ranges of all named roadways (such as: City and  County roads, US and Interstate highways)  in Alachua County, FL.
+Centerline address ranges have been added for geocoding purposes.</purpose></descript>
+		<timeperd>
+			<timeinfo>
+				<sngdate>
+					<caldate>September, 2005</caldate>
+				</sngdate>
+			</timeinfo>
+			<current>publication date</current>
+		</timeperd>
+		<status>
+			<progress>Complete</progress>
+			<update>Continually</update>
+		</status>
+		<spdom>
+			<bounding>
+				<westbc Sync="TRUE">-82.666006</westbc>
+				<eastbc Sync="TRUE">-82.043268</eastbc>
+				<northbc Sync="TRUE">29.948232</northbc>
+				<southbc Sync="TRUE">29.435156</southbc>
+			</bounding>
+			<lboundng><leftbc Sync="TRUE">2552253.500503</leftbc><rightbc Sync="TRUE">2746579.330572</rightbc><bottombc Sync="TRUE">166597.042032</bottombc><topbc Sync="TRUE">349563.642651</topbc></lboundng></spdom>
+		<keywords>
+			<theme>
+				<themekey>Centerlines</themekey>
+				<themekey>roads</themekey><themekey>transportation</themekey><themekey>line</themekey><themekey>interstates</themekey><themekey>location</themekey><themekey>highways</themekey></theme>
+			<place>
+				<placekey>Gainesville</placekey>
+				<placekey>Florida</placekey>
+				<placekey>Alachua County</placekey>
+			</place>
+		</keywords>
+		<accconst>This dataset is a public property created by E-911 Office of Alachua County Fire Rescue. The dataset is maintained by the Alachua County Fire Rescue/ E-911 Office. By use of this product, consumers agree to present the data without modification or misrepresentation. Data may not be presented without full disclaimer and must be accompanied by all relevant documentation included in this metadata report.</accconst>
+		<useconst>This spatial data is available as a public service to use for reference purposes only. Areas depicted by the digital products are approximate, and are not necessarily accurate to mapping, surveying, or engineering standards. The Alachua County E-911 Office of Alachua County Fire Rescue provides this information AS IS without warranty of any kind, implied or express, regarding accuracy, completeness, or fitness of use. The quality of the data is dependent on the various sources from which it was obtained.  It is the responsibility of each consumer to conduct further review of the documentation associated with each data layer, in accordance with how they intend to use it.  Consumers agree to waive, release and indemnify Alachua County and the E-911 Office of Alachua County Fire Rescue from any and all claims for damages or injury to persons or property arising from the use of this product.</useconst>
+		<ptcontac>
+			<cntinfo>
+				<cntperp>
+					<cntper>Yelena Cummings, GISP</cntper>
+					<cntorg>Alachua County Fire Rescue, E-911 Office</cntorg>
+				</cntperp>
+				<cntpos>GIS Analyst</cntpos>
+				<cntaddr>
+					<addrtype>mailing and physical address</addrtype>
+					<address>913 SE 5th ST</address>
+					<city>Gainesville</city>
+					<state>FL</state>
+					<postal>32601</postal>
+					<country>USA</country>
+				</cntaddr>
+				<cntvoice>352-338-7361</cntvoice>
+				<cntemail>ycummings@alachua.fl.us</cntemail>
+				<cntfax>352-374-5298</cntfax><hours>8:30-17:00; Mon- Fri</hours><cntinst>prefer e-mail</cntinst></cntinfo>
+		</ptcontac>
+		<browse>
+		</browse>
+		<native Sync="TRUE">Microsoft Windows XP Version 5.1 (Build 2600) Service Pack 3; ESRI ArcCatalog 9.3.0.1770</native>
+		<natvform Sync="TRUE">File Geodatabase Feature Class</natvform><datacred>ACFR/ E-911 Office; Yelena Cummings, GISP, GIS Analyst</datacred><secinfo><secclass>Unclassified</secclass></secinfo></idinfo>
+	<dataqual>
+		<lineage>
+			<srcinfo>
+				<typesrc>computer program</typesrc>
+			</srcinfo>
+			<procstep>
+				<procdesc>road centerlines which were on the paper maps by 1996 were scanned by GRU i and digitized to the shape file.</procdesc>
+				<procdate>1996</procdate></procstep>
+			<procstep><procdesc>working together with E911  street directions, names and types attributes were added</procdesc><date Sync="TRUE">20060531</date><time Sync="TRUE">05443100</time><procsv>ESRI 3.1</procsv></procstep><procstep><procdesc>Dataset started to be QCed and work on class codes</procdesc><date Sync="TRUE">20060609</date><time Sync="TRUE">08485600</time><procdate>2002-2004</procdate></procstep><procstep><procdesc>shape file was copied to the Dataset. The address ranges were added</procdesc><date Sync="TRUE">20060609</date><time Sync="TRUE">09334200</time><procsv>2005</procsv></procstep><procstep><procdesc>The dataset was copied to SDE</procdesc><srcused>***; Version=SDE.DEFAULT</srcused><procdate>9/2005</procdate></procstep><procstep><procdesc>The Community field were added and populated</procdesc><srcused>***; Version=SDE.DEFAULT</srcused><procdate>10/2006</procdate></procstep><procstep><procdesc Sync="TRUE">Dataset copied.</procdesc><srcused Sync="TRUE">Server=acpagis.acpafl.org; Service=5151; User=alachua; Version=SDE.DEFAULT</srcused><date Sync="TRUE">20070702</date><time Sync="TRUE">19441400</time></procstep><procstep><procdesc Sync="TRUE">Dataset copied.</procdesc><srcused Sync="TRUE">Server=GIS1; Service=5151; User=ALACHUA; Version=SDE.DEFAULT</srcused><procdate Sync="TRUE">20100419</procdate><proctime Sync="TRUE">21075500</proctime></procstep></lineage>
+	</dataqual>
+	<spdoinfo>
+		<direct Sync="TRUE">Vector</direct>
+		<ptvctinf><esriterm Name="streets"><efeatyp Sync="TRUE">Simple</efeatyp><efeageom code="3" Sync="TRUE"></efeageom><esritopo Sync="TRUE">FALSE</esritopo><efeacnt Sync="TRUE">0</efeacnt><spindex Sync="TRUE">FALSE</spindex><linrefer Sync="TRUE">FALSE</linrefer></esriterm></ptvctinf></spdoinfo>
+	<spref>
+		<horizsys>
+			<planar>
+				<planci>
+					<plance Sync="TRUE">coordinate pair</plance>
+					<coordrep>
+						<absres Sync="TRUE">0.000128</absres>
+						<ordres Sync="TRUE">0.000128</ordres>
+					</coordrep>
+					<plandu Sync="TRUE">survey feet</plandu>
+				</planci>
+			</planar>
+			<geodetic>
+				<horizdn Sync="TRUE">North American Datum of 1983</horizdn>
+				<ellips Sync="TRUE">Geodetic Reference System 80</ellips>
+				<semiaxis Sync="TRUE">6378137.000000</semiaxis>
+				<denflat Sync="TRUE">298.257222</denflat>
+			</geodetic>
+			<cordsysn><geogcsn Sync="TRUE">GCS_North_American_1983</geogcsn><projcsn Sync="TRUE">NAD_1983_StatePlane_Florida_North_FIPS_0903_Feet</projcsn></cordsysn></horizsys>
+		<vertdef>
+			<altsys>
+				<altres Sync="TRUE">0.000100</altres>
+				<altenc Sync="TRUE">Explicit elevation coordinate included with horizontal coordinates</altenc>
+			</altsys>
+		</vertdef>
+	</spref>
+	<eainfo>
+		<detailed Name="streets">
+			<enttyp>
+				<enttypl Sync="TRUE">streets</enttypl>
+				<enttypt Sync="TRUE">Feature Class</enttypt><enttypc Sync="TRUE">0</enttypc></enttyp>
+			<attr>
+				<attrlabl>SHAPE</attrlabl>
+				<attrdef>Feature geometry.</attrdef>
+				<attrdefs>ESRI</attrdefs>
+				<attrdomv>
+					<udom>Coordinates defining the features.</udom>
+				</attrdomv>
+				<attalias Sync="TRUE">FID</attalias><attrtype Sync="TRUE">OID</attrtype><attwidth Sync="TRUE">4</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale></attr>
+			<attr>
+				<attrlabl>Shape</attrlabl>
+				<attrdef>Feature geometry.</attrdef>
+				<attrdefs>ESRI</attrdefs>
+				<attrdomv>
+					<udom>Coordinates defining the features.</udom>
+				</attrdomv>
+				<attalias Sync="TRUE">LEFT_FROM</attalias><attrtype Sync="TRUE">Double</attrtype><attwidth Sync="TRUE">19</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale></attr>
+			<attr>
+				<attrlabl>LEFT_FROM</attrlabl>
+				<attalias Sync="TRUE">LEFT_TO</attalias><attrtype Sync="TRUE">Double</attrtype><attwidth Sync="TRUE">19</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale></attr>
+			<attr>
+				<attrlabl>LEFT_TO</attrlabl>
+				<attalias Sync="TRUE">RIGHT_FROM</attalias><attrtype Sync="TRUE">Double</attrtype><attwidth Sync="TRUE">19</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale></attr>
+			<attr>
+				<attrlabl>RIGHT_FROM</attrlabl>
+				<attalias Sync="TRUE">RIGHT_TO</attalias><attrtype Sync="TRUE">Double</attrtype><attwidth Sync="TRUE">19</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale></attr>
+			<attr>
+				<attrlabl>RIGHT_TO</attrlabl>
+				<attalias Sync="TRUE">CLASS_CODE</attalias><attrtype Sync="TRUE">Integer</attrtype><attwidth Sync="TRUE">5</attwidth><atprecis Sync="TRUE">5</atprecis><attscale Sync="TRUE">0</attscale></attr>
+			<attr>
+				<attrlabl>CLASS_CODE</attrlabl>
+				<attrdef>based on Road Type: Interstate, US Road, State Road, County Road, City Road</attrdef><attalias Sync="TRUE">MAPPER</attalias><attrtype Sync="TRUE">String</attrtype><attwidth Sync="TRUE">12</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale></attr>
+			<attr>
+				<attrlabl>MAPPER</attrlabl>
+				<attalias Sync="TRUE">STREETID</attalias><attrtype Sync="TRUE">Integer</attrtype><attwidth Sync="TRUE">10</attwidth><atprecis Sync="TRUE">10</atprecis><attscale Sync="TRUE">0</attscale></attr>
+			<attr><attrlabl Sync="TRUE">LASTMODIFI</attrlabl><attalias Sync="TRUE">LASTMODIFI</attalias><attrtype Sync="TRUE">Date</attrtype><attwidth Sync="TRUE">8</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale></attr><attr><attrlabl Sync="TRUE">STREET_PRE</attrlabl><attalias Sync="TRUE">STREET_PRE</attalias><attrtype Sync="TRUE">String</attrtype><attwidth Sync="TRUE">2</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale></attr><attr><attrlabl Sync="TRUE">STREET_NAM</attrlabl><attalias Sync="TRUE">STREET_NAM</attalias><attrtype Sync="TRUE">String</attrtype><attwidth Sync="TRUE">50</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale></attr><attr><attrlabl Sync="TRUE">STREET_TYP</attrlabl><attalias Sync="TRUE">STREET_TYP</attalias><attrtype Sync="TRUE">String</attrtype><attwidth Sync="TRUE">4</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale></attr><attr><attrlabl Sync="TRUE">STREET_LAB</attrlabl><attalias Sync="TRUE">STREET_LAB</attalias><attrtype Sync="TRUE">String</attrtype><attwidth Sync="TRUE">56</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale></attr><attr>
+				<attrlabl>STREETID</attrlabl>
+				<attrdef>E911 Unique Identifier</attrdef><attalias Sync="TRUE">FLAG</attalias><attrtype Sync="TRUE">String</attrtype><attwidth Sync="TRUE">5</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale></attr>
+			<attr>
+				<attrlabl>FLAG</attrlabl>
+				<attrdef>a "help file" to use during  QC and editing</attrdef><attalias Sync="TRUE">CITY_CODE</attalias><attrtype Sync="TRUE">String</attrtype><attwidth Sync="TRUE">5</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale></attr>
+			<attr>
+				<attrlabl>CITY_CODE</attrlabl>
+				<attrdef>based on the codes of the cities in Alachua County</attrdef><attrdefs>ACPA</attrdefs><attalias Sync="TRUE">SHIELD</attalias><attrtype Sync="TRUE">String</attrtype><attwidth Sync="TRUE">1</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale></attr>
+			<attr><attrlabl Sync="TRUE">LEFT_COMMU</attrlabl><attalias Sync="TRUE">LEFT_COMMU</attalias><attrtype Sync="TRUE">String</attrtype><attwidth Sync="TRUE">25</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale></attr><attr><attrlabl Sync="TRUE">RIGHT_COMM</attrlabl><attalias Sync="TRUE">RIGHT_COMM</attalias><attrtype Sync="TRUE">String</attrtype><attwidth Sync="TRUE">25</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale></attr><attr><attrlabl Sync="TRUE">COUNTY_COD</attrlabl><attalias Sync="TRUE">COUNTY_COD</attalias><attrtype Sync="TRUE">String</attrtype><attwidth Sync="TRUE">5</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale></attr><attr><attrlabl Sync="TRUE">SHIELD</attrlabl><attalias Sync="TRUE">HWY_NUM</attalias><attrtype Sync="TRUE">String</attrtype><attwidth Sync="TRUE">5</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale></attr><attr><attrlabl Sync="TRUE">HWY_NUM</attrlabl><attalias Sync="TRUE">SPEED</attalias><attrtype Sync="TRUE">Integer</attrtype><attwidth Sync="TRUE">5</attwidth><atprecis Sync="TRUE">5</atprecis><attscale Sync="TRUE">0</attscale></attr><attr><attrlabl Sync="TRUE">SPEED</attrlabl><attalias Sync="TRUE">ONE_WAY</attalias><attrtype Sync="TRUE">String</attrtype><attwidth Sync="TRUE">1</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale><attrdef>Based on standard values for Road Class or posted speed limit where data is available.</attrdef></attr><attr><attrlabl Sync="TRUE">ONE_WAY</attrlabl><attalias Sync="TRUE">STATE</attalias><attrtype Sync="TRUE">String</attrtype><attwidth Sync="TRUE">2</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale></attr><attr><attrlabl Sync="TRUE">STATE</attrlabl><attalias Sync="TRUE">ZIPCODE</attalias><attrtype Sync="TRUE">String</attrtype><attwidth Sync="TRUE">10</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale></attr><attr><attrlabl Sync="TRUE">ZIPCODE</attrlabl><attalias Sync="TRUE">ALIAS_NAME</attalias><attrtype Sync="TRUE">String</attrtype><attwidth Sync="TRUE">50</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale></attr><attr><attrlabl Sync="TRUE">ALIAS_NAME</attrlabl><attalias Sync="TRUE">GLOBALID</attalias><attrtype Sync="TRUE">String</attrtype><attwidth Sync="TRUE">38</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale></attr><attr><attrlabl Sync="TRUE">GLOBALID</attrlabl><attalias Sync="TRUE">LEFT_ZIP</attalias><attrtype Sync="TRUE">String</attrtype><attwidth Sync="TRUE">10</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale></attr><attr><attrlabl Sync="TRUE">LEFT_ZIP</attrlabl><attalias Sync="TRUE">RIGHT_ZIP</attalias><attrtype Sync="TRUE">String</attrtype><attwidth Sync="TRUE">10</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale></attr><attr><attrlabl Sync="TRUE">RIGHT_ZIP</attrlabl><attalias Sync="TRUE">ROAD_CLASS</attalias><attrtype Sync="TRUE">Integer</attrtype><attwidth Sync="TRUE">5</attwidth><atprecis Sync="TRUE">5</atprecis><attscale Sync="TRUE">0</attscale><attrdef Sync="TRUE">Feature geometry.</attrdef><attrdefs Sync="TRUE">ESRI</attrdefs><attrdomv><udom Sync="TRUE">Coordinates defining the features.</udom></attrdomv></attr><attr><attrlabl Sync="TRUE">STATUS</attrlabl><attalias Sync="TRUE">STATUS</attalias><attrtype Sync="TRUE">Integer</attrtype><attwidth Sync="TRUE">5</attwidth><atprecis Sync="TRUE">5</atprecis><attscale Sync="TRUE">0</attscale></attr><attr><attrlabl Sync="TRUE">ROAD_CLASS</attrlabl><attalias Sync="TRUE">LEFT_ESN</attalias><attrtype Sync="TRUE">String</attrtype><attwidth Sync="TRUE">5</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale></attr><attr><attrlabl Sync="TRUE">LEFT_ESN</attrlabl><attalias Sync="TRUE">RIGHT_ESN</attalias><attrtype Sync="TRUE">String</attrtype><attwidth Sync="TRUE">5</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale></attr><attr><attrlabl Sync="TRUE">RIGHT_ESN</attrlabl><attalias Sync="TRUE">SEGMENT_ID</attalias><attrtype Sync="TRUE">Integer</attrtype><attwidth Sync="TRUE">10</attwidth><atprecis Sync="TRUE">10</atprecis><attscale Sync="TRUE">0</attscale></attr><attr><attrlabl Sync="TRUE">SEGMENT_ID</attrlabl><attalias Sync="TRUE">Shape</attalias><attrtype Sync="TRUE">Geometry</attrtype><attwidth Sync="TRUE">0</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale><attrdef Sync="TRUE">Length of feature in internal units.</attrdef><attrdefs Sync="TRUE">ESRI</attrdefs><attrdomv><udom Sync="TRUE">Positive real numbers that are automatically generated.</udom></attrdomv></attr><attr><attrlabl Sync="TRUE">Shape_Leng</attrlabl><attalias Sync="TRUE">Shape_Leng</attalias><attrtype Sync="TRUE">Double</attrtype><attwidth Sync="TRUE">19</attwidth><atprecis Sync="TRUE">0</atprecis><attscale Sync="TRUE">0</attscale></attr></detailed>
+		<overview>
+		</overview>
+	</eainfo>
+	<distinfo>
+		<resdesc>Downloadable Data</resdesc>
+		<stdorder>
+			<digform>
+				<digtinfo>
+					<transize>12.240</transize>
+				</digtinfo>
+			</digform>
+			<fees>None</fees><ordering>Please e-mail your request and E911 Office fill it in 3 business days</ordering></stdorder>
+		<distliab>When using Alachua County  E-911 Office data in projects, maps, etc.; you agree to acknowledge Alachua County E-911 Office of Alachua County Fire Rescue as a data source. The materials are provided "as is". Alachua County makes no representations or warranties about the quality or suitability of the materials, either expressly or implied, including but not limited to any implied warranties of merchantability, fitness for a particular purpose, or non-infringement. The Alachua County makes no warranties, guaranties or representations as to the truth, accuracy or completeness of the data. Alachua County shall not be liable for any damages suffered as a result of using, modifying, contributing or distributing the materials.</distliab><availabl><timeinfo><sngdate><caldate>10/01/2005</caldate></sngdate></timeinfo></availabl></distinfo>
+	<metainfo>
+		<metd Sync="TRUE">20100715</metd>
+		<metc>
+			<cntinfo>
+				<cntaddr>
+					<addrtype>mailing and physical address</addrtype>
+					<address>913 SE 5th ST</address>
+					<city>Gainesville</city>
+					<state>FL</state>
+					<postal>32601</postal>
+					<country>USA</country>
+				</cntaddr>
+				<cntvoice>352-338-7361</cntvoice>
+				<cntemail>ycummings@alachua.fl.us</cntemail>
+				<cntperp><cntper>Yelena Cummings, GISP</cntper><cntorg>E-911 Office, Alachua County Fire Rescue</cntorg></cntperp><cntpos>GIS Analyst</cntpos><cntfax>352-374-5298</cntfax><hours>8:30- 17:00 Mon- Fri</hours><cntinst>prefer e-mail</cntinst></cntinfo>
+		</metc>
+		<metstdn Sync="TRUE">FGDC Content Standards for Digital Geospatial Metadata</metstdn>
+		<metstdv Sync="TRUE">FGDC-STD-001-1998</metstdv>
+		<mettc Sync="TRUE">local time</mettc>
+		<langmeta Sync="TRUE">en</langmeta></metainfo>
+	<Esri><CreaDate>20210127</CreaDate><CreaTime>18342400</CreaTime><SyncOnce>FALSE</SyncOnce><SyncDate>20210127</SyncDate><SyncTime>16231200</SyncTime><ModDate>20210127</ModDate><ModTime>16231200</ModTime><DataProperties><lineage><Process ToolSource="C:\Program Files\ArcGIS\ArcToolbox\Toolboxes\Conversion Tools.tbx\FeatureClassToFeatureClass" Date="20100715" Time="100514">FeatureClassToFeatureClass "Database Connections\Connection to ARROW.ACPAFL.ORG.sde\ALACHUA.PUBLIC_SAFETY\ALACHUA.street" "\\Ggpwsvr\gis\Projects\Public Works\Transportation\Trans_GDB_work\Trans_fileGDB\Transportation_FileGDB.gdb\Transportation_Streets" Alachua_E911_Streets # "LEFT_FROM 'LEFT_FROM' true true false 8 Double 8 38 ,First,#,Database Connections\Connection to ARROW.ACPAFL.ORG.sde\ALACHUA.PUBLIC_SAFETY\ALACHUA.street,LEFT_FROM,-1,-1;LEFT_TO 'LEFT_TO' true true false 8 Double 8 38 ,First,#,Database Connections\Connection to ARROW.ACPAFL.ORG.sde\ALACHUA.PUBLIC_SAFETY\ALACHUA.street,LEFT_TO,-1,-1;RIGHT_FROM 'RIGHT_FROM' true true false 8 Double 8 38 ,First,#,Database Connections\Connection to ARROW.ACPAFL.ORG.sde\ALACHUA.PUBLIC_SAFETY\ALACHUA.street,RIGHT_FROM,-1,-1;RIGHT_TO 'RIGHT_TO' true true false 8 Double 8 38 ,First,#,Database Connections\Connection to ARROW.ACPAFL.ORG.sde\ALACHUA.PUBLIC_SAFETY\ALACHUA.street,RIGHT_TO,-1,-1;CLASS_CODE 'CLASS_CODE' true true false 2 Short 0 4 ,First,#,Database Connections\Connection to ARROW.ACPAFL.ORG.sde\ALACHUA.PUBLIC_SAFETY\ALACHUA.street,CLASS_CODE,-1,-1;MAPPER 'MAPPER' true true false 12 Text 0 0 ,First,#,Database Connections\Connection to ARROW.ACPAFL.ORG.sde\ALACHUA.PUBLIC_SAFETY\ALACHUA.street,MAPPER,-1,-1;LASTMODIFIED 'LASTMODIFIED' true true false 36 Date 0 0 ,First,#,Database Connections\Connection to ARROW.ACPAFL.ORG.sde\ALACHUA.PUBLIC_SAFETY\ALACHUA.street,LASTMODIFIED,-1,-1;STREET_PREFIX 'STREET_PREFIX' true true false 2 Text 0 0 ,First,#,Database Connections\Connection to ARROW.ACPAFL.ORG.sde\ALACHUA.PUBLIC_SAFETY\ALACHUA.street,STREET_PREFIX,-1,-1;STREET_NAME 'STREET_NAME' true true false 50 Text 0 0 ,First,#,Database Connections\Connection to ARROW.ACPAFL.ORG.sde\ALACHUA.PUBLIC_SAFETY\ALACHUA.street,STREET_NAME,-1,-1;STREET_TYPE 'STREET_TYPE' true true false 4 Text 0 0 ,First,#,Database Connections\Connection to ARROW.ACPAFL.ORG.sde\ALACHUA.PUBLIC_SAFETY\ALACHUA.street,STREET_TYPE,-1,-1;STREET_LABEL 'STREET_LABEL' true true false 56 Text 0 0 ,First,#,Database Connections\Connection to ARROW.ACPAFL.ORG.sde\ALACHUA.PUBLIC_SAFETY\ALACHUA.street,STREET_LABEL,-1,-1;STREETID 'STREETID' true true false 4 Long 0 10 ,First,#,Database Connections\Connection to ARROW.ACPAFL.ORG.sde\ALACHUA.PUBLIC_SAFETY\ALACHUA.street,STREETID,-1,-1;FLAG 'FLAG' true true false 5 Text 0 0 ,First,#,Database Connections\Connection to ARROW.ACPAFL.ORG.sde\ALACHUA.PUBLIC_SAFETY\ALACHUA.street,FLAG,-1,-1;CITY_CODE 'CITY_CODE' true true false 5 Text 0 0 ,First,#,Database Connections\Connection to ARROW.ACPAFL.ORG.sde\ALACHUA.PUBLIC_SAFETY\ALACHUA.street,CITY_CODE,-1,-1;LEFT_COMMUNITY 'LEFT_COMMUNITY' true true false 25 Text 0 0 ,First,#,Database Connections\Connection to ARROW.ACPAFL.ORG.sde\ALACHUA.PUBLIC_SAFETY\ALACHUA.street,LEFT_COMMUNITY,-1,-1;RIGHT_COMMUNITY 'RIGHT_COMMUNITY' true true false 25 Text 0 0 ,First,#,Database Connections\Connection to ARROW.ACPAFL.ORG.sde\ALACHUA.PUBLIC_SAFETY\ALACHUA.street,RIGHT_COMMUNITY,-1,-1;COUNTY_CODE 'COUNTY_CODE' true true false 5 Text 0 0 ,First,#,Database Connections\Connection to ARROW.ACPAFL.ORG.sde\ALACHUA.PUBLIC_SAFETY\ALACHUA.street,COUNTY_CODE,-1,-1;SHIELD 'SHIELD' true true false 1 Text 0 0 ,First,#,Database Connections\Connection to ARROW.ACPAFL.ORG.sde\ALACHUA.PUBLIC_SAFETY\ALACHUA.street,SHIELD,-1,-1;HWY_NUM 'HWY_NUM' true true false 5 Text 0 0 ,First,#,Database Connections\Connection to ARROW.ACPAFL.ORG.sde\ALACHUA.PUBLIC_SAFETY\ALACHUA.street,HWY_NUM,-1,-1;SPEED 'SPEED' true true false 2 Short 0 5 ,First,#,Database Connections\Connection to ARROW.ACPAFL.ORG.sde\ALACHUA.PUBLIC_SAFETY\ALACHUA.street,SPEED,-1,-1;ONE_WAY 'ONE_WAY' true true false 1 Text 0 0 ,First,#,Database Connections\Connection to ARROW.ACPAFL.ORG.sde\ALACHUA.PUBLIC_SAFETY\ALACHUA.street,ONE_WAY,-1,-1;STATE 'STATE' true true false 2 Text 0 0 ,First,#,Database Connections\Connection to ARROW.ACPAFL.ORG.sde\ALACHUA.PUBLIC_SAFETY\ALACHUA.street,STATE,-1,-1;ZIPCODE 'ZIPCODE' true true false 10 Text 0 0 ,First,#,Database Connections\Connection to ARROW.ACPAFL.ORG.sde\ALACHUA.PUBLIC_SAFETY\ALACHUA.street,ZIPCODE,-1,-1;ALIAS_NAME 'ALIAS_NAME' true true false 50 Text 0 0 ,First,#,Database Connections\Connection to ARROW.ACPAFL.ORG.sde\ALACHUA.PUBLIC_SAFETY\ALACHUA.street,ALIAS_NAME,-1,-1;GLOBALID 'GLOBALID' false false true 38 Long 0 0 ,First,#,Database Connections\Connection to ARROW.ACPAFL.ORG.sde\ALACHUA.PUBLIC_SAFETY\ALACHUA.street,GLOBALID,-1,-1;LEFT_ZIP 'LEFT_ZIP' true true false 10 Text 0 0 ,First,#,Database Connections\Connection to ARROW.ACPAFL.ORG.sde\ALACHUA.PUBLIC_SAFETY\ALACHUA.street,LEFT_ZIP,-1,-1;RIGHT_ZIP 'RIGHT_ZIP' true true false 10 Text 0 0 ,First,#,Database Connections\Connection to ARROW.ACPAFL.ORG.sde\ALACHUA.PUBLIC_SAFETY\ALACHUA.street,RIGHT_ZIP,-1,-1;STATUS 'STATUS' true true false 2 Short 0 5 ,First,#,Database Connections\Connection to ARROW.ACPAFL.ORG.sde\ALACHUA.PUBLIC_SAFETY\ALACHUA.street,STATUS,-1,-1;ROAD_CLASS 'ROAD_CLASS' true true false 2 Short 0 5 ,First,#,Database Connections\Connection to ARROW.ACPAFL.ORG.sde\ALACHUA.PUBLIC_SAFETY\ALACHUA.street,ROAD_CLASS,-1,-1;LEFT_ESN 'LEFT_ESN' true true false 5 Text 0 0 ,First,#,Database Connections\Connection to ARROW.ACPAFL.ORG.sde\ALACHUA.PUBLIC_SAFETY\ALACHUA.street,LEFT_ESN,-1,-1;RIGHT_ESN 'RIGHT_ESN' true true false 5 Text 0 0 ,First,#,Database Connections\Connection to ARROW.ACPAFL.ORG.sde\ALACHUA.PUBLIC_SAFETY\ALACHUA.street,RIGHT_ESN,-1,-1;SEGMENT_ID 'SEGMENT_ID' true true false 4 Long 0 10 ,First,#,Database Connections\Connection to ARROW.ACPAFL.ORG.sde\ALACHUA.PUBLIC_SAFETY\ALACHUA.street,SEGMENT_ID,-1,-1;SHAPE_LEN 'SHAPE_LEN' false false true 0 Double 0 0 ,First,#,Database Connections\Connection to ARROW.ACPAFL.ORG.sde\ALACHUA.PUBLIC_SAFETY\ALACHUA.street,SHAPE.LEN,-1,-1" # "\\Ggpwsvr\gis\Projects\Public Works\Transportation\Trans_GDB_work\Trans_fileGDB\Transportation_FileGDB.gdb\Transportation_Streets\Alachua_E911_Streets"</Process><Process ToolSource="c:\program files\arcgis\desktop10.0\ArcToolbox\Toolboxes\Data Management Tools.tbx\CopyFeatures" Date="20111130" Time="150622">CopyFeatures \\GGPWSVR\gis\Geodatabase\PublicWorks\Transportation\Transportation_FileGDB.gdb\Transportation_Streets\Alachua_E911_Streets "\\GGPWSVR\gis\Projects\Public Works\Transportation\Trans_GDB_work\Trans_fileGDB\Transportation_FileGDB.gdb\Transportation_Streets\Alachua_E911_Streets" # 0 0 0</Process><Process ToolSource="c:\program files\arcgis\pro\Resources\ArcToolbox\toolboxes\Conversion Tools.tbx\FeatureClassToFeatureClass" Date="20210127" Time="162317">FeatureClassToFeatureClass Alachua_E911_Streets "D:\OneDrive - University of Florida\Research\PyLUSAT Project\pylusat\pylusat\datasets\streets" streets.shp # "LEFT_FROM "LEFT_FROM" true true false 8 Double 0 0,First,#,Alachua_E911_Streets,LEFT_FROM,-1,-1;LEFT_TO "LEFT_TO" true true false 8 Double 0 0,First,#,Alachua_E911_Streets,LEFT_TO,-1,-1;RIGHT_FROM "RIGHT_FROM" true true false 8 Double 0 0,First,#,Alachua_E911_Streets,RIGHT_FROM,-1,-1;RIGHT_TO "RIGHT_TO" true true false 8 Double 0 0,First,#,Alachua_E911_Streets,RIGHT_TO,-1,-1;CLASS_CODE "CLASS_CODE" true true false 2 Short 0 0,First,#,Alachua_E911_Streets,CLASS_CODE,-1,-1;MAPPER "MAPPER" true true false 12 Text 0 0,First,#,Alachua_E911_Streets,MAPPER,0,12;LASTMODIFIED "LASTMODIFIED" true true false 8 Date 0 0,First,#,Alachua_E911_Streets,LASTMODIFIED,-1,-1;STREET_PREFIX "STREET_PREFIX" true true false 2 Text 0 0,First,#,Alachua_E911_Streets,STREET_PREFIX,0,2;STREET_NAME "STREET_NAME" true true false 50 Text 0 0,First,#,Alachua_E911_Streets,STREET_NAME,0,50;STREET_TYPE "STREET_TYPE" true true false 4 Text 0 0,First,#,Alachua_E911_Streets,STREET_TYPE,0,4;STREET_LABEL "STREET_LABEL" true true false 56 Text 0 0,First,#,Alachua_E911_Streets,STREET_LABEL,0,56;STREETID "STREETID" true true false 4 Long 0 0,First,#,Alachua_E911_Streets,STREETID,-1,-1;FLAG "FLAG" true true false 5 Text 0 0,First,#,Alachua_E911_Streets,FLAG,0,5;CITY_CODE "CITY_CODE" true true false 5 Text 0 0,First,#,Alachua_E911_Streets,CITY_CODE,0,5;LEFT_COMMUNITY "LEFT_COMMUNITY" true true false 25 Text 0 0,First,#,Alachua_E911_Streets,LEFT_COMMUNITY,0,25;RIGHT_COMMUNITY "RIGHT_COMMUNITY" true true false 25 Text 0 0,First,#,Alachua_E911_Streets,RIGHT_COMMUNITY,0,25;COUNTY_CODE "COUNTY_CODE" true true false 5 Text 0 0,First,#,Alachua_E911_Streets,COUNTY_CODE,0,5;SHIELD "SHIELD" true true false 1 Text 0 0,First,#,Alachua_E911_Streets,SHIELD,0,1;HWY_NUM "HWY_NUM" true true false 5 Text 0 0,First,#,Alachua_E911_Streets,HWY_NUM,0,5;SPEED "SPEED" true true false 2 Short 0 0,First,#,Alachua_E911_Streets,SPEED,-1,-1;ONE_WAY "ONE_WAY" true true false 1 Text 0 0,First,#,Alachua_E911_Streets,ONE_WAY,0,1;STATE "STATE" true true false 2 Text 0 0,First,#,Alachua_E911_Streets,STATE,0,2;ZIPCODE "ZIPCODE" true true false 10 Text 0 0,First,#,Alachua_E911_Streets,ZIPCODE,0,10;ALIAS_NAME "ALIAS_NAME" true true false 50 Text 0 0,First,#,Alachua_E911_Streets,ALIAS_NAME,0,50;GLOBALID "GLOBALID" false false true 38 Text 0 0,First,#,Alachua_E911_Streets,GLOBALID,-1,-1;LEFT_ZIP "LEFT_ZIP" true true false 10 Text 0 0,First,#,Alachua_E911_Streets,LEFT_ZIP,0,10;RIGHT_ZIP "RIGHT_ZIP" true true false 10 Text 0 0,First,#,Alachua_E911_Streets,RIGHT_ZIP,0,10;STATUS "STATUS" true true false 2 Short 0 0,First,#,Alachua_E911_Streets,STATUS,-1,-1;ROAD_CLASS "ROAD_CLASS" true true false 2 Short 0 0,First,#,Alachua_E911_Streets,ROAD_CLASS,-1,-1;LEFT_ESN "LEFT_ESN" true true false 5 Text 0 0,First,#,Alachua_E911_Streets,LEFT_ESN,0,5;RIGHT_ESN "RIGHT_ESN" true true false 5 Text 0 0,First,#,Alachua_E911_Streets,RIGHT_ESN,0,5;SEGMENT_ID "SEGMENT_ID" true true false 4 Long 0 0,First,#,Alachua_E911_Streets,SEGMENT_ID,-1,-1;Shape_Length "Shape_Length" false true true 8 Double 0 0,First,#,Alachua_E911_Streets,Shape_Length,-1,-1" #</Process><Process ToolSource="c:\program files\arcgis\pro\Resources\ArcToolbox\toolboxes\Data Management Tools.tbx\DeleteField" Date="20210127" Time="162339">DeleteField streets Shape_Leng</Process><Process ToolSource="c:\program files\arcgis\pro\Resources\ArcToolbox\toolboxes\Data Management Tools.tbx\DeleteField" Date="20210127" Time="162351">DeleteField streets GLOBALID</Process><Process ToolSource="c:\program files\arcgis\pro\Resources\ArcToolbox\toolboxes\Data Management Tools.tbx\DeleteField" Date="20210127" Time="162404">DeleteField streets LASTMODIFI</Process><Process ToolSource="c:\program files\arcgis\pro\Resources\ArcToolbox\toolboxes\Data Management Tools.tbx\DeleteField" Date="20210127" Time="162418">DeleteField streets MAPPER</Process><Process ToolSource="c:\program files\arcgis\pro\Resources\ArcToolbox\toolboxes\Data Management Tools.tbx\Project" Date="20210127" Time="183424">Project streets "D:\OneDrive - University of Florida\Research\PyLUSAT Project\pylusat\pylusat\datasets\streets\streets2.shp" PROJCS['Albers Conical Equal Area [Florida Geographic Data Library]',GEOGCS['GCS_North_American_1983_HARN',DATUM['D_North_American_1983_HARN',SPHEROID['GRS_1980',6378137.0,298.257222101]],PRIMEM['Greenwich',0.0],UNIT['Degree',0.0174532925199433]],PROJECTION['Albers'],PARAMETER['False_Easting',400000.0],PARAMETER['False_Northing',0.0],PARAMETER['Central_Meridian',-84.0],PARAMETER['Standard_Parallel_1',24.0],PARAMETER['Standard_Parallel_2',31.5],PARAMETER['Central_Parallel',24.0],UNIT['Meter',1.0]] NAD_1983_To_HARN_Florida PROJCS['NAD_1983_StatePlane_Florida_North_FIPS_0903_Feet',GEOGCS['GCS_North_American_1983',DATUM['D_North_American_1983',SPHEROID['GRS_1980',6378137.0,298.257222101]],PRIMEM['Greenwich',0.0],UNIT['Degree',0.0174532925199433]],PROJECTION['Lambert_Conformal_Conic'],PARAMETER['False_Easting',1968500.0],PARAMETER['False_Northing',0.0],PARAMETER['Central_Meridian',-84.5],PARAMETER['Standard_Parallel_1',29.58333333333333],PARAMETER['Standard_Parallel_2',30.75],PARAMETER['Latitude_Of_Origin',29.0],UNIT['Foot_US',0.3048006096012192]] NO_PRESERVE_SHAPE # NO_VERTICAL</Process><Process ToolSource="c:\program files\arcgis\pro\Resources\ArcToolbox\toolboxes\Data Management Tools.tbx\Rename" Date="20210127" Time="183530">Rename "D:\OneDrive - University of Florida\Research\PyLUSAT Project\pylusat\pylusat\datasets\streets\streets2.shp" "D:\OneDrive - University of Florida\Research\PyLUSAT Project\pylusat\pylusat\datasets\streets\streets.shp" ShapeFile</Process></lineage><itemProps><itemName Sync="TRUE">streets</itemName><imsContentType Sync="TRUE">002</imsContentType><nativeExtBox><westBL Sync="TRUE">2552253.500503</westBL><eastBL Sync="TRUE">2746579.330572</eastBL><southBL Sync="TRUE">166597.042032</southBL><northBL Sync="TRUE">349563.642651</northBL><exTypeCode Sync="TRUE">1</exTypeCode></nativeExtBox><itemLocation><linkage Sync="TRUE">file://\\DESKTOP-KRNVN5Q\D$\OneDrive - University of Florida\Research\PyLUSAT Project\pylusat\pylusat\datasets\streets\streets.shp</linkage><protocol Sync="TRUE">Local Area Network</protocol></itemLocation><itemSize Sync="TRUE">0.000</itemSize></itemProps><coordRef><type Sync="TRUE">Projected</type><geogcsn Sync="TRUE">GCS_North_American_1983</geogcsn><csUnits Sync="TRUE">Linear Unit: Foot_US (0.304801)</csUnits><projcsn Sync="TRUE">NAD_1983_StatePlane_Florida_North_FIPS_0903_Feet</projcsn><peXml Sync="TRUE">&lt;ProjectedCoordinateSystem xsi:type='typens:ProjectedCoordinateSystem' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xs='http://www.w3.org/2001/XMLSchema' xmlns:typens='http://www.esri.com/schemas/ArcGIS/2.7.0'&gt;&lt;WKT&gt;PROJCS[&amp;quot;NAD_1983_StatePlane_Florida_North_FIPS_0903_Feet&amp;quot;,GEOGCS[&amp;quot;GCS_North_American_1983&amp;quot;,DATUM[&amp;quot;D_North_American_1983&amp;quot;,SPHEROID[&amp;quot;GRS_1980&amp;quot;,6378137.0,298.257222101]],PRIMEM[&amp;quot;Greenwich&amp;quot;,0.0],UNIT[&amp;quot;Degree&amp;quot;,0.0174532925199433]],PROJECTION[&amp;quot;Lambert_Conformal_Conic&amp;quot;],PARAMETER[&amp;quot;False_Easting&amp;quot;,1968500.0],PARAMETER[&amp;quot;False_Northing&amp;quot;,0.0],PARAMETER[&amp;quot;Central_Meridian&amp;quot;,-84.5],PARAMETER[&amp;quot;Standard_Parallel_1&amp;quot;,29.58333333333333],PARAMETER[&amp;quot;Standard_Parallel_2&amp;quot;,30.75],PARAMETER[&amp;quot;Latitude_Of_Origin&amp;quot;,29.0],UNIT[&amp;quot;Foot_US&amp;quot;,0.3048006096012192],AUTHORITY[&amp;quot;EPSG&amp;quot;,2238]]&lt;/WKT&gt;&lt;XOrigin&gt;-125939000&lt;/XOrigin&gt;&lt;YOrigin&gt;-91453300&lt;/YOrigin&gt;&lt;XYScale&gt;35209816.682919256&lt;/XYScale&gt;&lt;ZOrigin&gt;-100000&lt;/ZOrigin&gt;&lt;ZScale&gt;10000&lt;/ZScale&gt;&lt;MOrigin&gt;-100000&lt;/MOrigin&gt;&lt;MScale&gt;10000&lt;/MScale&gt;&lt;XYTolerance&gt;0.0032808333333333331&lt;/XYTolerance&gt;&lt;ZTolerance&gt;0.001&lt;/ZTolerance&gt;&lt;MTolerance&gt;0.001&lt;/MTolerance&gt;&lt;HighPrecision&gt;true&lt;/HighPrecision&gt;&lt;WKID&gt;102660&lt;/WKID&gt;&lt;LatestWKID&gt;2238&lt;/LatestWKID&gt;&lt;/ProjectedCoordinateSystem&gt;</peXml></coordRef></DataProperties><ArcGISFormat>1.0</ArcGISFormat></Esri><dataIdInfo><envirDesc Sync="TRUE">Microsoft Windows 10 Version 10.0 (Build 19042) ; Esri ArcGIS 12.7.0.26828</envirDesc><dataLang><languageCode Sync="TRUE" value="eng"></languageCode><countryCode value="USA" Sync="TRUE"></countryCode></dataLang><idCitation><resTitle Sync="TRUE">streets</resTitle><presForm><PresFormCd Sync="TRUE" value="005"></PresFormCd></presForm></idCitation><spatRpType><SpatRepTypCd Sync="TRUE" value="001"></SpatRepTypCd></spatRpType><dataExt><geoEle><GeoBndBox esriExtentType="native"><westBL Sync="TRUE">2552253.500503</westBL><eastBL Sync="TRUE">2746579.330572</eastBL><northBL Sync="TRUE">349563.642651</northBL><southBL Sync="TRUE">166597.042032</southBL><exTypeCode Sync="TRUE">1</exTypeCode></GeoBndBox></geoEle></dataExt><geoBox esriExtentType="decdegrees"><westBL Sync="TRUE">-82.666006</westBL><eastBL Sync="TRUE">-82.043268</eastBL><northBL Sync="TRUE">29.948232</northBL><southBL Sync="TRUE">29.435156</southBL><exTypeCode Sync="TRUE">1</exTypeCode></geoBox><dataExt><geoEle><GeoBndBox esriExtentType="search"><exTypeCode Sync="TRUE">1</exTypeCode><westBL Sync="TRUE">-82.666006</westBL><eastBL Sync="TRUE">-82.043268</eastBL><northBL Sync="TRUE">29.948232</northBL><southBL Sync="TRUE">29.435156</southBL></GeoBndBox></geoEle></dataExt></dataIdInfo><mdLang><languageCode Sync="TRUE" value="eng"></languageCode><countryCode value="USA" Sync="TRUE"></countryCode></mdLang><mdStanName Sync="TRUE">ISO 19115 Geographic Information - Metadata</mdStanName><mdStanVer Sync="TRUE">DIS_ESRI1.0</mdStanVer><mdChar><CharSetCd Sync="TRUE" value="006"></CharSetCd></mdChar><mdHrLv><ScopeCd Sync="TRUE" value="005"></ScopeCd></mdHrLv><mdHrLvName Sync="TRUE">dataset</mdHrLvName><distInfo><distributor><distorTran><onLineSrc><orDesc Sync="TRUE">002</orDesc><linkage Sync="TRUE">file://\\Ggpwsvr\gis\Projects\Public Works\Transportation\Trans_GDB_work\Trans_fileGDB\Transportation_FileGDB.gdb</linkage><protocol Sync="TRUE">Local Area Network</protocol></onLineSrc></distorTran><distorFormat><formatName Sync="TRUE">File Geodatabase Feature Class</formatName></distorFormat></distributor><distFormat><formatName Sync="TRUE">Shapefile</formatName></distFormat><distTranOps><transSize Sync="TRUE">0.000</transSize></distTranOps></distInfo><refSysInfo><RefSystem><refSysID><identCode Sync="TRUE" value="2238" code="2238">NAD_1983_StatePlane_Florida_North_FIPS_0903_Feet</identCode><idCodeSpace Sync="TRUE">EPSG</idCodeSpace><idVersion Sync="TRUE">5.3(9.0.0)</idVersion></refSysID></RefSystem></refSysInfo><spatRepInfo><VectSpatRep><geometObjs Name="streets"><geoObjTyp><GeoObjTypCd value="002" Sync="TRUE"></GeoObjTypCd></geoObjTyp><geoObjCnt Sync="TRUE">0</geoObjCnt></geometObjs><topLvl><TopoLevCd value="001" Sync="TRUE"></TopoLevCd></topLvl></VectSpatRep></spatRepInfo><mdDateSt Sync="TRUE">20210127</mdDateSt><Binary/></metadata>
