@@ -1,5 +1,14 @@
 # pylusat changelog
 
+## 0.2.7
+
+2021-02-01
+
+### Improved
+
+- `reclassify` - Loosened the requirement of ascending old value intervals. 
+  Allow identical entries in new values. 
+
 ## 0.2.6
 
 2021-01-26
