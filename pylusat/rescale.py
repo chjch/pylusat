@@ -5,7 +5,7 @@ from geopandas import GeoDataFrame
 from scipy import stats
 
 
-def reclassify(input_df, input_col, reclassify_def, output_col, nodata=1):
+def reclassify(input_df, input_col, reclassify_def, output_col, nodata=None):
     """
     Reclassify values in an existing column based on key-value pairs provided
     in a dictionary.
@@ -35,34 +35,29 @@ def reclassify(input_df, input_col, reclassify_def, output_col, nodata=1):
 
     """
     key_type = set(map(type, [*reclassify_def]))
-    value_type = set(map(type, reclassify_def.values()))
-    if len(value_type) > 1:
-        raise ValueError("Values of the reclassify dictionary must be "
-                         "exclusively of integer, string, or float.")
-    value_type = list(value_type)[0].__name__
 
     if key_type == {tuple}:
-        # get the lowest interval and its corresponding remapped value
-        lowest_interval, lowest_new = next(iter(reclassify_def.items()))
-        intervals = pd.IntervalIndex.from_tuples([*reclassify_def])
-        output_sr = (
-            pd.cut(input_df[input_col], intervals).cat.rename_categories(
-                {pd.Interval(*k): reclassify_def[k]
-                 for k in reclassify_def.keys()}
-            )
+        # get the lowest interval
+        lowest_id = np.argmin(
+            [left for left, right in reclassify_def.keys()]
+        ).item()
+        lowest_left, lowest_right = list(reclassify_def.keys())[lowest_id]
+        # change values equal to the lowest left to the lowest right
+        input_df.loc[input_df[input_col] == lowest_left,
+                     input_col] = lowest_right
+        intervals = pd.Series(
+            list(reclassify_def.values()),
+            index=pd.IntervalIndex.from_tuples([*reclassify_def])
         )
-        output_sr.loc[input_df[input_col] == lowest_interval[0]] = lowest_new
-        output_sr = output_sr.astype(value_type)
-        if output_sr.isna().values.any():
-            output_sr.fillna(nodata, inplace=True)
+        output_sr = input_df[input_col].map(intervals)
     elif key_type == {int} or key_type == {str} or key_type == {float}:
         output_sr = input_df[input_col].map(reclassify_def)
-        if output_sr.isna().values.any():
-            output_sr.fillna(nodata, inplace=True)
     else:
         raise ValueError("Keys of the reclassify dictionary must be "
                          "exclusively of string, number, or tuple of two "
                          "numbers.")
+    if output_sr.isna().values.any() and nodata:
+        output_sr.fillna(nodata, inplace=True)
 
     input_df[output_col] = output_sr
     return input_df
