@@ -1,5 +1,17 @@
 # pylusat changelog
 
+## 0.3.0
+
+2021-02-07
+
+### Added
+
+- `utils.ahp` - Function added to perform AHP based on pre-defined reciprocal matrix.
+  
+### Updated
+
+- `utils.random_ahp` - The previous `random_ahp_weight` is changed to `random_ahp` now. 
+
 ## 0.2.7
 
 2021-02-01
