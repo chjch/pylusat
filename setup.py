@@ -2,6 +2,7 @@
 
 import setuptools
 import os
+from pylusat._version import __version__
 
 with open('README.md') as f:
     README = f.read()
@@ -18,7 +19,7 @@ setuptools.setup(
     author_email="chj.chen@hotmail.com",
     license="BSD",
     description='Python for Land-use suitability analysis tools',
-    version='v0.3.0',
+    version=__version__,
     long_description=README,
     long_description_content_type='text/markdown',
     url='https://github.com/chjch/pylusat',
