@@ -1,5 +1,13 @@
 # pylusat changelog
 
+## 0.3.2
+
+2021-03-28
+
+### Fixed
+
+- `geotools.spatial_join` - fix a bug in retrieving columns of `target_gdf`
+
 ## 0.3.1
 
 2021-03-28
