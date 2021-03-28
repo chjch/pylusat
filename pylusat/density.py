@@ -133,7 +133,7 @@ def of_line(input_gdf, line_gdf, cellsize=30, search_radius=None,
     else:
         with warnings.catch_warnings():
             warnings.filterwarnings('ignore', category=DeprecationWarning)
-            input_buff = _buffer(input_gdf, search_radius)
+            input_buff = _buffer(input_gdf.centroid, search_radius)
             zstats = zonal_stats(input_buff, line_data[0], affine=line_data[1],
                                  stats=['sum'], nodata=0)
         search_unit = search_radius.split()[1]
