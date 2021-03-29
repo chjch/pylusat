@@ -15,6 +15,16 @@ def _buffer(input_gdf, buffer_dist):
     return input_gdf.buffer(buff_factor)
 
 
+def _buffer_factor(input_gdf, buffer_dist):
+    """create buffers around the input_gdf using specified buffer distance"""
+
+    input_unit = GeoDataFrameManager(input_gdf).geom_unit_id
+    buff_length, buff_unit = buffer_dist.split()
+    # calculate the length of buffer in the unit used by input_gdf
+    buff_factor = float(buff_length)/UnitHandler(input_unit).convert(buff_unit)
+    return buff_factor
+
+
 def of_point(input_gdf, point_gdf, pop_clm=None,
              search_radius=None, area_scale='square meters'):
     """
@@ -133,7 +143,8 @@ def of_line(input_gdf, line_gdf, cellsize=30, search_radius=None,
     else:
         with warnings.catch_warnings():
             warnings.filterwarnings('ignore', category=DeprecationWarning)
-            input_buff = _buffer(input_gdf.centroid, search_radius)
+            buff_factor = _buffer_factor(input_gdf, search_radius)
+            input_buff = input_gdf.centroid.buffer(buff_factor)
             zstats = zonal_stats(input_buff, line_data[0], affine=line_data[1],
                                  stats=['sum'], nodata=0)
         search_unit = search_radius.split()[1]
