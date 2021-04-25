@@ -1,5 +1,20 @@
 # pylusat changelog
 
+## 0.3.4
+
+2021-04-24
+
+- `distance.to_cell` - return null when no value specified presented in the
+  target raster
+
+## 0.3.3
+
+2021-03-29
+
+### Fixed
+
+- `density.of_line` - fix a bug in buffering reporting "invalid GeoDataFrame"
+
 ## 0.3.2
 
 2021-03-28
