@@ -6,10 +6,10 @@ import unittest
 
 class TestDistance(unittest.TestCase):
 
-    schools = "schools.shp"     # point geometry
-    highway = "highway.shp"     # line geometry
-    acs2016 = "acs2016.shp"     # polygon geometry
-    habitat = "habitat.tif"     # raster data (tiff)
+    schools = "schools/schools.shp"     # point geometry
+    highway = "highway/highway.shp"     # line geometry
+    acs2016 = "acs2016/acs2016.shp"     # polygon geometry
+    habitat = "habitat/habitat.tif"     # raster data (tiff)
     dataset_path = os.path.join(os.path.dirname(os.getcwd()), "datasets")
 
     schools_shp = os.path.join(dataset_path, schools)
