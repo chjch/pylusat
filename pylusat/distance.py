@@ -24,6 +24,7 @@ class _ArrayDistance:
         return cKDTree(target_arr)
 
     def query(self, source_arr, target_arr):
+        # query distance from source_arr to target_arr
         kdtree = self._kdtree(target_arr)
         dist_method = 1 if self.method.lower() == 'manhattan' else 2
         dist_arr = kdtree.query(source_arr, p=dist_method)[0]
@@ -146,11 +147,13 @@ def to_cell(input_gdf, raster, value, nodata=None,
         A pandas Series of distances from each feature in input_gdf to the
         nearest cell (has the specified value) in the raster dataset.
     """
-    raster_grid, cellsize, max_y, min_x, nodata = read_raster(raster, nodata)
-    input_arr = inv_affine(input_gdf, cellsize, max_y, min_x)
-    raster_arr = np.argwhere(raster_grid == value)
+    rast_grid, cellsize, max_y, min_x, nodata = read_raster(raster, nodata)
+    rast_arr = np.argwhere(rast_grid == value)
+    # if raster does not contain any specified value return null for each row
+    if rast_arr.size == 0:
+        return Series(np.nan, index=input_gdf.index)
 
-    raster_dist = _ArrayDistance("Raster", method, dtype)
-    raster_dist_arr = raster_dist.query(input_arr, raster_arr) * cellsize
-
-    return Series(raster_dist_arr, index=input_gdf.index)
+    input_centroid_arr = inv_affine(input_gdf, cellsize, max_y, min_x)
+    rast_dist_obj = _ArrayDistance("Raster", method, dtype)
+    rast_dist = rast_dist_obj.query(input_centroid_arr, rast_arr) * cellsize
+    return Series(rast_dist, index=input_gdf.index)
