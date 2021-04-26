@@ -3,6 +3,7 @@ from affine import Affine
 import numpy as np
 from geopandas import GeoDataFrame
 from pandas import DataFrame
+from shapely.geometry import Polygon
 
 
 def rasterize_geometry(gdf, cellsize, value_clm=None, value_fill=0):
@@ -262,3 +263,73 @@ def weighted_sum(df, col_weights):
     """
     wgt_df = DataFrame([*col_weights.values()], index=[*col_weights])
     return df[[*col_weights]].dot(wgt_df)
+
+
+def gridify(input_gdf, width=None, height=None, num_cols=None, num_rows=None):
+    """
+    Create a grid based on the input_gdf by specifying width and/or height of
+    the cells of the grid.
+
+    num_cols and num_rows can be used to define the grid as well. If nothing
+    specified, the cell size of the grid will be the span on x axis (width)
+    divided by 30.
+
+    Parameters
+    ----------
+    input_gdf : GeoDataFrame
+        Input GeoDataFrame based on which the grid is created.
+    width : int or float
+        Cell width.
+    height : int or float
+        Cell height.
+    num_cols : int
+        Number of columns. When specified, this number will determine cell
+        width.
+    num_rows : int
+        Number of rows. When specified, this number will determine cell height.
+
+    Returns
+    -------
+    GeoDataFrame
+        The output grid (polygons).
+    """
+    xmin, ymin, xmax, ymax = input_gdf.total_bounds
+
+    if width and height:
+        pass
+    else:
+        if not width and not height:
+            width = height = (xmax - xmin) / 30
+        else:
+            if width:
+                height = width
+            elif height:
+                width = height
+
+    if num_cols and num_rows:
+        # width and height are calculated based on num_cols and num_rows
+        width = (xmax - xmin) / num_cols
+        height = (ymax - ymin) / num_rows
+    else:
+        if num_cols:
+            width = height = (xmax - xmin) / num_cols
+        elif num_rows:
+            height = width = (ymax - ymin) / num_rows
+        else:
+            pass
+
+    cols = np.arange(xmin - width/2, xmax + width/2, width)
+    rows = np.arange(ymin - height/2, ymax + height/2, height)
+
+    polygons = [
+        Polygon([
+            (x, y),
+            (x+width, y),
+            (x+width, y+height),
+            (x, y+height)
+        ])
+        for y in rows
+        for x in cols
+    ]
+
+    return GeoDataFrame({'geometry': polygons}, crs=input_gdf.crs)

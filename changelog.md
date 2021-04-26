@@ -1,8 +1,17 @@
 # pylusat changelog
 
+## 0.4.0
+
+### Added
+
+- `utils.gridify` - This new function creates a grid based on the input
+  GeoDataFrame.
+
 ## 0.3.4
 
 2021-04-24
+
+### Updated
 
 - `distance.to_cell` - return null when no value specified presented in the
   target raster
