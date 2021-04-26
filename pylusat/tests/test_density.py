@@ -6,10 +6,9 @@ import unittest
 
 class TestDensity(unittest.TestCase):
 
-    schools = r"schools\schools.shp"     # point geometry
-    highway = r"highway\highway.shp"     # line geometry
-    acs2016 = r"acs2016\acs2016.shp"     # polygon geometry
-    habitat = r"habitat\habitat.tif"     # raster data (tiff)
+    schools = "schools/schools.shp"     # point geometry
+    highway = "highway/highway.shp"     # line geometry
+    acs2016 = "acs2016/acs2016.shp"     # polygon geometry
     dataset_path = os.path.join(os.path.dirname(os.getcwd()), "datasets")
 
     schools_shp = os.path.join(dataset_path, schools)
