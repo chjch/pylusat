@@ -6,12 +6,12 @@ import unittest
 
 class TestGeoTools(unittest.TestCase):
 
-    schools = "schools.shp"     # point geometry
-    acs2016 = "acs2016.shp"     # polygon geometry
+    schools = "schools/schools.shp"     # point geometry
+    acs2016 = "acs2016/acs2016.shp"     # polygon geometry
     dataset_path = os.path.join(os.path.dirname(os.getcwd()), "datasets")
 
-    schools_shp = os.path.join(dataset_path, "schools", schools)
-    acs2016_shp = os.path.join(dataset_path, "acs2016", acs2016)
+    schools_shp = os.path.join(dataset_path, schools)
+    acs2016_shp = os.path.join(dataset_path, acs2016)
 
     @classmethod
     def setUpClass(cls):
