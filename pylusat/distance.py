@@ -2,8 +2,8 @@ import numpy as np
 from geopandas import GeoDataFrame
 from pandas import Series
 from pylusat.base import GeoDataFrameManager
-from pylusat.utils import (rasterize_geometry, cntrd_array,
-                           inv_affine, read_raster)
+from pylusat.base import RasterManager
+from pylusat.utils import rasterize_geometry, cntrd_array, inv_affine
 
 
 class _ArrayDistance:
@@ -147,7 +147,8 @@ def to_cell(input_gdf, raster, value, nodata=None,
         A pandas Series of distances from each feature in input_gdf to the
         nearest cell (has the specified value) in the raster dataset.
     """
-    rast_grid, cellsize, max_y, min_x, nodata = read_raster(raster, nodata)
+    rast_manager = RasterManager(raster, nodata)
+    rast_grid, cellsize, max_y, min_x, nodata = rast_manager.to_array()
     rast_arr = np.argwhere(rast_grid == value)
     # if raster does not contain any specified value return null for each row
     if rast_arr.size == 0:
