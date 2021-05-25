@@ -1,5 +1,7 @@
 from pyproj import Proj
 from geopandas import GeoDataFrame
+import numpy as np
+from osgeo import gdal, osr
 
 
 class GeoDataFrameManager:
@@ -169,3 +171,54 @@ class UnitHandler:
                             f'{other_unit_handler.fullname}.')
         else:
             return self.base_factor / other_unit_handler.base_factor
+
+
+class RasterManager:
+
+    def __init__(self, rast_file, nodata=None):
+        self.rast_file = rast_file
+        self.rast_ds = self._validate_rast()
+        self.rast_nodata = nodata
+
+    def _validate_rast(self):
+        try:
+            rast_ds = gdal.Open(self.rast_file)
+            return rast_ds
+        except Exception:
+            raise ValueError("Not a valid raster data.")
+
+    def to_array(self):
+        return RasterManager.as_array(self.rast_ds, self.rast_nodata)
+
+    @staticmethod
+    def as_array(rast_ds, rast_nodata=None):
+        rast_band = rast_ds.GetRasterBand(1)
+        rast_trans = rast_ds.GetGeoTransform()
+        rast_arr = rast_band.ReadAsArray()
+        if rast_nodata is not None:
+            rast_arr[
+                np.where(rast_arr == rast_band.GetNoDataValue())
+            ] = rast_nodata
+            nodata = rast_nodata
+        else:
+            nodata = rast_band.GetNoDataValue()
+        cellsize = rast_trans[1]
+        max_y = rast_trans[3]
+        min_x = rast_trans[0]
+        return rast_arr, cellsize, max_y, min_x, nodata
+
+    @property
+    def wkt(self):
+        return self.rast_ds.GetProjection()
+
+    @property
+    def srs(self):
+        return self.rast_ds.GetSpatialRef()
+
+    def reproject(self, output_rast='', srs=None):
+        if not output_rast:
+            return gdal.Warp(output_rast, self.rast_ds,
+                             dstSRS=srs, format='VRT')
+        else:
+            gdal.Warp(output_rast, self.rast_ds, dstSRS=srs)
+            return output_rast
