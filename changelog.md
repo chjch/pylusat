@@ -1,6 +1,31 @@
 # pylusat changelog
 
+## 0.5.0
+
+2021-05-24
+
+### Added
+
+- test for `zonal_stats_raster`
+- `RasterManager` - This class is similar to the `GeoDataFrameManager` in
+  `pylusat.base`. It manages the basic properties and methods of a raster
+  dataset, such as `wkt`, `srs`, `reproject()`, `to_array()`.
+  
+### Removed
+
+- `utils.read_raster` - This function is replaced by the method in
+  `RasterManager`.
+
+### Improved
+
+- `zonal_stats_raster` - This function now will compare the spatial reference
+  system of the `zone_gdf` and the `raster`. If they are not the same, the
+  function will attempt to `Warp` (reproject) the raster to match the spatial
+  reference of `zone_gdf`. 
+
 ## 0.4.0
+
+2021-04-26
 
 ### Added
 
