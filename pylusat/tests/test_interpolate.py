@@ -1,27 +1,20 @@
-import os
 import geopandas as gpd
 from pylusat.interpolate import idw
-import unittest
+from pylusat.datasets import get_path
+import pytest
 
 
-class TestInterpolate(unittest.TestCase):
-
-    schools = "schools"     # point geometry
-    acs2016 = "acs2016"     # polygon geometry
-    dataset_path = os.path.join(os.path.dirname(os.getcwd()), "datasets")
-
-    schools_shp = os.path.join(dataset_path, schools, f'{schools}.shp')
-    acs2016_shp = os.path.join(dataset_path, acs2016, f'{acs2016}.shp')
-
-    @classmethod
-    def setUpClass(cls):
-        cls.schools_gdf = gpd.read_file(cls.schools_shp)
-        cls.acs2016_gdf = gpd.read_file(cls.acs2016_shp)
-
-    def test_idw(self):
-        idw(self.acs2016_gdf, self.schools_gdf, 'ENROLLMENT',
-            power=2.00, n_neighbor=12)
+@pytest.fixture
+def acs2016_gdf():
+    return gpd.read_file(get_path("acs2016"))
 
 
-if __name__ == "__main__":
-    unittest.main()
+@pytest.fixture
+def schools_gdf():
+    return gpd.read_file(get_path("schools"))
+
+
+def test_idw(acs2016_gdf, schools_gdf):
+    idw_result = idw(acs2016_gdf, schools_gdf, 'ENROLLMENT',
+                     power=2.00, n_neighbor=12)
+    assert round(idw_result[0], 4) == 26.4073
