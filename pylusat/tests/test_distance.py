@@ -1,37 +1,39 @@
-import os
 import geopandas as gpd
 from pylusat.distance import to_point, to_line, to_cell
-import unittest
+from pylusat.datasets import get_path
+import pytest
 
 
-class TestDistance(unittest.TestCase):
-
-    schools = "schools/schools.shp"     # point geometry
-    highway = "highway/highway.shp"     # line geometry
-    acs2016 = "acs2016/acs2016.shp"     # polygon geometry
-    habitat = "habitat/habitat.tif"     # raster data (tiff)
-    dataset_path = os.path.join(os.path.dirname(os.getcwd()), "datasets")
-
-    schools_shp = os.path.join(dataset_path, schools)
-    highway_shp = os.path.join(dataset_path, highway)
-    acs2016_shp = os.path.join(dataset_path, acs2016)
-    habitat_tif = os.path.join(dataset_path, habitat)
-
-    @classmethod
-    def setUpClass(cls):
-        cls.schools_gdf = gpd.read_file(cls.schools_shp)
-        cls.highway_gdf = gpd.read_file(cls.highway_shp)
-        cls.acs2016_gdf = gpd.read_file(cls.acs2016_shp)
-
-    def test_to_point(self):
-        to_point(self.acs2016_gdf, self.schools_gdf)
-
-    def test_to_line(self):
-        to_line(self.acs2016_gdf, self.highway_gdf)
-
-    def test_to_cell(self):
-        to_cell(self.acs2016_gdf, self.habitat_tif, 6)
+@pytest.fixture
+def schools_gdf():
+    return gpd.read_file(get_path("schools"))
 
 
-if __name__ == "__main__":
-    unittest.main()
+@pytest.fixture
+def acs2016_gdf():
+    return gpd.read_file(get_path("acs2016"))
+
+
+@pytest.fixture
+def highway_gdf():
+    return gpd.read_file(get_path("highway"))
+
+
+@pytest.fixture
+def habitat_tif():
+    return get_path("habitat")
+
+
+def test_to_point(acs2016_gdf, schools_gdf):
+    result = to_point(acs2016_gdf, schools_gdf)
+    assert round(result[0], 4) == 197.2841
+
+
+def test_to_line(acs2016_gdf, highway_gdf):
+    result = to_line(acs2016_gdf, highway_gdf)
+    assert round(result[0], 4) == 715.6116
+
+
+def test_to_cell(acs2016_gdf, habitat_tif):
+    result = to_cell(acs2016_gdf, habitat_tif, 6)
+    assert round(result[0], 4) == 5825.4099
