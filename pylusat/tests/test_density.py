@@ -1,39 +1,37 @@
-import os
 import geopandas as gpd
 from pylusat.density import of_point, of_line
-import unittest
+from pylusat.datasets import get_path
+import pytest
 
 
-class TestDensity(unittest.TestCase):
-
-    schools = "schools/schools.shp"     # point geometry
-    highway = "highway/highway.shp"     # line geometry
-    acs2016 = "acs2016/acs2016.shp"     # polygon geometry
-    dataset_path = os.path.join(os.path.dirname(os.getcwd()), "datasets")
-
-    schools_shp = os.path.join(dataset_path, schools)
-    highway_shp = os.path.join(dataset_path, highway)
-    acs2016_shp = os.path.join(dataset_path, acs2016)
-    habitat_tif = os.path.join(dataset_path, habitat)
-
-    schools_enrollment = 'ENROLLMENT'
-
-    @classmethod
-    def setUpClass(cls):
-        cls.schools_gdf = gpd.read_file(cls.schools_shp)
-        cls.highway_gdf = gpd.read_file(cls.highway_shp)
-        cls.acs2016_gdf = gpd.read_file(cls.acs2016_shp)
-
-    def test_of_point_no_search(self):
-        of_point(self.acs2016_gdf, self.schools_gdf)
-
-    def test_of_point_search(self):
-        of_point(self.acs2016_gdf, self.schools_gdf, '1 mile', 'acre',
-                 self.schools_enrollment)
-
-    def test_of_line(self):
-        of_line(self.acs2016_gdf, self.highway_gdf, search_radius='1 mile')
+@pytest.fixture
+def acs2016_gdf():
+    return gpd.read_file(get_path("acs2016"))
 
 
-if __name__ == "__main__":
-    unittest.main()
+@pytest.fixture
+def schools_gdf():
+    return gpd.read_file(get_path("schools"))
+
+
+@pytest.fixture
+def highway_gdf():
+    return gpd.read_file(get_path("highway"))
+
+
+def test_of_point_no_search(acs2016_gdf, schools_gdf):
+    result = of_point(acs2016_gdf, schools_gdf, area_unit='square mile')
+    assert round(result[0], 4) == 2.3894
+
+
+def test_of_point_search(acs2016_gdf, schools_gdf):
+    result = of_point(acs2016_gdf, schools_gdf,
+                      "ENROLLMENT", '1 mile', 'square mile')
+    assert round(result[1], 4) == 0.0003
+
+
+def test_of_line(acs2016_gdf, highway_gdf):
+    result = of_line(acs2016_gdf, highway_gdf,
+                     search_radius='1 mile',
+                     area_unit='square mile')
+    assert round(result[0], 4) == 0.0004
