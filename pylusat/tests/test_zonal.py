@@ -1,25 +1,22 @@
-import os
 import geopandas as gpd
 from pylusat.zonal import zonal_stats_raster
-import unittest
+import pytest
+from pylusat.datasets import get_path
 
 
-class TestZonal(unittest.TestCase):
-
-    acs2016 = "acs2016/acs2016.shp"     # polygon geometry
-    habitat = "habitat/habitat.tif"     # raster data (tiff)
-    dataset_path = os.path.join(os.path.dirname(os.getcwd()), "datasets")
-
-    acs2016_shp = os.path.join(dataset_path, acs2016)
-    habitat_tif = os.path.join(dataset_path, habitat)
-
-    @classmethod
-    def setUpClass(cls):
-        cls.acs2016_gdf = gpd.read_file(cls.acs2016_shp)
-
-    def test_zonal_stats_raster(self):
-        zonal_stats_raster(self.acs2016_gdf, self.habitat_tif)
+@pytest.fixture
+def acs2016_gdf():
+    return gpd.read_file(get_path("acs2016"))
 
 
-if __name__ == "__main__":
-    unittest.main()
+@pytest.fixture
+def habitat_tif():
+    return get_path("habitat")
+
+
+def test_zonal_stats_raster(acs2016_gdf, habitat_tif):
+    zonal_result = zonal_stats_raster(acs2016_gdf, habitat_tif)
+    assert zonal_result.iloc[0, -1] == 1303
+    assert round(zonal_result.iloc[0, -2], 4) == 32.4351
+    assert zonal_result.iloc[0, -3] == 42
+    assert zonal_result.iloc[0, -4] == 7
