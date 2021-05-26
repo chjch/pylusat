@@ -1,0 +1,4 @@
+geopandas>=0.8.1
+rtree>=0.9.7
+rasterio>=1.1.2
+rasterstats>=0.15.0
