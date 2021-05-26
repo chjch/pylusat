@@ -1,23 +1,14 @@
-import os
 import geopandas as gpd
 from pylusat.utils import gridify
-import unittest
+from pylusat.datasets import get_path
+import pytest
 
 
-class TestGeoTools(unittest.TestCase):
-
-    schools = "schools/schools.shp"     # point geometry
-    dataset_path = os.path.join(os.path.dirname(os.getcwd()), "datasets")
-
-    schools_shp = os.path.join(dataset_path, schools)
-
-    @classmethod
-    def setUpClass(cls):
-        cls.schools_gdf = gpd.read_file(cls.schools_shp)
-
-    def test_gridify(self):
-        gridify(self.schools_gdf, width=1000)
+@pytest.fixture
+def schools_gdf():
+    return gpd.read_file(get_path("schools"))
 
 
-if __name__ == "__main__":
-    unittest.main()
+def test_gridify(schools_gdf):
+    result = gridify(schools_gdf, width=1000)
+    assert len(result) == 2496
