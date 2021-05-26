@@ -26,7 +26,7 @@ def _buffer_factor(input_gdf, buffer_dist):
 
 
 def of_point(input_gdf, point_gdf, pop_clm=None,
-             search_radius=None, area_scale='square meters'):
+             search_radius=None, area_unit='square meters'):
     """
     Calculate density of points in each input geometry.
 
@@ -42,7 +42,7 @@ def of_point(input_gdf, point_gdf, pop_clm=None,
     search_radius : str, optional
         A string of buffering distance and unit, separated by space.
         e.g., "1 mile".
-    area_scale : str, optional
+    area_unit : str, optional
         A string of the area unit used for density calculation.
         e.g., "square meters".
 
@@ -81,7 +81,7 @@ def of_point(input_gdf, point_gdf, pop_clm=None,
 
     search_area = input_copy.area
     # convert search area to specified areal unit
-    search_area *= UnitHandler(f'square {search_unit}').convert(area_scale)
+    search_area *= UnitHandler(f'square {search_unit}').convert(area_unit)
 
     output_sr = output_sr / search_area
     return output_sr
