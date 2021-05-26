@@ -30,7 +30,7 @@ def erase(input_gdf, erase_gdf=None):
 
 
 def spatial_join(target_gdf, join_gdf, op="intersects",
-                 cols_agg: Dict[str, set] = None,
+                 cols_agg: Dict[str, list] = None,
                  join_type="one to one", keep_all=True):
     """
     Spatial join two GeoDataFrames.
@@ -43,8 +43,8 @@ def spatial_join(target_gdf, join_gdf, op="intersects",
         Binary predicate, one of {'intersects', 'contains', 'within'}. See
         http://shapely.readthedocs.io/en/latest/manual.html#binary-predicates.
     cols_agg : dict, default None
-        Dict of ``{column_name: set of statistics}``, where the set of
-        statistics is a set of strings containing the names of desired
+        Dict of ``{column_name: a list of statistics}``, where the list of
+        statistics is a list of strings containing the names of desired
         statistics for each column. Names of the statistics include:
         {'first', 'last', 'sum', 'mean', 'median', 'max', 'min',
         'std', 'var', 'count', 'size'}.
@@ -76,7 +76,7 @@ def spatial_join(target_gdf, join_gdf, op="intersects",
             join_df = sjoin_by_index.agg(cols_agg)
             join_df.columns = [f"{key}_{v}"
                                for key, value in cols_agg.items()
-                               for v in value]
+                               for v in set(value)]
 
         # grab columns of target_gdf
         target_gdf_columns = gpd_sjoin.columns[:len(target_gdf.columns)]
