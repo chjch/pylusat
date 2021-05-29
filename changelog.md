@@ -1,5 +1,19 @@
 # pylusat changelog
 
+## 0.5.2
+
+2021-05-29
+
+### Fixed
+
+- `zonal_stats_raster` - fixed issues with the function when raster projection
+  and GeoDataFrame projection are not the same by fixing the backend class
+  `RasterManager`
+  
+### Updated
+
+- Updated the license
+
 ## 0.5.1
 
 2021-05-28
