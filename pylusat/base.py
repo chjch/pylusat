@@ -227,4 +227,4 @@ class RasterManager:
         return self.rast_ds.crs.to_wkt()
 
     def reproject_vrt(self, crs=None):
-        return WarpedVRT(self.rast_ds, crs)
+        return WarpedVRT(self.rast_ds, crs=crs)
