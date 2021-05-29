@@ -57,7 +57,9 @@ def zonal_stats_raster(zone_gdf, raster, stats=None,
     if gdf_crs.to_epsg() != rast_crs.to_epsg():
         rast_arr, cellsize, max_y, min_x, nodata = (
             rast_manager.as_rebuild_info(
-                projected_rast_ds=rast_manager.reproject_vrt(crs=gdf_crs)
+                projected_rast_ds=rast_manager.reproject_vrt(
+                    crs=f"EPSG:{gdf_crs.to_epsg()}"
+                )
             )
         )
     else:
