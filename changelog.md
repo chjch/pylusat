@@ -1,5 +1,19 @@
 # pylusat changelog
 
+## 0.5.1
+
+2021-05-28
+
+### Improved
+
+- Change test framework to `pytest` to work with GitHub Actions for continuous
+  integration (CI).
+
+### Updated
+
+- Change `RasterManager` and `distance.to_cell` from using `gdal` methods to
+  `rasterio` methods.
+
 ## 0.5.0
 
 2021-05-24
