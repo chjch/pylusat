@@ -1,7 +1,8 @@
 from pyproj import Proj
 from geopandas import GeoDataFrame
 import numpy as np
-from osgeo import gdal, osr
+import rasterio as rio
+from rasterio.vrt import WarpedVRT
 
 
 class GeoDataFrameManager:
@@ -182,43 +183,48 @@ class RasterManager:
 
     def _validate_rast(self):
         try:
-            rast_ds = gdal.Open(self.rast_file)
+            rast_ds = rio.open(self.rast_file)
             return rast_ds
         except Exception:
             raise ValueError("Not a valid raster data.")
 
-    def to_array(self):
-        return RasterManager.as_array(self.rast_ds, self.rast_nodata)
+    def get_rio_dataset(self):
+        # get rasterio dataset
+        return self.rast_ds
 
-    @staticmethod
-    def as_array(rast_ds, rast_nodata=None):
-        rast_band = rast_ds.GetRasterBand(1)
-        rast_trans = rast_ds.GetGeoTransform()
-        rast_arr = rast_band.ReadAsArray()
-        if rast_nodata is not None:
-            rast_arr[
-                np.where(rast_arr == rast_band.GetNoDataValue())
-            ] = rast_nodata
-            nodata = rast_nodata
+    def get_rio_crs(self):
+        # get rasterio.crs from the raster dataset
+        return self.rast_ds.crs
+
+    def to_array(self):
+        # return a numpy.ndarray
+        return self.rast_ds.read(1)
+
+    def get_affine(self):
+        return self.rast_ds.transform
+
+    def as_rebuild_info(self, projected_rast_ds=None):
+        if not projected_rast_ds:
+            rast_ds = self.rast_ds
         else:
-            nodata = rast_band.GetNoDataValue()
-        cellsize = rast_trans[1]
-        max_y = rast_trans[3]
-        min_x = rast_trans[0]
-        return rast_arr, cellsize, max_y, min_x, nodata
+            rast_ds = projected_rast_ds
+        rast_band = rast_ds.read(1)
+        rast_affine = rast_ds.transform
+        if self.rast_nodata is not None:
+            rast_band[
+                np.where(rast_band == rast_ds.nodata)
+            ] = self.rast_nodata
+            nodata = self.rast_nodata
+        else:
+            nodata = rast_ds.nodata
+        cellsize = rast_affine[0]
+        min_x = rast_affine[2]
+        max_y = rast_affine[5]
+        return rast_band, cellsize, max_y, min_x, nodata
 
     @property
     def wkt(self):
-        return self.rast_ds.GetProjection()
+        return self.rast_ds.crs.to_wkt()
 
-    @property
-    def srs(self):
-        return self.rast_ds.GetSpatialRef()
-
-    def reproject(self, output_rast='', srs=None):
-        if not output_rast:
-            return gdal.Warp(output_rast, self.rast_ds,
-                             dstSRS=srs, format='VRT')
-        else:
-            gdal.Warp(output_rast, self.rast_ds, dstSRS=srs)
-            return output_rast
+    def reproject_vrt(self, crs=None):
+        return WarpedVRT(self.rast_ds, crs)

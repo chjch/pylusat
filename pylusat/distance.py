@@ -148,13 +148,15 @@ def to_cell(input_gdf, raster, value, nodata=None,
         nearest cell (has the specified value) in the raster dataset.
     """
     rast_manager = RasterManager(raster, nodata)
-    rast_grid, cellsize, max_y, min_x, nodata = rast_manager.to_array()
-    rast_arr = np.argwhere(rast_grid == value)
+    rast_arr, cellsize, max_y, min_x, nodata = rast_manager.as_rebuild_info()
+    rast_arr_filtered = np.argwhere(rast_arr == value)
     # if raster does not contain any specified value return null for each row
-    if rast_arr.size == 0:
+    if rast_arr_filtered.size == 0:
         return Series(np.nan, index=input_gdf.index)
 
     input_centroid_arr = inv_affine(input_gdf, cellsize, max_y, min_x)
     rast_dist_obj = _ArrayDistance("Raster", method, dtype)
-    rast_dist = rast_dist_obj.query(input_centroid_arr, rast_arr) * cellsize
+    rast_dist = (
+        rast_dist_obj.query(input_centroid_arr, rast_arr_filtered) * cellsize
+    )
     return Series(rast_dist, index=input_gdf.index)

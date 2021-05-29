@@ -4,7 +4,6 @@ from affine import Affine
 from geopandas import GeoDataFrame
 from pylusat.base import GeoDataFrameManager
 from pylusat.base import RasterManager
-from osgeo import osr
 
 
 def _to_affine(cellsize, max_y, min_x):
@@ -50,17 +49,21 @@ def zonal_stats_raster(zone_gdf, raster, stats=None,
     """
     if not GeoDataFrameManager(zone_gdf).geom_type_validate("Polygon"):
         raise ValueError("zone GeoDataFrame must be polygon.")
-    gdf_srs = osr.SpatialReference(wkt=zone_gdf.crs.to_wkt())
+    gdf_crs = zone_gdf.crs
 
     rast_manager = RasterManager(raster, nodata)
-    rast_srs = rast_manager.srs
-    if not rast_srs.IsSame(gdf_srs):
-        rast_ds = rast_manager.reproject(srs=gdf_srs)
-        rast_arr, cellsize, max_y, min_x, nodata = RasterManager.as_array(
-            rast_ds, nodata
+    rast_crs = rast_manager.get_rio_crs()
+
+    if gdf_crs.to_epsg() != rast_crs.to_epsg():
+        rast_arr, cellsize, max_y, min_x, nodata = (
+            rast_manager.as_rebuild_info(
+                projected_rast_ds=rast_manager.reproject_vrt(crs=gdf_crs)
+            )
         )
     else:
-        rast_arr, cellsize, max_y, min_x, nodata = rast_manager.to_array()
+        rast_arr, cellsize, max_y, min_x, nodata = (
+            rast_manager.as_rebuild_info()
+        )
 
     affine = _to_affine(cellsize, max_y, min_x)
     zonal_output = zonal_stats(vectors=zone_gdf.geometry, raster=rast_arr,
