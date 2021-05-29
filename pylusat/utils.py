@@ -104,48 +104,6 @@ def inv_affine(gdf, cellsize, max_y, min_x):
     )
 
 
-def read_raster(raster, nodata=None):
-    """
-    Read the raster data and return numpy array.
-
-    Parameters
-    ----------
-    raster : str
-        A path to a tif file or a connection string to a raster on PostgreSQL.
-    nodata : int or float
-        Value for no data cells.
-
-    Returns
-    -------
-    raster_arr : np.ndarray
-        The numpy array converted from the raster data.
-    cellsize : int or float
-        The cell size of the raster data.
-    max_y : int or float
-        The y coordinate of the upper left corner of the raster data.
-    min_x : int or float
-        The x coordinate of the upper left corner of the raster data.
-    nodata : int or float
-        The no data value used during the conversion.
-    """
-    from osgeo import gdal
-    try:
-        raster_data = gdal.Open(raster)
-        raster_band = raster_data.GetRasterBand(1)
-        raster_trans = raster_data.GetGeoTransform()
-        raster_arr = raster_band.ReadAsArray()
-        if nodata is not None:
-            raster_arr[
-                np.where(raster_arr == raster_band.GetNoDataValue())
-            ] = nodata
-        cellsize = raster_trans[1]
-        max_y = raster_trans[3]
-        min_x = raster_trans[0]
-        return raster_arr, cellsize, max_y, min_x, nodata
-    except Exception:
-        raise ValueError("Not a valid raster data.")
-
-
 def _calc_ahp(r_mtx):
     # random consistency index based on saaty 1990
     ri_dict = {3: 0.58, 4: 0.9, 5: 1.12, 6: 1.24,
