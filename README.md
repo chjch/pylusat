@@ -16,6 +16,16 @@ Manuscript (currently under review) accessible:
 Chen, C., Judge, J., & Hulse, D. (2021). PyLUSAT: An open-source Python toolkit for GIS-based land use suitability analysis. arXiv preprint arXiv:2107.01674.
 https://arxiv.org/abs/2107.01674
 
+## Available Geospatial Functions
+
+- Distance (point, line, raster)
+- Density (point, line)
+- Reclassify
+- Interpolation (inverse distance weighting)
+- Spatial Join
+- Zonal Statistics
+- Analytic Hierarchy Process
+
 ## Install
 PyLUSAT depends on the following packages.
 - geopandas
