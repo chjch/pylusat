@@ -11,9 +11,9 @@ Python Land-Use Suitability Analysis Toolkit
 PyLUSAT intends to provide users with tools that can be used to conduct land-use 
 suitability analysis.
 
-Please cite:
+**Please cite**:
 
-Chen, C., Judge, J., & Hulse, D. (2022). PyLUSAT: An open-source Python toolkit for GIS-based land use suitability analysis. _Environmental Modelling and Software_. doi: https://doi.org/10.1016/j.envsoft.2022.105362
+Chen, C., Judge, J., Hulse, D. (2022). PyLUSAT: An open-source Python toolkit for GIS-based land use suitability analysis. _Environmental Modelling and Software_. doi: https://doi.org/10.1016/j.envsoft.2022.105362
 
 ## Available Geospatial Functions
 
