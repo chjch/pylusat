@@ -1,9 +1,7 @@
 # PyLUSAT
 
-[![PyPI version](https://img.shields.io/pypi/v/pylusat?color=g)](https://pypi.org/project/pylusat/)
+[![PyPI version](https://img.shields.io/pypi/v/pylusat)](https://pypi.org/project/pylusat/)
 ![PyPI - Python version](https://img.shields.io/pypi/pyversions/pylusat)
-![pytest](https://github.com/chjch/pylusat/actions/workflows/tests_pylusat.yml/badge.svg)
-![license](https://img.shields.io/pypi/l/pylusat)
 
 Python Land-Use Suitability Analysis Toolkit
 
