@@ -1,5 +1,24 @@
 # pylusat changelog
 
+## 0.5.3
+
+2022-07-20
+
+### Updated
+
+- `RasterManager` - Added a `rescale` method that can change the resolution to
+  a specified cell size.
+
+### Improved
+
+- `RasterManager` - Instantiate `RasterManager` object by passing a `rasterio`
+  dataset, which allows to chain multiple operations, e.g., `reproject_vrt` and
+  `rescale`.
+
+### Added
+
+- Tests for `RasterManager` class.
+
 ## 0.5.2
 
 2021-05-29
