@@ -147,7 +147,7 @@ def to_cell(input_gdf, raster, value, nodata=None,
         A pandas Series of distances from each feature in input_gdf to the
         nearest cell (has the specified value) in the raster dataset.
     """
-    rast_manager = RasterManager(raster, nodata)
+    rast_manager = RasterManager.from_path(raster, nodata)
     rast_arr, cellsize, max_y, min_x, nodata = rast_manager.as_rebuild_info()
     rast_arr_filtered = np.argwhere(rast_arr == value)
     # if raster does not contain any specified value return null for each row

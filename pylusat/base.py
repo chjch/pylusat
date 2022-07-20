@@ -3,6 +3,8 @@ from geopandas import GeoDataFrame
 import numpy as np
 import rasterio as rio
 from rasterio.vrt import WarpedVRT
+from rasterio import DatasetReader, MemoryFile
+from rasterio.enums import Resampling
 
 
 class GeoDataFrameManager:
@@ -176,21 +178,19 @@ class UnitHandler:
 
 class RasterManager:
 
-    def __init__(self, rast_file, nodata=None):
-        self.rast_file = rast_file
-        self.rast_ds = self._validate_rast()
+    def __init__(self, rio_dataset: DatasetReader, nodata=None):
+        self.rast_ds = rio_dataset
         self.rast_nodata = nodata
 
-    def _validate_rast(self):
-        try:
-            rast_ds = rio.open(self.rast_file)
-            return rast_ds
-        except Exception:
-            raise ValueError("Not a valid raster data.")
+    @property
+    def rast_ds(self):
+        return self._rast_ds
 
-    def get_rio_dataset(self):
-        # get rasterio dataset
-        return self.rast_ds
+    @rast_ds.setter
+    def rast_ds(self, rast_obj):
+        if type(rast_obj) not in [DatasetReader, WarpedVRT]:
+            raise TypeError("Not a valid rasterio dataset.")
+        self._rast_ds = rast_obj
 
     def get_rio_crs(self):
         # get rasterio.crs from the raster dataset
@@ -203,20 +203,16 @@ class RasterManager:
     def get_affine(self):
         return self.rast_ds.transform
 
-    def as_rebuild_info(self, projected_rast_ds=None):
-        if not projected_rast_ds:
-            rast_ds = self.rast_ds
-        else:
-            rast_ds = projected_rast_ds
-        rast_band = rast_ds.read(1)
-        rast_affine = rast_ds.transform
+    def as_rebuild_info(self):
+        rast_band = self.to_array()
+        rast_affine = self.rast_ds.transform
         if self.rast_nodata is not None:
             rast_band[
-                np.where(rast_band == rast_ds.nodata)
+                np.where(rast_band == self.rast_ds.nodata)
             ] = self.rast_nodata
             nodata = self.rast_nodata
         else:
-            nodata = rast_ds.nodata
+            nodata = self.rast_ds.nodata
         cellsize = rast_affine[0]
         min_x = rast_affine[2]
         max_y = rast_affine[5]
@@ -228,3 +224,41 @@ class RasterManager:
 
     def reproject_vrt(self, crs=None):
         return WarpedVRT(self.rast_ds, crs=crs)
+
+    @classmethod
+    def from_path(cls, rast_path, nodata=None):
+        try:
+            return cls(rio.open(rast_path), nodata)
+        except rio.errors.RasterioIOError:
+            raise ValueError("Not a valid raster data.") from None
+
+    def rescale(self, cell_size):
+        rast_affine = self.get_affine()
+        if round(rast_affine[0]) == cell_size:
+            return self.rast_ds
+        else:
+            scale_factor = abs(round(rast_affine[0]) / cell_size)
+            # rescaling raster
+            with self.rast_ds as dataset:
+                data = dataset.read(
+                    out_shape=(
+                        dataset.count,
+                        int(dataset.height * scale_factor),
+                        int(dataset.width * scale_factor)
+                    ),
+                    resampling=Resampling.nearest
+                )
+                # scale image transform
+                transform = dataset.transform * dataset.transform.scale(
+                    (dataset.width / data.shape[-1]),
+                    (dataset.height / data.shape[-2])
+                )
+                profile = self.rast_ds.profile
+                profile.update(transform=transform,
+                               height=int(dataset.height * scale_factor),
+                               width=int(dataset.width * scale_factor)
+                               )
+                with MemoryFile() as memfile:
+                    rst = memfile.open(**profile)
+                    rst.write(data)
+                    return rst

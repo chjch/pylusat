@@ -51,21 +51,16 @@ def zonal_stats_raster(zone_gdf, raster, stats=None,
         raise ValueError("zone GeoDataFrame must be polygon.")
     gdf_crs = zone_gdf.crs
 
-    rast_manager = RasterManager(raster, nodata)
+    rast_manager = RasterManager.from_path(raster, nodata)
     rast_crs = rast_manager.get_rio_crs()
 
     if gdf_crs.to_epsg() != rast_crs.to_epsg():
-        rast_arr, cellsize, max_y, min_x, nodata = (
-            rast_manager.as_rebuild_info(
-                projected_rast_ds=rast_manager.reproject_vrt(
-                    crs=f"EPSG:{gdf_crs.to_epsg()}"
-                )
-            )
+        projected_rast = rast_manager.reproject_vrt(
+            crs=f"EPSG:{gdf_crs.to_epsg()}"
         )
-    else:
-        rast_arr, cellsize, max_y, min_x, nodata = (
-            rast_manager.as_rebuild_info()
-        )
+        rast_manager = RasterManager(projected_rast)
+
+    rast_arr, cellsize, max_y, min_x, nodata = rast_manager.as_rebuild_info()
 
     affine = _to_affine(cellsize, max_y, min_x)
     zonal_output = zonal_stats(vectors=zone_gdf.geometry, raster=rast_arr,
