@@ -9,7 +9,12 @@ def habitat_tif():
     return get_path("habitat")
 
 
-def test_raster_manager(habitat_tif):
+@pytest.fixture
+def habitat_shift_tif():
+    return get_path("habitat_shift")
+
+
+def test_raster_manager(habitat_tif, habitat_shift_tif):
     rast_manager = RasterManager.from_path(habitat_tif)
     cell_size = 300
     rio_obj = rast_manager.rescale(cell_size)
@@ -20,3 +25,9 @@ def test_raster_manager(habitat_tif):
         cell_size,
         rel_tol=0.005
     )
+    rast_manager_1 = RasterManager.from_path(habitat_tif)
+    rast_manager_2 = RasterManager.from_path(habitat_shift_tif)
+    rio_obj_match_1 = rast_manager_1.match_extent(rast_manager_2)
+    rio_obj_match_2 = rast_manager_2.match_extent(rast_manager_1)
+    assert rio_obj_match_1.transform[2] == rio_obj_match_2.transform[2]
+    assert rio_obj_match_1.transform[5] == rio_obj_match_2.transform[5]

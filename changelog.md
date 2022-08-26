@@ -1,5 +1,21 @@
 # pylusat changelog
 
+## 0.5.4
+
+2022-08-26
+
+### Added
+
+- `combine` function to the `geotools` module.
+
+### Updated
+
+- `RasterManager`
+  - Added a `match_extent` method that can match the union of
+    the extent of the `self` and the other raster.
+  - `rescale` now returns `MemoryFile` of _Rasterio_.
+- `gridify` has been moved from `utils` module to `geotools` module.
+
 ## 0.5.3
 
 2022-07-20

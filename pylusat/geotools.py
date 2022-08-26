@@ -1,7 +1,11 @@
+import numpy as np
 import geopandas as gpd
 from geopandas import GeoDataFrame
 import pandas as pd
 from typing import Dict
+from shapely.geometry import Polygon
+from rasterio.io import MemoryFile
+from pylusat.base import RasterManager
 
 
 def erase(input_gdf, erase_gdf=None):
@@ -167,3 +171,131 @@ def select_by_location(input_gdf, select_gdf,
                  ]
     output_gdf = output_gdf.rename_axis(None, axis=1)
     return output_gdf.copy()
+
+
+def combine(rast1_path, rast2_path):
+    """
+    Combines input rasters by their unique value pairs. Assigns new values to
+    each unique pair.
+    Parameters
+    ----------
+    rast1_path : str
+        File path to the first raster.
+    rast2_path : str
+        File path to the second raster.
+    Returns
+    -------
+    Results : rasterio Dataset, DataFrame
+        The combined raster files as a Rasterio Dataset.
+        The output attribute table as a Pandas DataFrame.
+    """
+    input_ras1 = RasterManager.from_path(rast1_path)
+    input_ras2 = RasterManager.from_path(rast2_path)
+    arr1 = input_ras1.to_array()
+    arr2 = input_ras2.to_array()
+    arr1_1d = np.reshape(arr1, arr1.size)
+    arr2_1d = np.reshape(arr2, arr2.size)
+
+    if arr1_1d.size != arr2_1d.size:
+        raise ValueError('Match raster extents before combining.')
+
+    geo_tform = input_ras1.get_affine()
+    out_width = input_ras1.rast_ds.width
+    out_height = input_ras1.rast_ds.height
+    out_crs = input_ras1.get_rio_crs()
+    out_count = input_ras1.rast_ds.count
+    out_nd = input_ras1.rast_nodata
+
+    df = (pd.DataFrame(np.column_stack([arr1_1d, arr2_1d]), columns=['a', 'b'])
+          .reset_index()
+          .rename({'index': 'position'}, axis=1))
+    unique_grouping = df.groupby(['a', 'b'], as_index=False).size()
+    unique_grouping.index += 1
+
+    attr = (unique_grouping.reset_index()
+            .rename({'index': 'value', 'size': 'count'}, axis=1))
+
+    dfs = (df.set_index(['a', 'b'])
+           .join(attr.set_index(['a', 'b'])['value'])
+           .reset_index()
+           .set_index('position')
+           .sort_index()['value'].values)
+    output_arr = np.reshape(dfs, arr1.shape)
+
+    with MemoryFile() as memfile:
+        rst = memfile.open(driver='GTiff', count=out_count, dtype='int32',
+                           crs=out_crs, width=out_width, height=out_height,
+                           transform=geo_tform, nodata=out_nd, tiled=False)
+        rst.write(output_arr, indexes=1)
+        rst.close()
+        return memfile.open(driver="GTiff"), attr
+
+
+def gridify(input_gdf, width=None, height=None, num_cols=None, num_rows=None):
+    """
+    Create a grid based on the input_gdf by specifying width and/or height of
+    the cells of the grid.
+
+    num_cols and num_rows can be used to define the grid as well. If nothing
+    specified, the cell size of the grid will be the span on x axis (width)
+    divided by 30.
+
+    Parameters
+    ----------
+    input_gdf : GeoDataFrame
+        Input GeoDataFrame based on which the grid is created.
+    width : int or float
+        Cell width.
+    height : int or float
+        Cell height.
+    num_cols : int
+        Number of columns. When specified, this number will determine cell
+        width.
+    num_rows : int
+        Number of rows. When specified, this number will determine cell height.
+
+    Returns
+    -------
+    GeoDataFrame
+        The output grid (polygons).
+    """
+    xmin, ymin, xmax, ymax = input_gdf.total_bounds
+
+    if width and height:
+        pass
+    else:
+        if not width and not height:
+            width = height = (xmax - xmin) / 30
+        else:
+            if width:
+                height = width
+            elif height:
+                width = height
+
+    if num_cols and num_rows:
+        # width and height are calculated based on num_cols and num_rows
+        width = (xmax - xmin) / num_cols
+        height = (ymax - ymin) / num_rows
+    else:
+        if num_cols:
+            width = height = (xmax - xmin) / num_cols
+        elif num_rows:
+            height = width = (ymax - ymin) / num_rows
+        else:
+            pass
+
+    cols = np.arange(xmin - width/2, xmax + width/2, width)
+    rows = np.arange(ymin - height/2, ymax + height/2, height)
+
+    polygons = [
+        Polygon([
+            (x, y),
+            (x+width, y),
+            (x+width, y+height),
+            (x, y+height)
+        ])
+        for y in rows
+        for x in cols
+    ]
+
+    return GeoDataFrame({'geometry': polygons}, crs=input_gdf.crs)
