@@ -185,6 +185,7 @@ class RasterManager:
     def __init__(self, rio_dataset: DatasetReader, nodata=None):
         self.rast_ds = rio_dataset
         self.rast_nodata = nodata
+        self.dtype = self.rast_ds.dtypes[0]
 
     @property
     def rast_ds(self):
@@ -268,18 +269,18 @@ class RasterManager:
                     rst.close()
                     return memfile.open(driver='GTiff')
 
-    def match_extent(self, ref_obj):
-        out_x_res = round(ref_obj.get_affine()[0], 1)
-        out_y_res = round(-ref_obj.get_affine()[4], 1)
+    def match_extent(self, matching_rast_obj):
+        out_x_res = round(matching_rast_obj.get_affine()[0], 1)
+        out_y_res = round(-matching_rast_obj.get_affine()[4], 1)
         b1 = box(*self.rast_ds.bounds)
-        b2 = box(*ref_obj.rast_ds.bounds)
+        b2 = box(*matching_rast_obj.rast_ds.bounds)
         b_union = unary_union((b1, b2))
         out_bnd = b_union.envelope
         left, bottom, right, top = out_bnd.bounds
         out_width = round((right - left) / out_x_res)
         out_height = round((top - bottom) / out_y_res)
         out_transform = Affine(out_x_res, 0, left, 0, -out_y_res, top)
-        out_crs = ref_obj.get_rio_crs()
+        out_crs = matching_rast_obj.get_rio_crs()
         out_nodata = self.rast_nodata
 
         vrt_options = {
@@ -294,7 +295,7 @@ class RasterManager:
 
         with MemoryFile() as memfile:
             rst = memfile.open(driver='GTiff', count=1,
-                               dtype='int32', **vrt_options)
+                               dtype=self.dtype, **vrt_options)
             rst.write(out_vrt.read(1), indexes=1)
             rst.close()
             return memfile.open(driver="GTiff")

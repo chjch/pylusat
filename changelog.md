@@ -1,5 +1,15 @@
 # pylusat changelog
 
+## 0.5.5
+
+2022-09-02
+
+### Fixed
+
+- `RasterManager`: In `match_extent` method, `dtype` of the output was fixed as
+  'int32' previously.
+  Changed to use the `dtype` of the `RasterManager`.
+
 ## 0.5.4
 
 2022-08-26
