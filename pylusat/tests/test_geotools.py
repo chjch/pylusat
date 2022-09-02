@@ -1,5 +1,5 @@
 import geopandas as gpd
-from pylusat.geotools import spatial_join, select_by_location, combine
+from pylusat.geotools import spatial_join, select_by_location, combine, gridify
 from pylusat.datasets import get_path
 import pytest
 
@@ -34,3 +34,8 @@ def test_combine(habitat_tif):
     rast_obj, attr = combine(habitat_tif, habitat_tif)
     assert len(attr) == 29
     assert attr['count'][attr.value == 1][0] == 618688
+
+
+def test_gridify(schools_gdf):
+    result = gridify(schools_gdf, width=1000)
+    assert len(result) == 2496
