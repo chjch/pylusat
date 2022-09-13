@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Installation &mdash; PyLUSAT Documentation  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Quickstart Guide" href="quickstart.html" />
+    <link rel="prev" title="PyLUSAT Documentation" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> PyLUSAT Documentation
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#install-pylusat-plugin">Install PyLUSAT plugin</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="functions/index.html">Functions</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">PyLUSAT Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Installation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/installation.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="installation">
+<h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline"></a></h1>
+<p><strong>In Windows</strong></p>
+<ol class="arabic simple">
+<li><p>Beginner Method</p></li>
+</ol>
+<ol class="loweralpha simple">
+<li><p>Visit PyLUSAT GitHub repository Click <strong>Code</strong>, and then <strong>Download ZIP</strong> to download the <em>pylusat-qgis</em> repository.</p></li>
+<li><p>Copy <code class="docutils literal notranslate"><span class="pre">pylusat_installer.bat</span></code>, paste it under QGIS folder in your system.</p></li>
+<li><p>Right Click the copied <code class="docutils literal notranslate"><span class="pre">pylusat_installer.bat</span></code> to <strong>Run as administrator</strong>.</p></li>
+</ol>
+<ol class="arabic simple" start="2">
+<li><p>Advanced Method</p></li>
+</ol>
+<ol class="loweralpha simple">
+<li><p>Visit PyLUSAT GitHub repository. Copy and paste the code in pylusat_installer.bat to your terminal under the QGIS folder and run it.</p></li>
+<li><p><strong>Specify your root folder of QGIS</strong>: The same place as the pylusat_installer.</p></li>
+<li><p><strong>Is the QGIS a long term release [Y/N]</strong>: Refer to the version you installed. Type Y for long term release. N for short term release.</p></li>
+<li><p>Press <strong>Enter</strong> key and wait for installation to complete.</p></li>
+</ol>
+<p><strong>In macOS</strong></p>
+<p>Use <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">pylusat</span></code> in Python Command Prompt of <strong>QGIS</strong>.</p>
+<section id="install-pylusat-plugin">
+<h2>Install PyLUSAT plugin<a class="headerlink" href="#install-pylusat-plugin" title="Permalink to this headline"></a></h2>
+<ol class="arabic simple">
+<li><p>Download <strong>PyLUSAT plugin</strong> from <a class="reference external" href="https://plugins.qgis.org/plugins/pylusatq/">https://plugins.qgis.org/plugins/pylusatq/</a>.</p></li>
+<li><p>Find <strong>Plugins</strong> on the top panel in your <strong>QGIS Desktop</strong>, Click <strong>Manage and install plugins</strong>.</p></li>
+<li><p>In <strong>Install from ZIP</strong> interface, browse and select the PyLUSAT ZIP file you download.</p></li>
+<li><p>Click Install Plugin, once finished, restart QGIS.</p></li>
+<li><p>Now you can find PyLUSAT tools in Processing Toolbox panel.</p></li>
+</ol>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="PyLUSAT Documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="quickstart.html" class="btn btn-neutral float-right" title="Quickstart Guide" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, The GALUP Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
