@@ -30,6 +30,7 @@ author = 'The GALUP Team'
 # ones.
 extensions = [
     'sphinx_rtd_theme',
+    'sphinx.ext.napoleon',
 ]
 
 # Add any paths that contain templates here, relative to this directory.
