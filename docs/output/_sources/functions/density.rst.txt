@@ -1,4 +1,5 @@
 Density Function
 ================
 
-placeholder text!
+.. automodule:: pylusat.density
+    :members:

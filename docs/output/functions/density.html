@@ -14,6 +14,7 @@
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -73,9 +74,64 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="density-function">
-<h1>Density Function<a class="headerlink" href="#density-function" title="Permalink to this headline"></a></h1>
-<p>placeholder text!</p>
+  <section id="module-pylusat.density">
+<span id="density-function"></span><h1>Density Function<a class="headerlink" href="#module-pylusat.density" title="Permalink to this heading"></a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="pylusat.density.of_line">
+<span class="sig-prename descclassname"><span class="pre">pylusat.density.</span></span><span class="sig-name descname"><span class="pre">of_line</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_gdf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">line_gdf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cellsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">30</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">search_radius</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">area_unit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'square</span> <span class="pre">meters'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">geomtoarray</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pylusat.density.of_line" title="Permalink to this definition"></a></dt>
+<dd><p>Calculate density of line length in each input geometry.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>input_gdf</strong> (<em>GeoDataFrame</em>) – Input GeoDataFrame in which length of lines are summed.</p></li>
+<li><p><strong>line_gdf</strong> (<em>GeoDataFrame</em>) – Line GeoDataFrame whose lengths are summed.</p></li>
+<li><p><strong>cellsize</strong> (<em>float</em><em>, </em><em>optional</em>) – The cell size used to rasterize the line_gdf.</p></li>
+<li><p><strong>search_radius</strong> (<em>str</em><em>, </em><em>optional</em>) – A string of buffering distance and unit, separated by space.
+e.g., “1 mile”.</p></li>
+<li><p><strong>area_unit</strong> (<em>str</em><em>, </em><em>optional</em>) – A string of the area unit used for density calculation.
+e.g., “square meters”.</p></li>
+<li><p><strong>geomtoarray</strong> (<em>{tuple of</em><em> (</em><em>np.ndarray</em><em>, </em><em>Affine</em><em>, </em><em>np.ndarray</em><em>, </em><em>float</em><em>)</em><em>, </em><em>None}</em>) – The output of <code class="docutils literal notranslate"><span class="pre">rasterize_geometry</span></code> function. If a desired output has
+already been created for the <cite>line_gdf</cite> has already been created,
+set it to be this argument to use it.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>output_sr</strong> – A pandas Series that contains the density of line in each input
+geometry of the input GeoDataFrame.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>pd.Series</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pylusat.density.of_point">
+<span class="sig-prename descclassname"><span class="pre">pylusat.density.</span></span><span class="sig-name descname"><span class="pre">of_point</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_gdf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">point_gdf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pop_clm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">search_radius</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">area_unit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'square</span> <span class="pre">meters'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pylusat.density.of_point" title="Permalink to this definition"></a></dt>
+<dd><p>Calculate density of points in each input geometry.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>input_gdf</strong> (<em>GeoDataFrame</em>) – Input GeoDataFrame in which points are counted.</p></li>
+<li><p><strong>point_gdf</strong> (<em>GeoDataFrame</em>) – Point GeoDataFrame.</p></li>
+<li><p><strong>pop_clm</strong> (<em>str</em>) – Population column which contains values to represent each occurrence
+of the point feature.</p></li>
+<li><p><strong>search_radius</strong> (<em>str</em><em>, </em><em>optional</em>) – A string of buffering distance and unit, separated by space.
+e.g., “1 mile”.</p></li>
+<li><p><strong>area_unit</strong> (<em>str</em><em>, </em><em>optional</em>) – A string of the area unit used for density calculation.
+e.g., “square meters”.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>output_sr</strong> – A pandas Series that contains the density of point in each input
+geometry of the input GeoDataFrame.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>pd.Series</p>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 
 
