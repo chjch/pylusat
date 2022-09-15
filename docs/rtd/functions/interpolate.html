@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Interpolate Function &mdash; PyLUSAT Documentation  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Rescale Function" href="rescale.html" />
+    <link rel="prev" title="Geotools Function" href="geotools.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> PyLUSAT Documentation
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Quickstart Guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Functions</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="density.html">Density Function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="distance.html">Distance Function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="geotools.html">Geotools Function</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Interpolate Function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rescale.html">Rescale Function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="utils.html">Utils Function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="zonal.html">Zonal Function</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">PyLUSAT Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Functions</a> &raquo;</li>
+      <li>Interpolate Function</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/functions/interpolate.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-pylusat.interpolate">
+<span id="interpolate-function"></span><h1>Interpolate Function<a class="headerlink" href="#module-pylusat.interpolate" title="Permalink to this heading"></a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="pylusat.interpolate.idw">
+<span class="sig-prename descclassname"><span class="pre">pylusat.interpolate.</span></span><span class="sig-name descname"><span class="pre">idw</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_gdf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value_gdf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value_clm</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">power=2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_neighbor=12</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">search_radius=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">leafsize=14</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_dist=1e-12</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype=&lt;class</span> <span class="pre">'float'&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pylusat.interpolate.idw" title="Permalink to this definition"></a></dt>
+<dd><p>Interpolation using inverse distance weighting (IDW).</p>
+<p>This function implements an <cite>IDW interpolation
+&lt;https://en.wikipedia.org/wiki/Inverse_distance_weighting&gt;</cite>. The power
+parameter dictates how fast the influence to a given location by its
+nearby objects decays. <cite>idw_cv</cite>, a k-fold cross validation method is
+offered to determine the most appropriate value of the <cite>power</cite> parameter.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>input_gdf</strong> (<em>GeoDataFrame</em>) – Input GeoDataFrame. Centroids of the input geometries are used.</p></li>
+<li><p><strong>value_gdf</strong> (<em>GeoDataFrame</em>) – GeoDataFrame containing the values needed to be interpolated.</p></li>
+<li><p><strong>value_clm</strong> (<em>str</em>) – The name of the column that holds the values in value_gdf.</p></li>
+<li><p><strong>power</strong> (<em>int</em><em> or </em><em>float</em><em>, </em><em>optional</em>) – The power parameter in IDW.</p></li>
+<li><p><strong>n_neighbor</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of neighborhoods used for IDW.</p></li>
+<li><p><strong>search_radius</strong> (<em>float</em><em>, </em><em>optional</em>) – Maximum distance used to find neighbors. If not provided, the function
+will search for all neighbors specified by n_neighbors.</p></li>
+<li><p><strong>leafsize</strong> (<em>positive int</em><em>, </em><em>optional</em>) – The number of points at which the algorithm switches over to
+brute-force. Default: 14. See <cite>scipy.spatial.cKDTree</cite> for further
+information.</p></li>
+<li><p><strong>min_dist</strong> (<em>float</em><em>, </em><em>optional</em>) – The distance below which the interpolated value will be set to equal to
+the value of its closest neighbor.</p></li>
+<li><p><strong>dtype</strong> (<em>str</em><em> or </em><em>np.dtype</em><em>, </em><em>optional</em>) – Use a np.dtype or Python type to cast the interpolated values to the
+desired type.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>output_sr</strong> – pandas Series that contains the interpolated values for all feature in
+the input_gdf.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Series</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="geotools.html" class="btn btn-neutral float-left" title="Geotools Function" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="rescale.html" class="btn btn-neutral float-right" title="Rescale Function" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, The GALUP Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

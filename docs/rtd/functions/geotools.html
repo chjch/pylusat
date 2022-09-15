@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Geotools Function &mdash; PyLUSAT Documentation  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Interpolate Function" href="interpolate.html" />
+    <link rel="prev" title="Distance Function" href="distance.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> PyLUSAT Documentation
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Quickstart Guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Functions</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="density.html">Density Function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="distance.html">Distance Function</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Geotools Function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interpolate.html">Interpolate Function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rescale.html">Rescale Function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="utils.html">Utils Function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="zonal.html">Zonal Function</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">PyLUSAT Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Functions</a> &raquo;</li>
+      <li>Geotools Function</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/functions/geotools.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-pylusat.geotools">
+<span id="geotools-function"></span><h1>Geotools Function<a class="headerlink" href="#module-pylusat.geotools" title="Permalink to this heading"></a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="pylusat.geotools.combine">
+<span class="sig-prename descclassname"><span class="pre">pylusat.geotools.</span></span><span class="sig-name descname"><span class="pre">combine</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rast1_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rast2_path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pylusat.geotools.combine" title="Permalink to this definition"></a></dt>
+<dd><p>Combines input rasters by their unique value pairs. Assigns new values to
+each unique pair.
+:param rast1_path: File path to the first raster.
+:type rast1_path: str
+:param rast2_path: File path to the second raster.
+:type rast2_path: str</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><strong>Results</strong> – The combined raster files as a Rasterio Dataset.
+The output attribute table as a Pandas DataFrame.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>rasterio Dataset, DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pylusat.geotools.erase">
+<span class="sig-prename descclassname"><span class="pre">pylusat.geotools.</span></span><span class="sig-name descname"><span class="pre">erase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_gdf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">erase_gdf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pylusat.geotools.erase" title="Permalink to this definition"></a></dt>
+<dd><p>Erase erase_gdf from input_gdf.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>input_gdf</strong> (<em>GeoDataFrame</em>) – Input GeoDataFrame.</p></li>
+<li><p><strong>erase_gdf</strong> (<em>GeoDataFrame</em>) – Erase GeoDataFrame containing the erase features.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>output</strong> – The remaining features after erasure.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>GeoDataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pylusat.geotools.gridify">
+<span class="sig-prename descclassname"><span class="pre">pylusat.geotools.</span></span><span class="sig-name descname"><span class="pre">gridify</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_gdf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_cols</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_rows</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pylusat.geotools.gridify" title="Permalink to this definition"></a></dt>
+<dd><p>Create a grid based on the input_gdf by specifying width and/or height of
+the cells of the grid.</p>
+<p>num_cols and num_rows can be used to define the grid as well. If nothing
+specified, the cell size of the grid will be the span on x axis (width)
+divided by 30.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>input_gdf</strong> (<em>GeoDataFrame</em>) – Input GeoDataFrame based on which the grid is created.</p></li>
+<li><p><strong>width</strong> (<em>int</em><em> or </em><em>float</em>) – Cell width.</p></li>
+<li><p><strong>height</strong> (<em>int</em><em> or </em><em>float</em>) – Cell height.</p></li>
+<li><p><strong>num_cols</strong> (<em>int</em>) – Number of columns. When specified, this number will determine cell
+width.</p></li>
+<li><p><strong>num_rows</strong> (<em>int</em>) – Number of rows. When specified, this number will determine cell height.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The output grid (polygons).</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>GeoDataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pylusat.geotools.select_by_location">
+<span class="sig-prename descclassname"><span class="pre">pylusat.geotools.</span></span><span class="sig-name descname"><span class="pre">select_by_location</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_gdf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">select_gdf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">op</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'intersects'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">within_dist</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pylusat.geotools.select_by_location" title="Permalink to this definition"></a></dt>
+<dd><p>Select part of the input GeoDataFrame based on its relationship with the
+selecting GeoDataFrame.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>input_gdf</strong> (<em>GeoDataFrame</em>) – The input GeoDataFrame.</p></li>
+<li><p><strong>select_gdf</strong> (<em>GeoDataFrame</em>) – The selecting GeoDataFrame.</p></li>
+<li><p><strong>op</strong> (<em>string</em><em>, </em><em>default 'intersection'</em>) – Binary predicate, one of {‘intersects’, ‘contains’, ‘within’,
+‘within a distance’}. See
+<a class="reference external" href="http://shapely.readthedocs.io/en/latest/manual.html#binary-predicates">http://shapely.readthedocs.io/en/latest/manual.html#binary-predicates</a>.</p></li>
+<li><p><strong>within_dist</strong> (<em>int</em><em>, </em><em>default 0</em>) – Search distance around the select_gdf. This parameter is only
+useful when op is set to be “within a distance”.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>output</strong> – The selected features from the input GeoDataFrame.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>GeoDataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pylusat.geotools.spatial_join">
+<span class="sig-prename descclassname"><span class="pre">pylusat.geotools.</span></span><span class="sig-name descname"><span class="pre">spatial_join</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target_gdf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">join_gdf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">op</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'intersects'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cols_agg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">join_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'one</span> <span class="pre">to</span> <span class="pre">one'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keep_all</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pylusat.geotools.spatial_join" title="Permalink to this definition"></a></dt>
+<dd><p>Spatial join two GeoDataFrames.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>target_gdf</strong> (<em>GeoDataFrames</em>) – The GeoDataFrame to join to the target GeoDataFrame.</p></li>
+<li><p><strong>join_gdf</strong> (<em>GeoDataFrames</em>) – The GeoDataFrame to join to the target GeoDataFrame.</p></li>
+<li><p><strong>op</strong> (<em>string</em><em>, </em><em>default 'intersects'</em>) – Binary predicate, one of {‘intersects’, ‘contains’, ‘within’}. See
+<a class="reference external" href="http://shapely.readthedocs.io/en/latest/manual.html#binary-predicates">http://shapely.readthedocs.io/en/latest/manual.html#binary-predicates</a>.</p></li>
+<li><p><strong>cols_agg</strong> (<em>dict</em><em>, </em><em>default None</em>) – Dict of <code class="docutils literal notranslate"><span class="pre">{column_name:</span> <span class="pre">a</span> <span class="pre">list</span> <span class="pre">of</span> <span class="pre">statistics}</span></code>, where the list of
+statistics is a list of strings containing the names of desired
+statistics for each column. Names of the statistics include:
+{‘first’, ‘last’, ‘sum’, ‘mean’, ‘median’, ‘max’, ‘min’,
+‘std’, ‘var’, ‘count’, ‘size’}.</p></li>
+<li><p><strong>join_type</strong> (<em>string</em><em>, </em><em>default 'one to one'</em>) – Binary predicate, one of {‘one to one’, ‘one to many’}. The option
+‘one to one’ only returns one row for each target feature, whereas
+option ‘one to many’ return multiple rows for each match between
+target feature and join feature.</p></li>
+<li><p><strong>keep_all</strong> (<em>bool</em><em>, </em><em>default True</em>) – Whether to keep all features from the target GeoDataFrame.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A GeoDataFrame contains all columns in the target GeoDataFrame and the
+specified columns from the join GeoDataFrame.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>GeoDataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pylusat.geotools.within_dist">
+<span class="sig-prename descclassname"><span class="pre">pylusat.geotools.</span></span><span class="sig-name descname"><span class="pre">within_dist</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_gdf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">distance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_gdf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_col</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pylusat.geotools.within_dist" title="Permalink to this definition"></a></dt>
+<dd><p>For each object in the input, test if any object in the target set is
+within a specified distance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>input_gdf</strong> (<em>GeoDataFrame</em>) – The input set.</p></li>
+<li><p><strong>input_id</strong> (<em>str</em>) – The name of the column containing the unique id of the input set.</p></li>
+<li><p><strong>distance</strong> (<em>int</em><em> or </em><em>float</em>) – Distance (in the same unit as the input GeoDataFrame).</p></li>
+<li><p><strong>target_gdf</strong> (<em>GeoDataFrame</em>) – The target set.</p></li>
+<li><p><strong>output_col</strong> (<em>str</em>) – The name of the output column.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>output</strong> – The output value is 1 if there exists any target object within the
+specified distance of the input object and 0 otherwise.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>GeoDataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="distance.html" class="btn btn-neutral float-left" title="Distance Function" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="interpolate.html" class="btn btn-neutral float-right" title="Interpolate Function" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, The GALUP Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
