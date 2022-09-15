@@ -6,3 +6,5 @@ build/
 dist/
 venv/
 .pytest_cache/
+.vscode
+docs/output
