@@ -64,6 +64,16 @@ def to_point(input_gdf, point_gdf, method='euclidean', dtype=float):
     Series
         A pandas Series containing the distances of each input feature to its
         nearest point.
+
+    Examples
+    --------
+    >>>to_point(acs2016_gdf, schools_gdf)
+    result = to_point(acs2016_gdf, schools_gdf)
+    assert round(result[0], 4) == 197.2841
+    
+    Calling this funciton for the census tracts in Alachua County as the input 
+    results in it taking the centroid of each of those polygons and then
+    calculating the distance from the centroid to the school (point).
     """
     target_geom = "Point"
     _validate_target_geom(point_gdf, target_geom)
