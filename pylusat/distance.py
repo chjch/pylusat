@@ -67,13 +67,14 @@ def to_point(input_gdf, point_gdf, method='euclidean', dtype=float):
 
     Examples
     --------
-    >>>to_point(acs2016_gdf, schools_gdf)
-    result = to_point(acs2016_gdf, schools_gdf)
+    This function's input is a polygon of each census tract in Alachua
+    County. The centroids of these polygons were used to measure the distance
+    to each school point. The first result of the series is indexed and rounded
+    to the fourth decimal point.
+
+    >>> result = to_point(acs2016_gdf, schools_gdf)
     assert round(result[0], 4) == 197.2841
-    
-    Calling this funciton for the census tracts in Alachua County as the input 
-    results in it taking the centroid of each of those polygons and then
-    calculating the distance from the centroid to the school (point).
+
     """
     target_geom = "Point"
     _validate_target_geom(point_gdf, target_geom)
@@ -111,6 +112,17 @@ def to_line(input_gdf, line_gdf, cellsize=30, method="euclidean", dtype=float):
     -----
     To rapidly query distances, the line_gdf is burned into numpy array by
     using rasterize function from the rasterio package.
+
+    Examples
+    --------
+    This function's input is a polygon of each census tract in Alachua
+    County. The centroids of these polygons were used to measure the distance 
+    to each highway line. The first result of the series is indexed and rounded
+    to the fourth decimal point.
+
+    >>> result = to_line(acs2016_gdf, highway_gdf)
+    assert round(result[0], 4) == 715.6116
+
     """
     target_geom = "Line"
     _validate_target_geom(line_gdf, target_geom)
@@ -156,6 +168,18 @@ def to_cell(input_gdf, raster, value, nodata=None,
     Series
         A pandas Series of distances from each feature in input_gdf to the
         nearest cell (has the specified value) in the raster dataset.
+
+    Examples
+    --------
+    This function's input is a GeoDataFrame of each census tract in Alachua
+    County. Each feature's distance to its nearest neighbor of the habitat
+    raster was calculated with cells in 6th/7th raster used as the target
+    distance. The first result of the series is indexed and rounded to the 
+    fourth decimal point.
+
+    >>> result = to_cell(acs2016_gdf, habitat_tif, 6)
+    assert round(result[0], 4) == 5825.4099
+    
     """
     rast_manager = RasterManager.from_path(raster, nodata)
     rast_arr, cellsize, max_y, min_x, nodata = rast_manager.as_rebuild_info()
