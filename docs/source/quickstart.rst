@@ -4,6 +4,39 @@ PyLUSAT Quickstart
 This PyLUSAT Quickstart guide will serve as a starting point for performing
 geoprocessing functions using PyLUSAT.
 
+GeoDataFrameManager
+-------------------
+
+PyLUSAT includes a GeoDataFrameManager class designed to work with vector data.
+There are a many functions that can be performed on the GeoDataFrameManager 
+class which can be found in the 
+`documentation <https://github.com/chjch/pylusat>`_. The GeoDataFrameManager 
+class is based on geopandas.
+
+Start by importing GeoDataFrameManager from pylusat.base.
+
+.. code-block:: pycon
+
+    >>> from pylusat.base import GeoDataFrameManager
+
+Next, instantiate the class from a path
+
+.. code-block:: pycon
+
+    >>> poly_data = GeoDataFrameManager('example_poly.shp')
+
+or from a geopandas GeoDataFrame.
+
+.. code-block:: pycon
+
+    >>> poly_data = GeoDataFrameManager(GeoDataFrame)
+
+PyLUSAT Geoprocessing Functions
+-------------------------------
+
+PyLUSAT provides a number of different tools that allow users to manipulate
+vector data in the form of GeoDataFrames.
+
 RasterManager
 -------------
 
