@@ -65,16 +65,13 @@ def to_point(input_gdf, point_gdf, method='euclidean', dtype=float):
         A pandas Series containing the distances of each input feature to its
         nearest point.
 
-    Examples
+    Example
     --------
-    This function's input is a polygon of each census tract in Alachua
-    County. The centroids of these polygons were used to measure the distance
-    to each school point. The first result of the series is indexed and rounded
-    to the fourth decimal point.
+    Calculate Euclidean distance to points (schools) with polygons 
+    (census block groups):
 
-    >>> result = to_point(acs2016_gdf, schools_gdf)
-    assert round(result[0], 4) == 197.2841
-
+    >>> result = distance.to_point(acs2016_gdf, schools_gdf)
+    result[0] = 197.xxxxxx
     """
     target_geom = "Point"
     _validate_target_geom(point_gdf, target_geom)
@@ -113,15 +110,13 @@ def to_line(input_gdf, line_gdf, cellsize=30, method="euclidean", dtype=float):
     To rapidly query distances, the line_gdf is burned into numpy array by
     using rasterize function from the rasterio package.
 
-    Examples
+    Example
     --------
-    This function's input is a polygon of each census tract in Alachua
-    County. The centroids of these polygons were used to measure the distance 
-    to each highway line. The first result of the series is indexed and rounded
-    to the fourth decimal point.
+    Calculate Euclidean distance to lines (highways) with polygons 
+    (census block groups):
 
-    >>> result = to_line(acs2016_gdf, highway_gdf)
-    assert round(result[0], 4) == 715.6116
+    >>> result = distance.to_line(acs2016_gdf, highway_gdf)
+    result[0] = 715.xxxxxx
 
     """
     target_geom = "Line"
@@ -169,16 +164,13 @@ def to_cell(input_gdf, raster, value, nodata=None,
         A pandas Series of distances from each feature in input_gdf to the
         nearest cell (has the specified value) in the raster dataset.
 
-    Examples
+    Example
     --------
-    This function's input is a GeoDataFrame of each census tract in Alachua
-    County. Each feature's distance to its nearest neighbor of the habitat
-    raster was calculated with cells in 6th/7th raster used as the target
-    distance. The first result of the series is indexed and rounded to the 
-    fourth decimal point.
+    Calculate distance from census block groups (acs2016) to nearest-neighbor
+    cells (habitat raster) with cell value 6 as the distance target.
 
-    >>> result = to_cell(acs2016_gdf, habitat_tif, 6)
-    assert round(result[0], 4) == 5825.4099
+    >>> result = distance.to_cell(acs2016_gdf, habitat_tif, 6)
+    result[0] = 5825.xxxxxx
     
     """
     rast_manager = RasterManager.from_path(raster, nodata)

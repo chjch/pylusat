@@ -51,6 +51,24 @@ def of_point(input_gdf, point_gdf, pop_clm=None,
     output_sr : pd.Series
         A pandas Series that contains the density of point in each input
         geometry of the input GeoDataFrame.
+
+     Example
+    --------
+    Calculate density of points (schools) in polygon layer (Alachua County 
+    census tracts) in square miles.
+
+    >>> result = density.of_point(acs2016_gdf, schools_gdf, 
+                                  area_unit='square mile')
+    result[1] = 2.xxxxxx
+
+    Calculate density of points (schools) in polygon layer (Alachua County 
+    census tracts) in square miles. Each occurrence of schools is represented 
+    by the enrollment column.
+
+    >>> result = density.of_point(acs2016_gdf, schools_gdf, "ENROLLMENT", 
+                                  '1 mile', 'square mile')
+    result[1] = 0.0003
+
     """
     input_gdf_manager = GeoDataFrameManager(input_gdf)
     point_gdf_manager = GeoDataFrameManager(point_gdf)
@@ -116,6 +134,16 @@ def of_line(input_gdf, line_gdf, cellsize=30, search_radius=None,
     output_sr : pd.Series
         A pandas Series that contains the density of line in each input
         geometry of the input GeoDataFrame.
+
+     Example
+    --------
+    Calculate density of lines (highway) per square mile in Alachua County 
+    census tract polygons.
+
+    >>> result = density.of_line(acs2016_gdf, highway_gdf, 
+                                search_radius='1 mile', area_unit='square mile')
+    result[0] = 0.0004
+        
     """
     from pylusat.utils import rasterize_geometry
     from rasterstats import zonal_stats

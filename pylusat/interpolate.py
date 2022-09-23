@@ -46,6 +46,16 @@ def idw(input_gdf, value_gdf, value_clm, power=2, n_neighbor=12,
     output_sr : Series
         pandas Series that contains the interpolated values for all feature in
         the input_gdf.
+
+    Example
+    -------
+    Interpolate Enrollment values in Schools GeoDataFrame to the second power
+    with 12 neighborhoods.???
+
+    >>> result = interpolate.idw(acs2016_gdf, schools_gdf, 'ENROLLMENT',
+                                power=2.00, n_neighbor=12)
+    result[0]= 26.4073
+
     """
     if not (isinstance(n_neighbor, int) and
             1 <= n_neighbor <= len(value_gdf.index)):

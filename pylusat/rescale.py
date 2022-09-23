@@ -32,7 +32,6 @@ def reclassify(input_df, input_col, reclassify_def, output_col, nodata=None):
     -------
     input_df : DataFrame or GeoDataFrame
         The output DataFrame with the reclassified values.
-
     """
     key_type = set(map(type, [*reclassify_def]))
 
@@ -99,6 +98,13 @@ def linear(input_df, input_col, output_col,
     -------
     input_df : DataFrame or GeoDataFrame
         Output DataFrame containing the rescaled column.
+
+    Example
+    -------
+    Linearlly rescale the enrollment column of the schools GeoDataFrame.
+
+    >>> result = rescale.linear(schools_gdf, "ENROLLMENT", "ENROLL_CLS")
+    result[0, -1] = 1.3849XX
 
     """
     if start is None:
