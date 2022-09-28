@@ -1,106 +1,61 @@
 PyLUSAT Quickstart
 ==================
 
-This PyLUSAT Quickstart guide will serve as a starting point for performing
-geoprocessing functions using PyLUSAT.
+Vector Example
+--------------
 
-GeoDataFrameManager
--------------------
+This PyLUSAT Quickstart guide will walk through an example suitability
+analysis, identifying what ACS2016 block group within 1 mile of I75 and
+highest density of schools.
 
-PyLUSAT includes a GeoDataFrameManager class designed to work with vector data.
-There are a many functions that can be performed on the GeoDataFrameManager 
-class which can be found in the 
-`documentation <https://github.com/chjch/pylusat>`_. The GeoDataFrameManager 
-class is based on geopandas.
-
-Start by importing GeoDataFrameManager from pylusat.base.
+First, open the highway.shp as a GeoDataFrame. Create a 1 mile buffer using the
+_buffer function. Convert that to a GeoDataFrame using **geometry =**.
 
 .. code-block:: pycon
 
-    >>> from pylusat.base import GeoDataFrameManager
+    >>> import geopandas
+    >>> from geopandas import GeoDataFrame
+    >>> from pylusat.density import _buffer
+    >>> highway_gdf = geopandas.read_file(r"highway.shp")
+    >>> highway_buffer = GeoDataFrame(geometry=_buffer(highway_gdf, '1 mi'))
 
-Next, instantiate the class from a path
+Next, use the buffer to select ACS2016 blockgroups that it intersects.
+
+.. code-block:: pycon
+    
+    >>> from pylusat.geotools import select_by_location
+    >>> acs_gdf = geopandas.read_file(r"acs2016.shp")
+    >>> acs_in_buffer = select_by_location(acs_gdf, highway_buffer)
+
+Now calculate the distance between the blockgroups and the nearest school.
 
 .. code-block:: pycon
 
-    >>> poly_data = GeoDataFrameManager('example_poly.shp')
+    >>> from pylusat.distance import to_point
+    >>> schools_gdf = geopandas.read_file(r"schools.shp")
+    >>> dist_to_schools = to_point(acs_in_buffer, schools_gdf)
+    >>> print(dist_to_schools.describe())
+    count      146.000000
+    mean      1842.447330
+    std       1887.920963
+    min         55.606597
+    25%        701.410851
+    50%       1195.888718
+    75%       2312.297297
+    max      11848.196125
+    dtype: float64
 
-or from a geopandas GeoDataFrame.
+Raster Example
+--------------
 
-.. code-block:: pycon
-
-    >>> poly_data = GeoDataFrameManager(GeoDataFrame)
-
-PyLUSAT Geoprocessing Functions
--------------------------------
-
-PyLUSAT provides a number of different tools that allow users to manipulate
-vector data in the form of GeoDataFrames.
-
-RasterManager
--------------
-
-To better work with raster data within PyLUSAT, the RasterManager class was
-created. This class provides a variety of functions which can be found in the
-`documentation <https://github.com/chjch/pylusat>`_. The RasterManager class
-is based on rasterio and takes either a rasterio dataset or file path as an
-argument.
-
-Start by importing RasterManager from pylusat.base.
+This PyLUSAT Quickstart guide will walk through an example of combining 2
+raster files. 
 
 .. code-block:: pycon
 
     >>> from pylusat.base import RasterManager
-
-Next, instantiate the class from a path
-
-.. code-block:: pycon
-
-    >>> rast = RasterManager('example.tif', nodata=None)
-
-or from a rasterio dataset.
-
-.. code-block:: pycon
-
-    >>> rast = RasterManager(DatasetReader, nodata=None)
-
-RasterManager Attributes
-------------------------
-
-RasterManager objects have a coordinate reference system
-
-.. code-block:: pycon
-
-    >>> rast.get_rio_crs()
-    EPSG:32630
-
-and an affine transformation.
-
-.. code-block:: pycon
-
-    >>> rast.get_affine()
-    Affine(30.0, 0.0, 358485.0,
-           0.0, -30.0, 4265115.0)
-
-Rasterio functions can also be performed on RasterManager objects by referring
-to their rasterio datasets.
-
-.. code-block:: pycon
-
-    >>> import rasterio
-    >>> rast.rast_ds.count
-    1
-
-RasterManager Functions
------------------------
-
-RasterManager has built in functions as well. This example will walk through
-the process of combining two raster files together. This will use `rast` from
-above and another raster.
-
-.. code-block:: pycon
-
-    >>> rast2 = RasterManager('example2.tif')
+    >>> rast = RasterManager.from_path('habitat.tif')
+    >>> rast2 = RasterManager.from_path('habitat_shift.tif')
 
 The first thing to do is to make sure that these raster files are able to be
 combined, meaning that they have the same cell size and cover the same extent.
