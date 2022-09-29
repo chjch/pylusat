@@ -52,7 +52,7 @@ def of_point(input_gdf, point_gdf, pop_clm=None,
         A pandas Series that contains the density of point in each input
         geometry of the input GeoDataFrame.
 
-     Example
+    Example
     --------
     Calculate density of points (schools) in polygon layer (Alachua County 
     census tracts) in square miles.
