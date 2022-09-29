@@ -52,7 +52,7 @@ def of_point(input_gdf, point_gdf, pop_clm=None,
         A pandas Series that contains the density of point in each input
         geometry of the input GeoDataFrame.
 
-    Example
+    Examples
     --------
     Calculate density of points (schools) in polygon layer (Alachua County 
     census tracts) in square miles.
@@ -155,7 +155,7 @@ def of_line(input_gdf, line_gdf, cellsize=30, search_radius=None,
         A pandas Series that contains the density of line in each input
         geometry of the input GeoDataFrame.
 
-     Example
+    Examples
     --------
     Calculate density of lines (highway) per square mile in Alachua County 
     census tract polygons.
