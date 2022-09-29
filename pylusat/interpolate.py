@@ -52,9 +52,19 @@ def idw(input_gdf, value_gdf, value_clm, power=2, n_neighbor=12,
     Interpolate Enrollment values in Schools GeoDataFrame to the second power
     with 12 neighborhoods.???
 
-    >>> result = interpolate.idw(acs2016_gdf, schools_gdf, 'ENROLLMENT',
+    >>> pylusat.interpolate.idw(acs2016_gdf, schools_gdf, 'ENROLLMENT',
                                 power=2.00, n_neighbor=12)
-    result[0]= 26.4073
+    0    26.407251
+    1   137.199332
+    2   205.822340
+    3   231.137558
+    4   158.283367
+
+    150 239.502760
+    151 404.536623
+    152 233.601194
+    153 228.459787
+    154 490.956496
 
     """
     if not (isinstance(n_neighbor, int) and

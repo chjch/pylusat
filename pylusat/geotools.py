@@ -64,6 +64,24 @@ def spatial_join(target_gdf, join_gdf, op="intersects",
     GeoDataFrame
         A GeoDataFrame contains all columns in the target GeoDataFrame and the
         specified columns from the join GeoDataFrame.
+    Example
+    -------
+    someplaceholder text
+
+    pylusat.geotools.spatial_join(acs2016_gdf, schools_gdf, 
+                                  cols_agg={'ENROLLMENT': ['sum]})
+             GEOID10    ENROLLMENT_SUM
+    0   120010006001               0.0
+    1   120010006002               0.0
+    2   120010006003             345.0
+    3   120010007001              37.0
+    4   120010007002            1420.0
+
+    150 120010022191             113.0
+    151 120010022192            1889.0
+    152 120010022193             118.0
+    153 120010022201               0.0
+    154 120011108001             803.0
     """
     how = 'left' if keep_all else 'inner'
     gpd_sjoin = gpd.sjoin(target_gdf, join_gdf, how=how, op=op)
@@ -155,6 +173,18 @@ def select_by_location(input_gdf, select_gdf,
     -------
     output : GeoDataFrame
         The selected features from the input GeoDataFrame.
+    
+    Example
+    -------
+    placeholder text
+
+    pylusat.geotools.select_by_location(acso2016_gdf, schools_gdf)
+               GEOID    geometry
+    0   120010006001    POLYGON ((564121.721 629847.127, 564127.038...))     
+    2   120010006003    POLYGON ((565858.254 629636.152, 565695.479...))
+    3   120010007001    POLYGON ((563316.398 627676.644, 563228.536...))
+    4   120010007002    POLYGON ((563768.801 627680.962, 563770.869...))
+    5   120010007003    POLYGON ((565229.514 624327.588, 564862.624...))
     """
     ops = ['intersects', 'contains', 'within', 'within a distance']
     assert op in ops, 'invalid op parameter,'
@@ -188,6 +218,18 @@ def combine(rast1_path, rast2_path):
     Results : rasterio Dataset, DataFrame
         The combined raster files as a Rasterio Dataset.
         The output attribute table as a Pandas DataFrame.
+
+    Example
+    -------
+    placeholder text
+
+    pylusat.geotools.combine(habitat_tif, habitati_tif)
+    0   1   0   0   618688
+    1   2   2   2   1
+    2   3   3   3   1
+    3   4   5   5   20539
+    4   5   6   6   115
+
     """
     input_ras1 = RasterManager.from_path(rast1_path)
     input_ras2 = RasterManager.from_path(rast2_path)
@@ -258,6 +300,23 @@ def gridify(input_gdf, width=None, height=None, num_cols=None, num_rows=None):
     -------
     GeoDataFrame
         The output grid (polygons).
+
+    Example
+    -------
+    placeholder text
+
+    pylusat.geotools.gridify(schools_gdf, width=1000)
+    0       POLYGON ((533359.960 611556.855, 534359.960...))
+    1       POLYGON ((534359.960 611556.855, 535359.960...))
+    2       POLYGON ((535359.960 611556.855, 536359.960...))
+    3       POLYGON ((536359.960 611556.855, 537359.960...))
+    4       POLYGON ((537359.960 611556.855, 538359.960...))
+
+    2491    POLYGON ((580359.960 658556.855, 581359.960...))
+    2492    POLYGON ((581359.960 658556.855, 582359.960...))
+    2493    POLGYON ((582359.960 658556.855, 583359.960...))
+    2494    POLYGON ((583359.960 658556.855, 584359.960...))
+    2495    POLGYON ((584359.960 658556.855, 585359.960...))
     """
     xmin, ymin, xmax, ymax = input_gdf.total_bounds
 

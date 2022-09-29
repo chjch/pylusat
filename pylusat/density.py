@@ -57,18 +57,38 @@ def of_point(input_gdf, point_gdf, pop_clm=None,
     Calculate density of points (schools) in polygon layer (Alachua County 
     census tracts) in square miles.
 
-    >>> result = density.of_point(acs2016_gdf, schools_gdf, 
-                                  area_unit='square mile')
-    result[1] = 2.xxxxxx
+    >>> pylusat.density.of_point(acs2016_gdf, schools_gdf, 
+                                 area_unit='square mile')
+    
+    0   2.389447
+    1   0.000000
+    2   1.714565
+    3   4.974934
+    4   2.494981
+
+    150 0.6607739
+    151 3.332871
+    152 0.967817
+    153 0.116269
+    154 1.140540
 
     Calculate density of points (schools) in polygon layer (Alachua County 
     census tracts) in square miles. Each occurrence of schools is represented 
     by the enrollment column.
 
-    >>> result = density.of_point(acs2016_gdf, schools_gdf, "ENROLLMENT", 
+    >>> pylusat.density.of_point(acs2016_gdf, schools_gdf, "ENROLLMENT", 
                                   '1 mile', 'square mile')
-    result[1] = 0.0003
 
+    0   0.000159
+    1   0.000252
+    2   0.000132
+    3   0.000117
+    4   0.000099
+    150 0.000084
+    151 0.000114
+    152 0.000085
+    153 0.000031
+    154 0.000024
     """
     input_gdf_manager = GeoDataFrameManager(input_gdf)
     point_gdf_manager = GeoDataFrameManager(point_gdf)
@@ -140,10 +160,20 @@ def of_line(input_gdf, line_gdf, cellsize=30, search_radius=None,
     Calculate density of lines (highway) per square mile in Alachua County 
     census tract polygons.
 
-    >>> result = density.of_line(acs2016_gdf, highway_gdf, 
+    >>> pylusat.density.of_line(acs2016_gdf, highway_gdf, 
                                 search_radius='1 mile', area_unit='square mile')
-    result[0] = 0.0004
-        
+    
+    0   0.000425
+    1   0.000705
+    2   0.000273
+    3   0.000753
+    4   0.000358
+
+    150 0.000266
+    151 NaN
+    152 0.000277
+    153 NaN
+    154 0.000620    
     """
     from pylusat.utils import rasterize_geometry
     from rasterstats import zonal_stats

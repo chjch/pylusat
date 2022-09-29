@@ -103,9 +103,19 @@ def linear(input_df, input_col, output_col,
     -------
     Linearlly rescale the enrollment column of the schools GeoDataFrame.
 
-    >>> result = rescale.linear(schools_gdf, "ENROLLMENT", "ENROLL_CLS")
-    result[0, -1] = 1.3849XX
+    >>> pylusat.rescale.linear(schools_gdf, "ENROLLMENT", "ENROLL_CLS")
+                                            NAME    ENROLL_CLS
+    0               COUNTRYSIDE CHRISTIAN SCHOOL    1.384930
+    1     TRILOGY SCHOOL OF LEARNING ALTERNATIVE    1.305039
+    2               MILLHOPPER MONTESSORI SCHOOL    1.784385
+    3              ST MICHAEL'S EPISCOPAL SCHOOL    1.000000
+    4                     BNAI ISRAEL DAY SCHOOL    1.079891
 
+    116     PERSIMMON EARLY LEARNING ACADEMY LLC    1.000000
+    117 BUSY BEE AND BUTTERFLY CHRISTIAN ACADEMY    1.000000
+    118                       THE PHENOM ACADEMY    1.000000
+    119     ALACHUA LEARNING CENTER, INC. MIDDLE    1.221516
+    120                FLORIDA SCHOOL OF MASSAGE    1.000000
     """
     if start is None:
         start = input_df[input_col].min()
