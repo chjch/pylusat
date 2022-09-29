@@ -4,3 +4,7 @@ rasterio    >= 1.2.10
 scipy       >=  1.5.4
 rasterstats == 0.17.0
 pylusat     >= 0.5.5
+
+# docs requirement
+sphinx
+sphinx-rtd-theme
