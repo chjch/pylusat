@@ -47,10 +47,8 @@ def zonal_stats_raster(zone_gdf, raster, stats=None,
          Returns a GeoDataFrame containing new column(s) for each type of
          statistic specified in the ``stats`` argument.
     
-    Example
-    -------
-    placeholder text
-
+    Examples
+    --------
     >>> pylusat.zonal.zonal_stats_raster(acs2016_gdf, habitat_tif)
 
         GEOID10               ACRES TOTALPOP    zonal_max  zonal_mean  zonal_count

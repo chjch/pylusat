@@ -99,8 +99,8 @@ def linear(input_df, input_col, output_col,
     input_df : DataFrame or GeoDataFrame
         Output DataFrame containing the rescaled column.
 
-    Example
-    -------
+    Examples
+    --------
     Linearlly rescale the enrollment column of the schools GeoDataFrame.
 
     >>> pylusat.rescale.linear(schools_gdf, "ENROLLMENT", "ENROLL_CLS")

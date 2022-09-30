@@ -64,10 +64,9 @@ def spatial_join(target_gdf, join_gdf, op="intersects",
     GeoDataFrame
         A GeoDataFrame contains all columns in the target GeoDataFrame and the
         specified columns from the join GeoDataFrame.
-    Example
+    
+    Examples
     -------
-    someplaceholder text
-
     pylusat.geotools.spatial_join(acs2016_gdf, schools_gdf, 
                                   cols_agg={'ENROLLMENT': ['sum]})
              GEOID10    ENROLLMENT_SUM
@@ -174,10 +173,8 @@ def select_by_location(input_gdf, select_gdf,
     output : GeoDataFrame
         The selected features from the input GeoDataFrame.
     
-    Example
-    -------
-    placeholder text
-
+    Examples
+    --------
     pylusat.geotools.select_by_location(acso2016_gdf, schools_gdf)
                GEOID    geometry
     0   120010006001    POLYGON ((564121.721 629847.127, 564127.038...))     
@@ -219,10 +216,8 @@ def combine(rast1_path, rast2_path):
         The combined raster files as a Rasterio Dataset.
         The output attribute table as a Pandas DataFrame.
 
-    Example
-    -------
-    placeholder text
-
+    Examples
+    --------
     pylusat.geotools.combine(habitat_tif, habitati_tif)
     0   1   0   0   618688
     1   2   2   2   1
@@ -301,10 +296,8 @@ def gridify(input_gdf, width=None, height=None, num_cols=None, num_rows=None):
     GeoDataFrame
         The output grid (polygons).
 
-    Example
-    -------
-    placeholder text
-
+    Examples
+    --------
     pylusat.geotools.gridify(schools_gdf, width=1000)
     0       POLYGON ((533359.960 611556.855, 534359.960...))
     1       POLYGON ((534359.960 611556.855, 535359.960...))

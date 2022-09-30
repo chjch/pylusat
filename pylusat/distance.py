@@ -43,8 +43,8 @@ def _validate_target_geom(gdf, geom_type):
         
 def to_point(input_gdf, point_gdf, method='euclidean', dtype=float):
     """
-    Calculate distance for each geometry in the input GeoDataFrame to its
-    nearest neighbor in the point GeoDataFrame.
+    Calculate distance (euclidean or manhattan) for each geometry in the input 
+    GeoDataFrame to its nearest neighbor in the point GeoDataFrame.
 
     Parameters
     ----------
@@ -65,7 +65,7 @@ def to_point(input_gdf, point_gdf, method='euclidean', dtype=float):
         A pandas Series containing the distances of each input feature to its
         nearest point.
 
-    Example
+    Examples
     --------
     Calculate Euclidean distance to points (schools) with polygons 
     (census block groups):
@@ -122,7 +122,7 @@ def to_line(input_gdf, line_gdf, cellsize=30, method="euclidean", dtype=float):
     To rapidly query distances, the line_gdf is burned into numpy array by
     using rasterize function from the rasterio package.
 
-    Example
+    Examples
     --------
     Calculate Euclidean distance to lines (highways) with polygons 
     (census block groups):
@@ -186,7 +186,7 @@ def to_cell(input_gdf, raster, value, nodata=None,
         A pandas Series of distances from each feature in input_gdf to the
         nearest cell (has the specified value) in the raster dataset.
 
-    Example
+    Examples
     --------
     Calculate distance from census block groups (acs2016) to nearest-neighbor
     cells (habitat raster) with cell value 6 as the distance target.

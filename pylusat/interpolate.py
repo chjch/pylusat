@@ -47,10 +47,10 @@ def idw(input_gdf, value_gdf, value_clm, power=2, n_neighbor=12,
         pandas Series that contains the interpolated values for all feature in
         the input_gdf.
 
-    Example
-    -------
+    Examples
+    --------
     Interpolate Enrollment values in Schools GeoDataFrame to the second power
-    with 12 neighborhoods.???
+    with 12 neighborhoods.
 
     >>> pylusat.interpolate.idw(acs2016_gdf, schools_gdf, 'ENROLLMENT',
                                 power=2.00, n_neighbor=12)
