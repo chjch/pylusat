@@ -9,3 +9,4 @@ venv/
 .vscode
 output/
 .DS_Store
+_build/
