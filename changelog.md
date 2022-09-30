@@ -1,5 +1,11 @@
 # pylusat changelog
 
+## 0.5.6
+
+### Added
+
+- Add _Examples_ to docstrings, which can be rendered by Sphinx's `autodoc`.
+
 ## 0.5.5
 
 2022-09-02
