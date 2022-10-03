@@ -20,8 +20,8 @@ sys.path.insert(0, os.path.abspath('../'))
 # -- Project information -----------------------------------------------------
 
 project = 'PyLUSAT Documentation'
-copyright = '2022, The GALUP Team'
-author = 'The GALUP Team'
+copyright = 'Changjie Chen'
+author = 'Changjie Chen'
 
 
 # -- General configuration ---------------------------------------------------
