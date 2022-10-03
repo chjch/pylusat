@@ -11,7 +11,7 @@ placeholder
 
    installation
    quickstart
-   functions/index
+   PyLUSAT API Reference <functions/index>
 
 Indices and tables
 ==================

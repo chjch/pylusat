@@ -1,5 +1,5 @@
-Interpolate Function
-====================
+pylusat.interpolate module
+==========================
 
 .. automodule:: pylusat.interpolate
     :members:

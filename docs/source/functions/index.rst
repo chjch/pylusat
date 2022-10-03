@@ -1,5 +1,5 @@
-Functions
-=========
+PyLUSAT API Refernce
+====================
 
 .. toctree::
    :maxdepth: 2
