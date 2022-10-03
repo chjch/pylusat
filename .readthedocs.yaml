@@ -1,5 +1,10 @@
 version: 2
 
+# Build PDF & ePub
+formats:
+  - epub
+  - pdf
+
 python:
   version: "3.8"
   install:
