@@ -19,8 +19,8 @@ sys.path.insert(0, os.path.abspath('../'))
 
 # -- Project information -----------------------------------------------------
 
-project = 'PyLUSAT Documentation'
-copyright = 'Changjie Chen'
+project = 'PyLUSAT'
+copyright = ''
 author = 'Changjie Chen'
 
 
