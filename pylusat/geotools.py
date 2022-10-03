@@ -300,6 +300,8 @@ def gridify(input_gdf, width=None, height=None, num_cols=None, num_rows=None):
 
     Examples
     --------
+    Create grid of polygons from the schools GeoDataFrame with a width of 1000
+     
     >>> pylusat.geotools.gridify(schools_gdf, width=1000)
     0       POLYGON ((533359.960 611556.855, 534359.960...))
     1       POLYGON ((534359.960 611556.855, 535359.960...))

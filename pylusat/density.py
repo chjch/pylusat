@@ -55,7 +55,7 @@ def of_point(input_gdf, point_gdf, pop_clm=None,
     Examples
     --------
     Calculate density of points (schools) in polygon layer (Alachua County 
-    census tracts) in square miles.
+    census tracts) per square miles.
 
     >>> pylusat.density.of_point(acs2016_gdf, schools_gdf, 
                                  area_unit='square mile')
