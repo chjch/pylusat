@@ -59,13 +59,12 @@ def of_point(input_gdf, point_gdf, pop_clm=None,
 
     >>> pylusat.density.of_point(acs2016_gdf, schools_gdf, 
                                  area_unit='square mile')
-    
     0   2.389447
     1   0.000000
     2   1.714565
     3   4.974934
     4   2.494981
-
+    ...
     150 0.6607739
     151 3.332871
     152 0.967817
@@ -77,13 +76,13 @@ def of_point(input_gdf, point_gdf, pop_clm=None,
     by the enrollment column.
 
     >>> pylusat.density.of_point(acs2016_gdf, schools_gdf, "ENROLLMENT", 
-                                  '1 mile', 'square mile')
-
+                                 '1 mile', 'square mile')
     0   0.000159
     1   0.000252
     2   0.000132
     3   0.000117
     4   0.000099
+    ...
     150 0.000084
     151 0.000114
     152 0.000085
@@ -162,13 +161,12 @@ def of_line(input_gdf, line_gdf, cellsize=30, search_radius=None,
 
     >>> pylusat.density.of_line(acs2016_gdf, highway_gdf, 
                                 search_radius='1 mile', area_unit='square mile')
-    
     0   0.000425
     1   0.000705
     2   0.000273
     3   0.000753
     4   0.000358
-
+    ...
     150 0.000266
     151 NaN
     152 0.000277

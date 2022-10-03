@@ -110,7 +110,7 @@ def linear(input_df, input_col, output_col,
     2               MILLHOPPER MONTESSORI SCHOOL    1.784385
     3              ST MICHAEL'S EPISCOPAL SCHOOL    1.000000
     4                     BNAI ISRAEL DAY SCHOOL    1.079891
-
+    ...
     116     PERSIMMON EARLY LEARNING ACADEMY LLC    1.000000
     117 BUSY BEE AND BUTTERFLY CHRISTIAN ACADEMY    1.000000
     118                       THE PHENOM ACADEMY    1.000000

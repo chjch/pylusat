@@ -67,23 +67,21 @@ def to_point(input_gdf, point_gdf, method='euclidean', dtype=float):
 
     Examples
     --------
-    Calculate Euclidean distance to points (schools) with polygons 
+    Calculate (Euclidean) distance to points (schools) with polygons 
     (census block groups):
 
     >>> pylusat.distance.to_point(acs2016_gdf, schools_gdf)
-    
     0   197.284083
     1   721.557482
     2   529.379113
     3   293.479326
     4   186.180728
-
+    ...
     150 1254.314693
     151 471.434822
     152 793.974181
     153 2279.119749
     154 500.748225
-
     """
     target_geom = "Point"
     _validate_target_geom(point_gdf, target_geom)
@@ -128,13 +126,12 @@ def to_line(input_gdf, line_gdf, cellsize=30, method="euclidean", dtype=float):
     (census block groups):
 
     >>> pylusat.distance.to_line(acs2016_gdf, highway_gdf)
-
     0   715.611627
     1   324.499615
     2   1020.00000
     3   150.000000
     4   192.093727
-
+    ...
     150 1194.738465
     151 2753.633963
     152 900.0000000
@@ -192,13 +189,12 @@ def to_cell(input_gdf, raster, value, nodata=None,
     cells (habitat raster) with cell value 6 as the distance target.
 
     >>> pylusat.distance.to_cell(acs2016_gdf, habitat_tif, 6)
-    
     0   5825.409867
     1   4953.271646
     2   5031.600143
     3   4206.851554
     4   2808.647361
-
+    ...
     150 8111.547325
     151 8481.143791
     152 9688.188685
