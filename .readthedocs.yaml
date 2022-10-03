@@ -7,4 +7,4 @@ python:
 
 sphinx:
   builder: html
-  configuration: docs/source/conf.py
+  configuration: docs/conf.py
