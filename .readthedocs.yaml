@@ -1,5 +1,10 @@
 version: 2
 
+# Build PDF & ePub
+formats:
+  - epub
+  - pdf
+
 python:
   version: "3.8"
   install:
@@ -7,4 +12,4 @@ python:
 
 sphinx:
   builder: html
-  configuration: docs/source/conf.py
+  configuration: docs/conf.py
