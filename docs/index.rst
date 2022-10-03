@@ -11,7 +11,7 @@ placeholder
 
    installation
    quickstart
-   functions/index
+   api/index
 
 Indices and tables
 ==================
