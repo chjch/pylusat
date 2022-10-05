@@ -43,7 +43,7 @@ def idw(input_gdf, value_gdf, value_clm, power=2, n_neighbor=12,
 
     Returns
     -------
-    output_sr : Series
+    output_sr : pandas.Series
         pandas Series that contains the interpolated values for all feature in
         the input_gdf.
 

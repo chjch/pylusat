@@ -48,7 +48,7 @@ def of_point(input_gdf, point_gdf, pop_clm=None,
 
     Returns
     -------
-    output_sr : pd.Series
+    output_sr : pandas.Series
         A pandas Series that contains the density of point in each input
         geometry of the input GeoDataFrame.
 
@@ -150,7 +150,7 @@ def of_line(input_gdf, line_gdf, cellsize=30, search_radius=None,
 
     Returns
     -------
-    output_sr : pd.Series
+    output_sr : pandas.Series
         A pandas Series that contains the density of line in each input
         geometry of the input GeoDataFrame.
 

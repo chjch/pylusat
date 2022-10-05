@@ -24,7 +24,7 @@ def rasterize_geometry(gdf, cellsize, value_clm=None, value_fill=0):
         Fill value for all areas not covered by the input geometries.
     Returns
     -------
-    arr : np.ndarray
+    arr : numpy.ndarray
         Output numpy array.
     trans : Affine
         An object of the Affine class.
@@ -64,7 +64,7 @@ def cntrd_array(gdf):
         Input GeoDataFrame.
     Returns
     -------
-    output : np.ndarray
+    output : numpy.ndarray
         An n by 2 2D array where each row contains the coordinates (x and y)
         of the centroids of each geometry in the input GeoDataFrame.
     """
@@ -93,7 +93,7 @@ def inv_affine(gdf, cellsize, max_y, min_x):
 
     Returns
     -------
-    np.ndarray
+    numpy.ndarray
         An n by 2 2D-array of (row, column) indices for the centroid of each
         geometry in the input GeoDataFrame.
     """
@@ -179,7 +179,7 @@ def random_ahp(n=3):
 
     Returns
     -------
-    priority_vec : np.ndarray
+    priority_vec : numpy.ndarray
         An array that contains the weights (priority vector of AHP).
     """
     if n < 3 or n > 10:
@@ -215,7 +215,7 @@ def weighted_sum(df, col_weights):
         column specified by the column name.
     Returns
     -------
-    weighted_sum : np.ndarray
+    weighted_sum :numpy.ndarray
         An array contains the result of the weighted sum.
     """
     wgt_df = DataFrame([*col_weights.values()], index=[*col_weights])

@@ -21,7 +21,7 @@ def erase(input_gdf, erase_gdf=None):
 
     Returns
     -------
-    output : GeoDataFrame
+    output : geopandas.GeoDataFrame
         The remaining features after erasure.
     """
     if erase_gdf is None:
@@ -61,7 +61,7 @@ def spatial_join(target_gdf, join_gdf, op="intersects",
         Whether to keep all features from the target GeoDataFrame.
     Returns
     -------
-    GeoDataFrame
+    geopandas.GeoDataFrame
         A GeoDataFrame contains all columns in the target GeoDataFrame and the
         specified columns from the join GeoDataFrame.
     
@@ -134,7 +134,7 @@ def within_dist(input_gdf, input_id, distance,
 
     Returns
     -------
-    output : GeoDataFrame
+    output : geopandas.GeoDataFrame
         The output value is 1 if there exists any target object within the
         specified distance of the input object and 0 otherwise.
     """
@@ -171,7 +171,7 @@ def select_by_location(input_gdf, select_gdf,
         useful when op is set to be "within a distance".
     Returns
     -------
-    output : GeoDataFrame
+    output : geopandas.GeoDataFrame
         The selected features from the input GeoDataFrame.
     
     Examples
@@ -214,7 +214,7 @@ def combine(rast1_path, rast2_path):
         File path to the second raster.
     Returns
     -------
-    Results : rasterio Dataset, DataFrame
+    Results : rasterio.Dataset, pandas.DataFrame
         The combined raster files as a Rasterio Dataset.
         The output attribute table as a Pandas DataFrame.
 
@@ -295,13 +295,13 @@ def gridify(input_gdf, width=None, height=None, num_cols=None, num_rows=None):
 
     Returns
     -------
-    GeoDataFrame
+    geopandas.GeoDataFrame
         The output grid (polygons).
 
     Examples
     --------
     Create grid of polygons from the schools GeoDataFrame with a width of 1000
-     
+
     >>> pylusat.geotools.gridify(schools_gdf, width=1000)
     0       POLYGON ((533359.960 611556.855, 534359.960...))
     1       POLYGON ((534359.960 611556.855, 535359.960...))

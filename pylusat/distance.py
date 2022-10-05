@@ -48,9 +48,9 @@ def to_point(input_gdf, point_gdf, method='euclidean', dtype=float):
 
     Parameters
     ----------
-    input_gdf : GeoDataFrame
+    input_gdf : geopandas.GeoDataFrame
         Input GeoDataFrame. Centroids of the input geometries are used.
-    point_gdf : GeoDataFrame
+    point_gdf : geopandas.GeoDataFrame
         The GeoDataFrame contains the point geometries to which distances are
         calculated.
     method : str, optional
@@ -61,7 +61,7 @@ def to_point(input_gdf, point_gdf, method='euclidean', dtype=float):
 
     Returns
     -------
-    Series
+    pandas.Series
         A pandas Series containing the distances of each input feature to its
         nearest point.
 
@@ -112,7 +112,7 @@ def to_line(input_gdf, line_gdf, cellsize=30, method="euclidean", dtype=float):
 
     Returns
     -------
-    Series
+    pandas.Series
         A pandas Series of distances from each feature in input_gdf to its
         nearest neighbor in line_gdf.
     Notes
@@ -179,7 +179,7 @@ def to_cell(input_gdf, raster, value, nodata=None,
 
     Returns
     -------
-    Series
+    pandas.Series
         A pandas Series of distances from each feature in input_gdf to the
         nearest cell (has the specified value) in the raster dataset.
 

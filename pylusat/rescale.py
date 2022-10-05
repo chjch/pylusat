@@ -30,7 +30,7 @@ def reclassify(input_df, input_col, reclassify_def, output_col, nodata=None):
         The value used to fill the nodata records.
     Returns
     -------
-    input_df : DataFrame or GeoDataFrame
+    input_df : DataFrame or geopandas.GeoDataFrame
         The output DataFrame with the reclassified values.
     """
     key_type = set(map(type, [*reclassify_def]))
@@ -96,7 +96,7 @@ def linear(input_df, input_col, output_col,
 
     Returns
     -------
-    input_df : DataFrame or GeoDataFrame
+    input_df : DataFrame or geopandas.GeoDataFrame
         Output DataFrame containing the rescaled column.
 
     Examples
@@ -168,7 +168,7 @@ def gamma(input_df, input_col, output_col, output_min=1, output_max=9):
 
     Returns
     -------
-    input_df : DataFrame or GeoDataFrame
+    input_df : DataFrame or geopandas.GeoDataFrame
         Output DataFrame containing the rescaled column.
     """
     df = input_df[~np.isnan(input_df[input_col])]
