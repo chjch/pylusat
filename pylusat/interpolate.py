@@ -17,9 +17,9 @@ def idw(input_gdf, value_gdf, value_clm, power=2, n_neighbor=12,
 
     Parameters
     ----------
-    input_gdf : GeoDataFrame
+    input_gdf : geopandas.GeoDataFrame
         Input GeoDataFrame. Centroids of the input geometries are used.
-    value_gdf : GeoDataFrame
+    value_gdf : geopandas.GeoDataFrame
         GeoDataFrame containing the values needed to be interpolated.
     value_clm : str
         The name of the column that holds the values in value_gdf.
@@ -37,7 +37,7 @@ def idw(input_gdf, value_gdf, value_clm, power=2, n_neighbor=12,
     min_dist : float, optional
         The distance below which the interpolated value will be set to equal to
         the value of its closest neighbor.
-    dtype : str or np.dtype, optional
+    dtype : str or numpy.dtype, optional
         Use a np.dtype or Python type to cast the interpolated values to the
         desired type.
 

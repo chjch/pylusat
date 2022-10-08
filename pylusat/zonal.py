@@ -22,7 +22,7 @@ def zonal_stats_raster(zone_gdf, raster, stats=None,
 
     Parameters
     ----------
-    zone_gdf : GeoDataFrame
+    zone_gdf : geopandas.GeoDataFrame
         The zone GeoDataFrame whose geometry must be polygon.
     raster : str
         A path to a tif file or a connection string to a raster on PostgreSQL.

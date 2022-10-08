@@ -14,9 +14,9 @@ def erase(input_gdf, erase_gdf=None):
 
     Parameters
     ----------
-    input_gdf : GeoDataFrame
+    input_gdf : geopandas.GeoDataFrame
         Input GeoDataFrame.
-    erase_gdf : GeoDataFrame
+    erase_gdf : geopandas.GeoDataFrame
         Erase GeoDataFrame containing the erase features.
 
     Returns
@@ -41,7 +41,7 @@ def spatial_join(target_gdf, join_gdf, op="intersects",
 
     Parameters
     ----------
-    target_gdf, join_gdf : GeoDataFrames
+    target_gdf, join_gdf : geopandas.GeoDataFrames
         The GeoDataFrame to join to the target GeoDataFrame.
     op : string, default 'intersects'
         Binary predicate, one of {'intersects', 'contains', 'within'}. See
@@ -121,13 +121,13 @@ def within_dist(input_gdf, input_id, distance,
 
     Parameters
     ----------
-    input_gdf : GeoDataFrame
+    input_gdf : geopandas.GeoDataFrame
         The input set.
     input_id : str
         The name of the column containing the unique id of the input set.
     distance : int or float
         Distance (in the same unit as the input GeoDataFrame).
-    target_gdf : GeoDataFrame
+    target_gdf : geopandas.GeoDataFrame
         The target set.
     output_col : str
         The name of the output column.
@@ -158,9 +158,9 @@ def select_by_location(input_gdf, select_gdf,
 
     Parameters
     ----------
-    input_gdf : GeoDataFrame
+    input_gdf : geopandas.GeoDataFrame
         The input GeoDataFrame.
-    select_gdf : GeoDataFrame
+    select_gdf : geopandas.GeoDataFrame
         The selecting GeoDataFrame.
     op : string, default 'intersection'
         Binary predicate, one of {'intersects', 'contains', 'within',
@@ -281,7 +281,7 @@ def gridify(input_gdf, width=None, height=None, num_cols=None, num_rows=None):
 
     Parameters
     ----------
-    input_gdf : GeoDataFrame
+    input_gdf : geopandas.GeoDataFrame
         Input GeoDataFrame based on which the grid is created.
     width : int or float
         Cell width.

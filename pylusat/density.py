@@ -32,9 +32,9 @@ def of_point(input_gdf, point_gdf, pop_clm=None,
 
     Parameters
     ----------
-    input_gdf : GeoDataFrame
+    input_gdf : geopandas.GeoDataFrame
         Input GeoDataFrame in which points are counted.
-    point_gdf : GeoDataFrame
+    point_gdf : geopandas.GeoDataFrame
         Point GeoDataFrame.
     pop_clm : str
         Population column which contains values to represent each occurrence
@@ -131,10 +131,10 @@ def of_line(input_gdf, line_gdf, cellsize=30, search_radius=None,
 
     Parameters
     ----------
-    input_gdf : GeoDataFrame
+    input_gdf : geopandas.GeoDataFrame
         Input GeoDataFrame in which length of lines are summed.
     line_gdf : GeoDataFrame
-        Line GeoDataFrame whose lengths are summed.
+        Line geopandas.GeoDataFrame whose lengths are summed.
     cellsize : float, optional
         The cell size used to rasterize the line_gdf.
     search_radius : str, optional

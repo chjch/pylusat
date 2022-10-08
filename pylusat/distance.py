@@ -55,7 +55,7 @@ def to_point(input_gdf, point_gdf, method='euclidean', dtype=float):
         calculated.
     method : str, optional
         Method used to calculate distances. Either 'euclidean' or 'manhattan'.
-    dtype : str or np.dtype, optional
+    dtype : str or numpy.dtype, optional
         Use a np.dtype or Python type to cast the output distance to the
         desired type.
 
@@ -98,15 +98,15 @@ def to_line(input_gdf, line_gdf, cellsize=30, method="euclidean", dtype=float):
 
     Parameters
     ----------
-    input_gdf : GeoDataFrame
+    input_gdf : geopandas.GeoDataFrame
         Input GeoDataFrame. Centroids of the input geometries are used.
-    line_gdf : GeoDataFrame
+    line_gdf : geopandas.GeoDataFrame
         A GeoDataFrame whose geometry is of line. 
     cellsize : float
         Cell size used to rasterize the line_gdf. 
     method : str, optional
         Method used to calculate distances. Either 'euclidean' or 'manhattan'.
-    dtype : str or np.dtype, optional
+    dtype : str or numpy.dtype, optional
         Use a np.dtype or Python type to cast the output distance to the
         desired type.
 
@@ -162,7 +162,7 @@ def to_cell(input_gdf, raster, value, nodata=None,
 
     Parameters
     ----------
-    input_gdf : GeoDataFrame
+    input_gdf : geopandas.GeoDataFrame
         Input GeoDataFrame
     raster : str
         A path to a tif file or a connection string to a raster on PostgreSQL.
@@ -173,8 +173,8 @@ def to_cell(input_gdf, raster, value, nodata=None,
         Value for no data cells.
     method : str, optional, default "euclidean"
         Method used to calculate distances. Either 'euclidean' or 'manhattan'.
-    dtype : str or np.dtype, optional
-        Use a np.dtype or Python type to cast the output distance to the
+    dtype : str or numpy.dtype, optional
+        Use a numpy.dtype or Python type to cast the output distance to the
         desired type.
 
     Returns

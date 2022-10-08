@@ -17,7 +17,7 @@ def reclassify(input_df, input_col, reclassify_def, output_col, nodata=None):
 
     Parameters
     ----------
-    input_df : DataFrame or GeoDataFrame
+    input_df : DataFrame or geopandas.GeoDataFrame
         Input DataFrame with the column need to be reclassified.
     input_col : str
         The name of the input column containing the old values.
@@ -79,7 +79,7 @@ def linear(input_df, input_col, output_col,
 
     Parameters
     ----------
-    input_df : DataFrame or GeoDataFrame
+    input_df : pandas.DataFrame or geopandas.GeoDataFrame
         Input DataFrame containing a column need to be rescaled.
     input_col : str
         Name of the old column.
@@ -96,7 +96,7 @@ def linear(input_df, input_col, output_col,
 
     Returns
     -------
-    input_df : DataFrame or geopandas.GeoDataFrame
+    input_df : pandas.DataFrame or geopandas.GeoDataFrame
         Output DataFrame containing the rescaled column.
 
     Examples
@@ -155,7 +155,7 @@ def gamma(input_df, input_col, output_col, output_min=1, output_max=9):
 
     Parameters
     ----------
-    input_df : DataFrame or GeoDataFrame
+    input_df : pandas.DataFrame or geopandas.GeoDataFrame
         Input DataFrame containing a column need to be rescaled.
     input_col : str
         Name of the old column.
@@ -168,7 +168,7 @@ def gamma(input_df, input_col, output_col, output_min=1, output_max=9):
 
     Returns
     -------
-    input_df : DataFrame or geopandas.GeoDataFrame
+    input_df : pandas.DataFrame or geopandas.GeoDataFrame
         Output DataFrame containing the rescaled column.
     """
     df = input_df[~np.isnan(input_df[input_col])]

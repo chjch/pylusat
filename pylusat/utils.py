@@ -13,7 +13,7 @@ def rasterize_geometry(gdf, cellsize, value_clm=None, value_fill=0):
 
     Parameters
     ----------
-    gdf : GeoDataFrame
+    gdf : geopandas.GeoDataFrame
         Input GeoDataFrame.
     cellsize : int or float
         Cell size used to transform the vector data.
@@ -60,7 +60,7 @@ def cntrd_array(gdf):
 
     Parameters
     ----------
-    gdf : GeoDataFrame
+    gdf : geopandas.GeoDataFrame
         Input GeoDataFrame.
     Returns
     -------
@@ -82,7 +82,7 @@ def inv_affine(gdf, cellsize, max_y, min_x):
 
     Parameters
     ----------
-    gdf : GeoDataFrame
+    gdf : geopandas.GeoDataFrame
         Input GeoDataFrame for the function.
     cellsize : int or float
         Cell size used to grid the vector data.
@@ -132,12 +132,12 @@ def ahp(r_mtx):
 
     Parameters
     ----------
-    r_mtx : np.ndarray
+    r_mtx : numpy.ndarray
         The reciprocal matrix.
 
     Returns
     -------
-    priority_vec : np.ndarray
+    priority_vec : numpy.ndarray
         The priority vector computed by AHP.
     cr : float
         Consistency Ratio (1990, Saaty). The rule of thumb is CR <= 0.1.
@@ -208,7 +208,7 @@ def weighted_sum(df, col_weights):
 
     Parameters
     ----------
-    df : DataFrame or GeoDataFrame
+    df : pandas.DataFrame or GeoDataFrame
         Input DataFrame contains the columns for summation.
     col_weights : dict
         Dict of ``{column name: float}``, where float is the weight for the

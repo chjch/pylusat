@@ -62,6 +62,9 @@ add_module_names = True
 # The name of the Pygments (syntax highlighting) style to use.
 pygments_style = 'sphinx'
 
+# Change order of sphinx output from alphabetical to original source order
+autodoc_member_order = 'bysource'
+
 # -- Options for HTML output -------------------------------------------------
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
@@ -79,7 +82,8 @@ intersphinx_mapping = {
     "python": ("https://docs.python.org/", None),
     "gdal": ("https://gdal.org/", None),
     "numpy": ("https://numpy.org/doc/stable", None),
-    "pandas": ("https://pandas.pydata.org/docs/reference/", None),
+    "pandas": ("https://pandas.pydata.org/docs/", None),
     "geopandas": ("https://geopandas.org/en/stable/", None),
     "rasterio": ("https://rasterio.readthedocs.io/en/latest/", None),
 }
+
