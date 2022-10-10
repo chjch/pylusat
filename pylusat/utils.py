@@ -22,6 +22,7 @@ def rasterize_geometry(gdf, cellsize, value_clm=None, value_fill=0):
         output array.
     value_fill : int, optional
         Fill value for all areas not covered by the input geometries.
+    
     Returns
     -------
     arr : numpy.ndarray
@@ -62,6 +63,7 @@ def cntrd_array(gdf):
     ----------
     gdf : geopandas.GeoDataFrame
         Input GeoDataFrame.
+    
     Returns
     -------
     output : numpy.ndarray

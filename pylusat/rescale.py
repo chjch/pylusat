@@ -17,7 +17,7 @@ def reclassify(input_df, input_col, reclassify_def, output_col, nodata=None):
 
     Parameters
     ----------
-    input_df : DataFrame or geopandas.GeoDataFrame
+    input_df : pandas.DataFrame or geopandas.GeoDataFrame
         Input DataFrame with the column need to be reclassified.
     input_col : str
         The name of the input column containing the old values.

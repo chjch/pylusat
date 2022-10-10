@@ -133,8 +133,8 @@ def of_line(input_gdf, line_gdf, cellsize=30, search_radius=None,
     ----------
     input_gdf : geopandas.GeoDataFrame
         Input GeoDataFrame in which length of lines are summed.
-    line_gdf : GeoDataFrame
-        Line geopandas.GeoDataFrame whose lengths are summed.
+    line_gdf : geopandas.GeoDataFrame
+        Line GeoDataFrame whose lengths are summed.
     cellsize : float, optional
         The cell size used to rasterize the line_gdf.
     search_radius : str, optional
@@ -143,7 +143,7 @@ def of_line(input_gdf, line_gdf, cellsize=30, search_radius=None,
     area_unit : str, optional
         A string of the area unit used for density calculation.
         e.g., "square meters".
-    geomtoarray : {tuple of (np.ndarray, Affine, np.ndarray, float), None}
+    geomtoarray : {tuple of (numpy.ndarray, Affine, numpy.ndarray, float), None}
         The output of ``rasterize_geometry`` function. If a desired output has
         already been created for the `line_gdf` has already been created,
         set it to be this argument to use it.

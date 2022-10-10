@@ -41,7 +41,7 @@ def spatial_join(target_gdf, join_gdf, op="intersects",
 
     Parameters
     ----------
-    target_gdf, join_gdf : geopandas.GeoDataFrames
+    target_gdf, join_gdf : geopandas.GeoDataFrame
         The GeoDataFrame to join to the target GeoDataFrame.
     op : string, default 'intersects'
         Binary predicate, one of {'intersects', 'contains', 'within'}. See
