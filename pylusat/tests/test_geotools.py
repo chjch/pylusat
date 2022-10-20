@@ -1,4 +1,5 @@
 import geopandas as gpd
+import rasterio as rio
 from pylusat.geotools import spatial_join, select_by_location, combine, gridify
 from pylusat.datasets import get_path
 import pytest
@@ -19,6 +20,11 @@ def habitat_tif():
     return get_path("habitat")
 
 
+@pytest.fixture
+def habitat_rio():
+    return rio.open(get_path("habitat"))
+
+
 def test_spatial_join(acs2016_gdf, schools_gdf):
     result = spatial_join(acs2016_gdf, schools_gdf,
                           cols_agg={'ENROLLMENT': ['sum']})
@@ -32,6 +38,12 @@ def test_select_by_location(acs2016_gdf, schools_gdf):
 
 def test_combine(habitat_tif):
     rast_obj, attr = combine(habitat_tif, habitat_tif)
+    assert len(attr) == 29
+    assert attr['count'][attr.value == 1][0] == 618688
+
+
+def test_combine_rio_ds(habitat_rio):
+    rast_obj, attr = combine(habitat_rio, habitat_rio)
     assert len(attr) == 29
     assert attr['count'][attr.value == 1][0] == 618688
 

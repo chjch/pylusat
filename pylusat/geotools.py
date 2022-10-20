@@ -202,21 +202,23 @@ def select_by_location(input_gdf, select_gdf,
     return output_gdf.copy()
 
 
-def combine(rast1_path, rast2_path):
+def combine(rast1, rast2):
     """
     Combines input rasters by their unique value pairs. Assigns new values to
     each unique pair.
+
     Parameters
     ----------
-    rast1_path : str
-        File path to the first raster.
-    rast2_path : str
-        File path to the second raster.
+    rast1 : str, rasterio.io.DatasetReader
+        File path to the first raster or a `DatasetReader` object of `rasterio`.
+    rast2 : str, rasterio.io.DatasetReader
+        File path to the second raster or a `DatasetReader` object of `rasterio`.
+
     Returns
     -------
-    Results : rasterio Dataset, DataFrame
-        The combined raster files as a Rasterio Dataset.
-        The output attribute table as a Pandas DataFrame.
+    Results : rasterio.io.DatasetReader, pandas.DataFrame
+        The combined raster as a `DatasetReader`.
+        The output attribute table as a `pandas.DataFrame`.
 
     Examples
     --------
@@ -228,8 +230,8 @@ def combine(rast1_path, rast2_path):
     4   5   6   6   115
 
     """
-    input_ras1 = RasterManager.from_path(rast1_path)
-    input_ras2 = RasterManager.from_path(rast2_path)
+    input_ras1 = RasterManager(rast1)
+    input_ras2 = RasterManager(rast2)
     arr1 = input_ras1.to_array()
     arr2 = input_ras2.to_array()
     arr1_1d = np.reshape(arr1, arr1.size)

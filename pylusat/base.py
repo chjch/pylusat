@@ -182,7 +182,7 @@ class UnitHandler:
 
 class RasterManager:
 
-    def __init__(self, rio_dataset: DatasetReader, nodata=None):
+    def __init__(self, rio_dataset: [DatasetReader, str], nodata=None):
         self.rast_ds = rio_dataset
         self.rast_nodata = nodata
         self.dtype = self.rast_ds.dtypes[0]
@@ -192,10 +192,16 @@ class RasterManager:
         return self._rast_ds
 
     @rast_ds.setter
-    def rast_ds(self, rast_obj):
-        if type(rast_obj) not in [DatasetReader, WarpedVRT]:
-            raise TypeError("Not a valid rasterio dataset.")
-        self._rast_ds = rast_obj
+    def rast_ds(self, rast):
+        if type(rast) is str:
+            try:
+                self._rast_ds = rio.open(rast)
+            except rio.errors.RasterioIOError:
+                raise ValueError("Not a valid raster data.") from None
+        else:
+            if type(rast) not in [DatasetReader, WarpedVRT]:
+                raise TypeError("Not a valid rasterio dataset.")
+            self._rast_ds = rast
 
     def get_rio_crs(self):
         # get rasterio.crs from the raster dataset

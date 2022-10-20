@@ -1,6 +1,18 @@
 # pylusat changelog
 
+## 0.5.7
+
+2022-10-20
+
+### Updated
+
+- `RasterManager`: The class can take both a file path and a
+  `rasterio.io.DatasetReader` as input.
+- `combine`: Reflects the change in `RasterManager`.
+
 ## 0.5.6
+
+2022-10-02
 
 ### Added
 
