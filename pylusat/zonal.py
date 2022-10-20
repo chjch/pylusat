@@ -22,7 +22,7 @@ def zonal_stats_raster(zone_gdf, raster, stats=None,
 
     Parameters
     ----------
-    zone_gdf : GeoDataFrame
+    zone_gdf : geopandas.GeoDataFrame
         The zone GeoDataFrame whose geometry must be polygon.
     raster : str
         A path to a tif file or a connection string to a raster on PostgreSQL.
@@ -43,12 +43,14 @@ def zonal_stats_raster(zone_gdf, raster, stats=None,
 
     Returns
     -------
-    output_gdf : GeoDataFrame
+    output_gdf : geopandas.GeoDataFrame
          Returns a GeoDataFrame containing new column(s) for each type of
          statistic specified in the ``stats`` argument.
     
     Examples
     --------
+    Summarize values of habitat raster in each census tract zone.
+
     >>> pylusat.zonal.zonal_stats_raster(acs2016_gdf, habitat_tif)
         GEOID10               ACRES TOTALPOP    zonal_max  zonal_mean  zonal_count
     0   12001006001      267.844400     1371        42.0    32.425150         1303

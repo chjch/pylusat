@@ -32,9 +32,9 @@ def of_point(input_gdf, point_gdf, pop_clm=None,
 
     Parameters
     ----------
-    input_gdf : GeoDataFrame
+    input_gdf : geopandas.GeoDataFrame
         Input GeoDataFrame in which points are counted.
-    point_gdf : GeoDataFrame
+    point_gdf : geopandas.GeoDataFrame
         Point GeoDataFrame.
     pop_clm : str
         Population column which contains values to represent each occurrence
@@ -48,14 +48,14 @@ def of_point(input_gdf, point_gdf, pop_clm=None,
 
     Returns
     -------
-    output_sr : pd.Series
+    output_sr : pandas.Series
         A pandas Series that contains the density of point in each input
         geometry of the input GeoDataFrame.
 
     Examples
     --------
     Calculate density of points (schools) in polygon layer (Alachua County 
-    census tracts) in square miles.
+    census tracts) per square miles.
 
     >>> pylusat.density.of_point(acs2016_gdf, schools_gdf, 
                                  area_unit='square mile')
@@ -131,9 +131,9 @@ def of_line(input_gdf, line_gdf, cellsize=30, search_radius=None,
 
     Parameters
     ----------
-    input_gdf : GeoDataFrame
+    input_gdf : geopandas.GeoDataFrame
         Input GeoDataFrame in which length of lines are summed.
-    line_gdf : GeoDataFrame
+    line_gdf : geopandas.GeoDataFrame
         Line GeoDataFrame whose lengths are summed.
     cellsize : float, optional
         The cell size used to rasterize the line_gdf.
@@ -143,14 +143,14 @@ def of_line(input_gdf, line_gdf, cellsize=30, search_radius=None,
     area_unit : str, optional
         A string of the area unit used for density calculation.
         e.g., "square meters".
-    geomtoarray : {tuple of (np.ndarray, Affine, np.ndarray, float), None}
+    geomtoarray : {tuple of (numpy.ndarray, Affine, numpy.ndarray, float), None}
         The output of ``rasterize_geometry`` function. If a desired output has
         already been created for the `line_gdf` has already been created,
         set it to be this argument to use it.
 
     Returns
     -------
-    output_sr : pd.Series
+    output_sr : pandas.Series
         A pandas Series that contains the density of line in each input
         geometry of the input GeoDataFrame.
 

@@ -13,7 +13,7 @@ def rasterize_geometry(gdf, cellsize, value_clm=None, value_fill=0):
 
     Parameters
     ----------
-    gdf : GeoDataFrame
+    gdf : geopandas.GeoDataFrame
         Input GeoDataFrame.
     cellsize : int or float
         Cell size used to transform the vector data.
@@ -22,9 +22,10 @@ def rasterize_geometry(gdf, cellsize, value_clm=None, value_fill=0):
         output array.
     value_fill : int, optional
         Fill value for all areas not covered by the input geometries.
+    
     Returns
     -------
-    arr : np.ndarray
+    arr : numpy.ndarray
         Output numpy array.
     trans : Affine
         An object of the Affine class.
@@ -60,11 +61,12 @@ def cntrd_array(gdf):
 
     Parameters
     ----------
-    gdf : GeoDataFrame
+    gdf : geopandas.GeoDataFrame
         Input GeoDataFrame.
+    
     Returns
     -------
-    output : np.ndarray
+    output : numpy.ndarray
         An n by 2 2D array where each row contains the coordinates (x and y)
         of the centroids of each geometry in the input GeoDataFrame.
     """
@@ -82,7 +84,7 @@ def inv_affine(gdf, cellsize, max_y, min_x):
 
     Parameters
     ----------
-    gdf : GeoDataFrame
+    gdf : geopandas.GeoDataFrame
         Input GeoDataFrame for the function.
     cellsize : int or float
         Cell size used to grid the vector data.
@@ -93,7 +95,7 @@ def inv_affine(gdf, cellsize, max_y, min_x):
 
     Returns
     -------
-    np.ndarray
+    numpy.ndarray
         An n by 2 2D-array of (row, column) indices for the centroid of each
         geometry in the input GeoDataFrame.
     """
@@ -132,12 +134,12 @@ def ahp(r_mtx):
 
     Parameters
     ----------
-    r_mtx : np.ndarray
+    r_mtx : numpy.ndarray
         The reciprocal matrix.
 
     Returns
     -------
-    priority_vec : np.ndarray
+    priority_vec : numpy.ndarray
         The priority vector computed by AHP.
     cr : float
         Consistency Ratio (1990, Saaty). The rule of thumb is CR <= 0.1.
@@ -179,7 +181,7 @@ def random_ahp(n=3):
 
     Returns
     -------
-    priority_vec : np.ndarray
+    priority_vec : numpy.ndarray
         An array that contains the weights (priority vector of AHP).
     """
     if n < 3 or n > 10:
@@ -208,14 +210,14 @@ def weighted_sum(df, col_weights):
 
     Parameters
     ----------
-    df : DataFrame or GeoDataFrame
+    df : pandas.DataFrame or GeoDataFrame
         Input DataFrame contains the columns for summation.
     col_weights : dict
         Dict of ``{column name: float}``, where float is the weight for the
         column specified by the column name.
     Returns
     -------
-    weighted_sum : np.ndarray
+    weighted_sum :numpy.ndarray
         An array contains the result of the weighted sum.
     """
     wgt_df = DataFrame([*col_weights.values()], index=[*col_weights])

@@ -1,5 +1,5 @@
-Geotools Function
-=================
+pylusat.geotools module
+=======================
 
 .. automodule:: pylusat.geotools
     :members:

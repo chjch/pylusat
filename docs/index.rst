@@ -1,7 +1,8 @@
 PyLUSAT Documentation
 =====================
 
-placeholder
+The Python for Land-use Suitability Analysis Tools (PyLUSAT) is an open-source
+Python package dedicated for GIS-based land-use suitability modeling.
 
 .. toctree::
    :maxdepth: 2

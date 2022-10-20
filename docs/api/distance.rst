@@ -1,5 +1,5 @@
-Distance Function
-=================
+pylusat.distance module
+=======================
 
 .. automodule:: pylusat.distance
     :members:
