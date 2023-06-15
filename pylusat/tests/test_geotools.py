@@ -49,5 +49,8 @@ def test_combine_rio_ds(habitat_rio):
 
 
 def test_gridify(schools_gdf):
-    result = gridify(schools_gdf, width=1000)
-    assert len(result) == 2496
+    cell_x = 1000
+    result = gridify(schools_gdf, cell_x=cell_x)
+    assert len(result) == 2544
+    assert abs(result.total_bounds[0] - schools_gdf.total_bounds[0]) < cell_x
+    assert result.total_bounds[0] % cell_x == 0
