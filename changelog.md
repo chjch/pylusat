@@ -1,5 +1,17 @@
 # pylusat changelog
 
+## 0.5.8
+
+2023-06-15
+
+### Updated
+
+- `gridify`: The function now covers the input GeoDataFrame's extent based on
+  a (minimum) bounding box whose horizontal and vertical spans can be divided
+  by the cell size (`cell_x` and `cell_y`) without remainder.
+  Previously, the extent of the output grid is exactly the same as the input 
+  GeoDataFrame's extent.
+
 ## 0.5.7
 
 2022-10-20
