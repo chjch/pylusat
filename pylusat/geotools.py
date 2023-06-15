@@ -1,6 +1,5 @@
 import numpy as np
 import geopandas as gpd
-from geopandas import GeoDataFrame
 import pandas as pd
 from typing import Dict
 from shapely.geometry import Polygon
@@ -272,39 +271,49 @@ def combine(rast1, rast2):
         return memfile.open(driver="GTiff"), attr
 
 
-def gridify(input_gdf, width=None, height=None, num_cols=None, num_rows=None):
+def gridify(input_gdf, cell_x=None, cell_y=None, n_cols=None, n_rows=None):
     """
-    Create a grid based on the input_gdf by specifying width and/or height of
-    the cells of the grid.
+    Create a grid covering the extent of the input_gdf based on either
+    (cell_x, celly_y) or (n_cols, n_rows).
 
-    num_cols and num_rows can be used to define the grid as well. If nothing
-    specified, the cell size of the grid will be the span on x axis (width)
-    divided by 30.
+    If both are specified, (cell_x, cell_y) will be used.
+
+    If neither are specified, the cell size will be calcualted based on the
+    input_gdf's width (length of x-axis) divided by 30.
 
     Parameters
     ----------
     input_gdf : geopandas.GeoDataFrame
         Input GeoDataFrame based on which the grid is created.
-    width : int or float
-        Cell width.
-    height : int or float
-        Cell height.
-    num_cols : int
-        Number of columns. When specified, this number will determine cell
-        width.
-    num_rows : int
-        Number of rows. When specified, this number will determine cell height.
+    cell_x : int or float
+        Cell size on the x-axis.
+    cell_y : int or float
+        Cell cell_y.
+    n_cols : int
+        Number of columns. When specified, this number will determine cell_x
+        (i.e., input_gdf's width divided by `n_cols`).
+    n_rows : int
+        Number of rows. When specified, this number will determine cell_y
+        (input_gdf's height divided by `n_rows`).
 
     Returns
     -------
     geopandas.GeoDataFrame
         The output grid (polygons).
 
+    Notes
+    _____
+    `cell_x` and `cell_y` are in the same unit as the input_gdf's CRS.
+
+    The output grid will have the same CRS as the input_gdf. The CRS of the
+    input_gdf must be projected (not geographic).
+
     Examples
     --------
-    Create grid of polygons from the schools GeoDataFrame with a width of 1000
+    Create grid of polygons from the schools GeoDataFrame with a cell size
+    of 1000 (meters).
 
-    >>> pylusat.geotools.gridify(schools_gdf, width=1000)
+    >>> pylusat.geotools.gridify(schools_gdf, cell_x=1000)
     0       POLYGON ((533359.960 611556.855, 534359.960...))
     1       POLYGON ((534359.960 611556.855, 535359.960...))
     2       POLYGON ((535359.960 611556.855, 536359.960...))
@@ -320,41 +329,39 @@ def gridify(input_gdf, width=None, height=None, num_cols=None, num_rows=None):
     """
     xmin, ymin, xmax, ymax = input_gdf.total_bounds
 
-    if width and height:
-        pass
-    else:
-        if not width and not height:
-            width = height = (xmax - xmin) / 30
+    if not cell_x and not cell_y:
+        if n_cols and n_rows:
+            # cell_x and cell_y are calculated based on n_cols and n_rows
+            cell_x = (xmax - xmin) / n_cols
+            cell_y = (ymax - ymin) / n_rows
+        elif n_cols and not n_rows:
+            cell_y = cell_x = (xmax - xmin) / n_cols
+        elif n_rows and not n_cols:
+            cell_y = cell_x = (ymax - ymin) / n_rows
         else:
-            if width:
-                height = width
-            elif height:
-                width = height
+            cell_x = cell_y = (xmax - xmin) / 30
+    elif not cell_x and cell_y:
+        cell_x = cell_y
+    elif cell_x and not cell_y:
+        cell_y = cell_x
 
-    if num_cols and num_rows:
-        # width and height are calculated based on num_cols and num_rows
-        width = (xmax - xmin) / num_cols
-        height = (ymax - ymin) / num_rows
-    else:
-        if num_cols:
-            width = height = (xmax - xmin) / num_cols
-        elif num_rows:
-            height = width = (ymax - ymin) / num_rows
-        else:
-            pass
+    new_xmin = xmin//cell_x*cell_x
+    new_xmax = xmax//cell_x*cell_x + cell_x
+    new_ymin = ymin//cell_y*cell_y
+    new_ymax = ymax//cell_y*cell_y + cell_y
 
-    cols = np.arange(xmin - width/2, xmax + width/2, width)
-    rows = np.arange(ymin - height/2, ymax + height/2, height)
+    cols = np.arange(new_xmin, new_xmax + cell_x, cell_x)
+    rows = np.arange(new_ymin, new_ymax + cell_y, cell_y)
 
     polygons = [
         Polygon([
             (x, y),
-            (x+width, y),
-            (x+width, y+height),
-            (x, y+height)
+            (x + cell_x, y),
+            (x + cell_x, y + cell_y),
+            (x, y + cell_y)
         ])
         for y in rows
         for x in cols
     ]
 
-    return GeoDataFrame({'geometry': polygons}, crs=input_gdf.crs)
+    return gpd.GeoDataFrame({'geometry': polygons}, crs=input_gdf.crs)
